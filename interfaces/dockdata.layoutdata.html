@@ -104,7 +104,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="dockdata.layoutbase.html">LayoutBase</a>.<a href="dockdata.layoutbase.html#dockbox">dockbox</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L265">src/DockData.ts:265</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L270">DockData.ts:270</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -120,13 +120,13 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="dockdata.layoutbase.html">LayoutBase</a>.<a href="dockdata.layoutbase.html#floatbox">floatbox</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L270">src/DockData.ts:270</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L275">DockData.ts:275</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>float box
-							children must be PanelData, child box is not allowed</p>
+							<p>float box,
+							Children must be PanelData, child box is not allowed</p>
 						</div>
 					</div>
 				</section>
@@ -137,12 +137,12 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="dockdata.layoutbase.html">LayoutBase</a>.<a href="dockdata.layoutbase.html#maxbox">maxbox</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L283">src/DockData.ts:283</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L288">DockData.ts:288</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>the maximized panel
+							<p>The maximized panel,
 							only one child allowed, child must be PanelData</p>
 						</div>
 					</div>
@@ -154,13 +154,13 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="dockdata.layoutbase.html">LayoutBase</a>.<a href="dockdata.layoutbase.html#windowbox">windowbox</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L276">src/DockData.ts:276</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L281">DockData.ts:281</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>window box
-							children must be PanelData, child box is not allowed</p>
+							<p>window box,
+							Children must be PanelData, child box is not allowed</p>
 						</div>
 					</div>
 				</section>
@@ -189,7 +189,19 @@
 						<a href="dockdata.boxdata.html" class="tsd-kind-icon">Box<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="dockdata.dndspec.html" class="tsd-kind-icon">Dnd<wbr>Spec</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="dockdata.dockcontext.html" class="tsd-kind-icon">Dock<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="dockdata.dragsourcespec.html" class="tsd-kind-icon">Drag<wbr>Source<wbr>Spec</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="dockdata.droptargetmonitor.html" class="tsd-kind-icon">Drop<wbr>Target<wbr>Monitor</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="dockdata.droptargetspec.html" class="tsd-kind-icon">Drop<wbr>Target<wbr>Spec</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="dockdata.layoutbase.html" class="tsd-kind-icon">Layout<wbr>Base</a>
@@ -239,6 +251,15 @@
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="../modules/dockdata.html#dropdirection" class="tsd-kind-icon">Drop<wbr>Direction</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/dockdata.html#identifier" class="tsd-kind-icon">Identifier</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/dockdata.html#sourcetype" class="tsd-kind-icon">Source<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/dockdata.html#targettype" class="tsd-kind-icon">Target<wbr>Type</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -250,6 +271,7 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

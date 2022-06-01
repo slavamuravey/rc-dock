@@ -77,36 +77,36 @@
 					<h2>Usage</h2>
 				</a>
 				<p><a href="https://npmjs.org/package/rc-dock"><img src="https://nodei.co/npm/rc-dock.png" alt="rc-tabs"></a></p>
-				<pre><code class="language-jsx"><span style="color: #000000">import DockLayout from &#039;rc-dock&#039;</span>
-<span style="color: #000000">import &quot;rc-dock/dist/rc-dock.css&quot;;</span>
+				<pre><code class="language-jsx"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">DockLayout</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;rc-dock&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;rc-dock/dist/rc-dock.css&quot;</span><span style="color: #000000">;</span>
 
 <span style="color: #000000">...</span>
 
-<span style="color: #000000">defaultLayout = {</span>
-<span style="color: #000000">  dockbox: {</span>
-<span style="color: #000000">    mode: &#039;horizontal&#039;,</span>
-<span style="color: #000000">    children: [</span>
+<span style="color: #001080">defaultLayout</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">dockbox:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;horizontal&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">children:</span><span style="color: #000000"> [</span>
 <span style="color: #000000">      {</span>
-<span style="color: #000000">        tabs: [</span>
-<span style="color: #000000">          {id: &#039;tab1&#039;, title: &#039;tab1&#039;, content: &lt;div&gt;Hello World&lt;/div&gt;}</span>
+<span style="color: #000000">        </span><span style="color: #001080">tabs:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">          {</span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tab1&#039;</span><span style="color: #000000">, </span><span style="color: #001080">title:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tab1&#039;</span><span style="color: #000000">, </span><span style="color: #001080">content:</span><span style="color: #000000"> </span><span style="color: #800000">&lt;div&gt;</span><span style="color: #000000">Hello World</span><span style="color: #800000">&lt;/div&gt;</span><span style="color: #000000">}</span>
 <span style="color: #000000">        ]</span>
 <span style="color: #000000">      }</span>
 <span style="color: #000000">    ]</span>
 <span style="color: #000000">  }</span>
 <span style="color: #000000">};</span>
 
-<span style="color: #000000">render() {</span>
-<span style="color: #000000">  return (</span>
-<span style="color: #000000">    &lt;DockLayout</span>
-<span style="color: #000000">      defaultLayout={defaultLayout}</span>
-<span style="color: #000000">      style={{</span>
-<span style="color: #000000">        position: &quot;absolute&quot;,</span>
-<span style="color: #000000">        left: 10,</span>
-<span style="color: #000000">        top: 10,</span>
-<span style="color: #000000">        right: 10,</span>
-<span style="color: #000000">        bottom: 10,</span>
-<span style="color: #000000">      }}</span>
-<span style="color: #000000">    /&gt;</span>
+<span style="color: #795E26">render</span><span style="color: #000000">() {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> (</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">DockLayout</span>
+<span style="color: #000000">      </span><span style="color: #FF0000">defaultLayout</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">defaultLayout</span><span style="color: #0000FF">}</span>
+<span style="color: #000000">      </span><span style="color: #FF0000">style</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #000000FF">{</span>
+<span style="color: #000000FF">        </span><span style="color: #001080">position:</span><span style="color: #000000FF"> </span><span style="color: #A31515">&quot;absolute&quot;</span><span style="color: #000000FF">,</span>
+<span style="color: #000000FF">        </span><span style="color: #001080">left:</span><span style="color: #000000FF"> </span><span style="color: #098658">10</span><span style="color: #000000FF">,</span>
+<span style="color: #000000FF">        </span><span style="color: #001080">top:</span><span style="color: #000000FF"> </span><span style="color: #098658">10</span><span style="color: #000000FF">,</span>
+<span style="color: #000000FF">        </span><span style="color: #001080">right:</span><span style="color: #000000FF"> </span><span style="color: #098658">10</span><span style="color: #000000FF">,</span>
+<span style="color: #000000FF">        </span><span style="color: #001080">bottom:</span><span style="color: #000000FF"> </span><span style="color: #098658">10</span><span style="color: #000000FF">,</span>
+<span style="color: #000000FF">      }</span><span style="color: #0000FF">}</span>
+<span style="color: #000000">    </span><span style="color: #800000">/&gt;</span>
 <span style="color: #000000">  )</span>
 <span style="color: #000000">}</span>
 
@@ -307,10 +307,11 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>

@@ -105,12 +105,12 @@
 					<div class="tsd-signature tsd-kind-icon">animated<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L45">src/DockData.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L48">DockData.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>whether to show animation effect when switch tabs</p>
+							<p>Whether to show animation effect when switch tabs.</p>
 						</div>
 						<p>default true</p>
 					</div>
@@ -121,12 +121,12 @@
 					<div class="tsd-signature tsd-kind-icon">disable<wbr>Dock<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L25">src/DockData.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L28">DockData.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>disable dock, so the panel will only work in float mode</p>
+							<p>Disable dock, so the panel will only work in float mode.</p>
 						</div>
 						<p>default: false</p>
 					</div>
@@ -134,15 +134,16 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="floatable" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> floatable</h3>
-					<div class="tsd-signature tsd-kind-icon">floatable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<div class="tsd-signature tsd-kind-icon">floatable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;singleTab&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L11">src/DockData.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L14">DockData.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>whether tab can be dragged into float layer</p>
+							<p>Whether tab can be dragged into float layer.
+							If value is &quot;singleTab&quot;, float panel can&#39;t have multiple tabs.</p>
 						</div>
 						<p>default: false</p>
 					</div>
@@ -153,12 +154,12 @@
 					<div class="tsd-signature tsd-kind-icon">height<wbr>Flex<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L75">src/DockData.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L78">DockData.ts:78</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>override the default flex grow and flex shrink for panel height</p>
+							<p>Override the default flex grow and flex shrink for panel height</p>
 						</div>
 					</div>
 				</section>
@@ -168,12 +169,12 @@
 					<div class="tsd-signature tsd-kind-icon">maximizable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L32">src/DockData.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L35">DockData.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>whether tab can be maximized</p>
+							<p>Whether tab can be maximized</p>
 						</div>
 						<p>default: false</p>
 					</div>
@@ -184,12 +185,12 @@
 					<div class="tsd-signature tsd-kind-icon">new<wbr>Window<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L18">src/DockData.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L21">DockData.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>whether tab can be converted to native window, only works when floatable is true</p>
+							<p>Whether tab can be converted to native window, only works when floatable is true.</p>
 						</div>
 						<p>default: false</p>
 					</div>
@@ -197,25 +198,25 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="panelextra" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> panel<wbr>Extra</h3>
-					<div class="tsd-signature tsd-kind-icon">panel<wbr>Extra<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>panel<span class="tsd-signature-symbol">: </span><a href="dockdata.paneldata.html" class="tsd-signature-type" data-tsd-kind="Interface">PanelData</a>, context<span class="tsd-signature-symbol">: </span><a href="dockdata.dockcontext.html" class="tsd-signature-type" data-tsd-kind="Interface">DockContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">panel<wbr>Extra<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>panel<span class="tsd-signature-symbol">: </span><a href="dockdata.paneldata.html" class="tsd-signature-type" data-tsd-kind="Interface">PanelData</a>, context<span class="tsd-signature-symbol">: </span><a href="dockdata.dockcontext.html" class="tsd-signature-type" data-tsd-kind="Interface">DockContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">JSXElementConstructor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L53">src/DockData.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L56">DockData.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>generate extra content show in the right side of tab bar</p>
+							<p>Generate extra content show in the right side of tab bar.</p>
 						</div>
 						<p>panelExtra can also be used as a listener on panel state changes,
-						if you don&#39;t need to show extra content in this case, just return null</p>
+						If you don&#39;t need to show extra content in this case, just return null.</p>
 					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-interface">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>panel<span class="tsd-signature-symbol">: </span><a href="dockdata.paneldata.html" class="tsd-signature-type" data-tsd-kind="Interface">PanelData</a>, context<span class="tsd-signature-symbol">: </span><a href="dockdata.dockcontext.html" class="tsd-signature-type" data-tsd-kind="Interface">DockContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">&gt;</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>panel<span class="tsd-signature-symbol">: </span><a href="dockdata.paneldata.html" class="tsd-signature-type" data-tsd-kind="Interface">PanelData</a>, context<span class="tsd-signature-symbol">: </span><a href="dockdata.dockcontext.html" class="tsd-signature-type" data-tsd-kind="Interface">DockContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">JSXElementConstructor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -228,7 +229,7 @@
 												<h5>context: <a href="dockdata.dockcontext.html" class="tsd-signature-type" data-tsd-kind="Interface">DockContext</a></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">JSXElementConstructor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 									</li>
 								</ul>
 							</li>
@@ -241,14 +242,14 @@
 					<div class="tsd-signature tsd-kind-icon">preferred<wbr>Float<wbr>Height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L66">src/DockData.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L69">DockData.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>when creating float panel from dragging, DockLayout would use the original panel&#39;s size
-								use this to defined the [min, max] allowed height for the default size of a float panel
-							if not specified, minHeight = 50, maxHeight = 500</p>
+							<p>When creating float panel from dragging, DockLayout would use the original panel&#39;s size.
+								Use this to defined the [min, max] allowed height for the default size of a float panel.
+							If not specified, minHeight = 50, maxHeight = 500</p>
 						</div>
 					</div>
 				</section>
@@ -258,14 +259,14 @@
 					<div class="tsd-signature tsd-kind-icon">preferred<wbr>Float<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L60">src/DockData.ts:60</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L63">DockData.ts:63</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>when creating float panel from dragging, DockLayout would use the original panel&#39;s size
-								use this to defined the [min, max] allowed with for the default size of a float panel
-							if not specified, minWidth = 100, maxWidth = 600</p>
+							<p>When creating float panel from dragging, DockLayout would use the original panel&#39;s size.
+								Use this to defined the [min, max] allowed with for the default size of a float panel.
+							If not specified, minWidth = 100, maxWidth = 600</p>
 						</div>
 					</div>
 				</section>
@@ -275,12 +276,12 @@
 					<div class="tsd-signature tsd-kind-icon">tab<wbr>Locked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L39">src/DockData.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L42">DockData.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>when tabs are locked, you can not drag tab to create new panel, but it can still be dropped into a different panel if they have the same tab group.</p>
+							<p>When tabs are locked, you can not drag tab to create new panel, but it can still be dropped into a different panel if they have the same tab group.</p>
 						</div>
 						<p>default false</p>
 					</div>
@@ -291,12 +292,12 @@
 					<div class="tsd-signature tsd-kind-icon">width<wbr>Flex<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ticlo/rc-dock/blob/454f03a/src/DockData.ts#L71">src/DockData.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/slavamuravey/rc-dock/blob/7ae5119/src/DockData.ts#L74">DockData.ts:74</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>override the default flex grow and flex shrink for panel width</p>
+							<p>Override the default flex grow and flex shrink for panel width</p>
 						</div>
 					</div>
 				</section>
@@ -325,7 +326,19 @@
 						<a href="dockdata.boxdata.html" class="tsd-kind-icon">Box<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="dockdata.dndspec.html" class="tsd-kind-icon">Dnd<wbr>Spec</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="dockdata.dockcontext.html" class="tsd-kind-icon">Dock<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="dockdata.dragsourcespec.html" class="tsd-kind-icon">Drag<wbr>Source<wbr>Spec</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="dockdata.droptargetmonitor.html" class="tsd-kind-icon">Drop<wbr>Target<wbr>Monitor</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="dockdata.droptargetspec.html" class="tsd-kind-icon">Drop<wbr>Target<wbr>Spec</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="dockdata.layoutbase.html" class="tsd-kind-icon">Layout<wbr>Base</a>
@@ -396,6 +409,15 @@
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="../modules/dockdata.html#dropdirection" class="tsd-kind-icon">Drop<wbr>Direction</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/dockdata.html#identifier" class="tsd-kind-icon">Identifier</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/dockdata.html#sourcetype" class="tsd-kind-icon">Source<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="../modules/dockdata.html#targettype" class="tsd-kind-icon">Target<wbr>Type</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -407,6 +429,7 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

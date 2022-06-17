@@ -30008,7 +30008,68 @@ Object.keys(_hooks).forEach(function (key) {
     }
   });
 });
-},{"./types":"XHWN","./core":"MEfL","./decorators":"r5kb","./hooks":"jl0X"}],"HyIX":[function(require,module,exports) {
+},{"./types":"XHWN","./core":"MEfL","./decorators":"r5kb","./hooks":"jl0X"}],"qb7c":[function(require,module,exports) {
+var define;
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				if (arg.length) {
+					var inner = classNames.apply(null, arg);
+					if (inner) {
+						classes.push(inner);
+					}
+				}
+			} else if (argType === 'object') {
+				if (arg.toString === Object.prototype.toString) {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				} else {
+					classes.push(arg.toString());
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+},{}],"HyIX":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -30083,6 +30144,8 @@ const DockData_1 = require("../DockData");
 const uuid_1 = require("uuid");
 
 const react_dnd_1 = require("react-dnd");
+
+const classnames_1 = __importDefault(require("classnames"));
 
 class RcDragDropDiv extends react_1.default.PureComponent {
   constructor() {
@@ -30462,7 +30525,7 @@ class RcDragDropDiv extends react_1.default.PureComponent {
 
     return react_1.default.createElement("div", Object.assign({
       ref: this._getRef,
-      className: className
+      className: classnames_1.default("dnd-wrapper", className, this.context.getClassName())
     }, others, {
       onMouseDown: onMouseDown,
       onTouchStart: onTouchDown
@@ -30498,6 +30561,8 @@ class RcDragDropDiv extends react_1.default.PureComponent {
   }
 
 }
+
+RcDragDropDiv.contextType = DockData_1.DockContextType;
 
 class DndDragDropDiv extends react_1.default.PureComponent {
   constructor() {
@@ -30576,7 +30641,7 @@ class DndDragDropDiv extends react_1.default.PureComponent {
 
     return connectDragSource(connectDropTarget(react_1.default.createElement("div", Object.assign({
       ref: this._getRef,
-      className: className
+      className: classnames_1.default("dnd-wrapper", className, this.context.getClassName())
     }, others), children)));
   }
 
@@ -30808,14 +30873,10 @@ function dragCollect(connect, monitor) {
   };
 }
 
-const withDndSpec = WrappedComponent => {
+const withDefaultDndSpec = WrappedComponent => {
   return props => {
-    // @ts-ignore
-    const {
-      props: {
-        defaultDndSpec
-      }
-    } = react_1.useContext(DockData_1.DockContextType);
+    const context = react_1.useContext(DockData_1.DockContextType);
+    const defaultDndSpec = context.getDefaultDndSpec();
     return react_1.default.createElement(WrappedComponent, Object.assign({
       dndSpec: react_1.useMemo(() => defaultDndSpec, [])
     }, props));
@@ -30824,19 +30885,15 @@ const withDndSpec = WrappedComponent => {
 
 const withExternalData = WrappedComponent => {
   return props => {
-    // @ts-ignore
-    const {
-      props: {
-        externalData
-      }
-    } = react_1.useContext(DockData_1.DockContextType);
+    const context = react_1.useContext(DockData_1.DockContextType);
+    const externalData = context.getExternalData();
     return react_1.default.createElement(WrappedComponent, Object.assign({
       externalData: externalData
     }, props));
   };
 };
 
-const EnhancedDndDragDropDiv = withExternalData(withDndSpec(lodash_1.default.flow(react_dnd_1.DragSource(({
+const EnhancedDndDragDropDiv = withExternalData(withDefaultDndSpec(lodash_1.default.flow(react_dnd_1.DragSource(({
   dndSpec
 }) => {
   var _a;
@@ -30850,7 +30907,7 @@ const EnhancedDndDragDropDiv = withExternalData(withDndSpec(lodash_1.default.flo
   return ((_a = dndSpec === null || dndSpec === void 0 ? void 0 : dndSpec.dropTargetSpec) === null || _a === void 0 ? void 0 : _a.itemType) ? dndSpec.dropTargetSpec.itemType : Constants_1.ITEM_TYPE_DEFAULT;
 }, dropSpec, dropCollect))(DndDragDropDiv)));
 exports.DragDropDiv = EnhancedDndDragDropDiv;
-},{"react":"n8MK","./DragManager":"EJTb","./GestureManager":"cItD","../Constants":"RNfr","lodash":"B1iE","../DockData":"zh3I","uuid":"D6fo","react-dnd":"HITA"}],"Lzzn":[function(require,module,exports) {
+},{"react":"n8MK","./DragManager":"EJTb","./GestureManager":"cItD","../Constants":"RNfr","lodash":"B1iE","../DockData":"zh3I","uuid":"D6fo","react-dnd":"HITA","classnames":"qb7c"}],"Lzzn":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -46074,68 +46131,7 @@ function DockTabBar(props) {
 }
 
 exports.DockTabBar = DockTabBar;
-},{"react":"n8MK","./dragdrop/DragDropDiv":"HyIX","./DockData":"zh3I"}],"qb7c":[function(require,module,exports) {
-var define;
-/*!
-  Copyright (c) 2018 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames() {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				if (arg.length) {
-					var inner = classNames.apply(null, arg);
-					if (inner) {
-						classes.push(inner);
-					}
-				}
-			} else if (argType === 'object') {
-				if (arg.toString === Object.prototype.toString) {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				} else {
-					classes.push(arg.toString());
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
-		// register as 'classnames', consistent with npm package name
-		define('classnames', [], function () {
-			return classNames;
-		});
-	} else {
-		window.classNames = classNames;
-	}
-}());
-
-},{}],"ZavB":[function(require,module,exports) {
+},{"react":"n8MK","./dragdrop/DragDropDiv":"HyIX","./DockData":"zh3I"}],"ZavB":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -46242,7 +46238,7 @@ class DockTabPane extends react_1.default.PureComponent {
       "aria-labelledby": id && `${id}-tab-${tabKey}`,
       "aria-hidden": !active,
       style: Object.assign(Object.assign({}, mergedStyle), style),
-      className: classnames_1.default(`${prefixCls}-tabpane`, active && `${prefixCls}-tabpane-active`, className)
+      className: classnames_1.default(`${prefixCls}-tabpane`, active && `${prefixCls}-tabpane-active`, className, this.context.getClassName())
     }, (active || this.visited || forceRender) && renderChildren);
   }
 
@@ -47893,6 +47889,8 @@ const DockPanel_1 = require("./DockPanel");
 
 const ScreenPosition_1 = require("rc-new-window/lib/ScreenPosition");
 
+const classnames_1 = __importDefault(require("classnames"));
+
 class WindowPanel extends react_1.default.PureComponent {
   constructor() {
     super(...arguments);
@@ -47952,7 +47950,7 @@ class WindowPanel extends react_1.default.PureComponent {
       width: w,
       height: h
     }, react_1.default.createElement("div", {
-      className: 'dock-wbox'
+      className: classnames_1.default("dock-wbox", this.context.getClassName())
     }, react_1.default.createElement(DockPanel_1.DockPanel, {
       size: panelData.size,
       panelData: panelData,
@@ -47964,7 +47962,7 @@ class WindowPanel extends react_1.default.PureComponent {
 
 exports.WindowPanel = WindowPanel;
 WindowPanel.contextType = DockData_1.DockContextType;
-},{"react":"n8MK","rc-new-window":"K3Y8","./DockData":"zh3I","./DockPanel":"ohUB","rc-new-window/lib/ScreenPosition":"js5E"}],"ObQG":[function(require,module,exports) {
+},{"react":"n8MK","rc-new-window":"K3Y8","./DockData":"zh3I","./DockPanel":"ohUB","rc-new-window/lib/ScreenPosition":"js5E","classnames":"qb7c"}],"ObQG":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -48484,6 +48482,8 @@ const DragDropDiv_1 = require("./dragdrop/DragDropDiv");
 
 const DragManager_1 = require("./dragdrop/DragManager");
 
+const classnames_1 = __importDefault(require("classnames"));
+
 class DockDropSquare extends react_1.default.PureComponent {
   constructor() {
     super(...arguments);
@@ -48579,7 +48579,7 @@ class DockDropSquare extends react_1.default.PureComponent {
       onDragLeaveT: this.onDragLeave,
       onDropT: this.onDrop
     }, react_1.default.createElement("div", {
-      className: "dock-drop-square-box"
+      className: classnames_1.default("dock-drop-square-box", this.context.getClassName())
     }));
   }
 
@@ -48709,7 +48709,7 @@ class DockDropLayer extends react_1.default.PureComponent {
       }
     };
     return react_1.default.createElement("div", {
-      className: "dock-drop-layer",
+      className: classnames_1.default("dock-drop-layer", this.context.getClassName()),
       style: styles[panelData.tabPosition]
     }, children);
   }
@@ -48718,7 +48718,7 @@ class DockDropLayer extends react_1.default.PureComponent {
 
 exports.DockDropLayer = DockDropLayer;
 DockDropLayer.contextType = DockData_1.DockContextType;
-},{"react":"n8MK","./DockData":"zh3I","./dragdrop/DragDropDiv":"HyIX","./dragdrop/DragManager":"EJTb"}],"QpCJ":[function(require,module,exports) {
+},{"react":"n8MK","./DockData":"zh3I","./dragdrop/DragDropDiv":"HyIX","./dragdrop/DragManager":"EJTb","classnames":"qb7c"}],"QpCJ":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -49558,6 +49558,8 @@ const Divider_1 = require("./Divider");
 
 const DockPanel_1 = require("./DockPanel");
 
+const classnames_1 = __importDefault(require("classnames"));
+
 class DockBox extends react_1.default.PureComponent {
   constructor() {
     super(...arguments);
@@ -49694,7 +49696,7 @@ class DockBox extends react_1.default.PureComponent {
 
     return react_1.default.createElement("div", {
       ref: this.getRef,
-      className: cls,
+      className: classnames_1.default(cls, this.context.getClassName()),
       "data-dockid": id,
       style: {
         minWidth,
@@ -49708,7 +49710,7 @@ class DockBox extends react_1.default.PureComponent {
 
 exports.DockBox = DockBox;
 DockBox.contextType = DockData_1.DockContextType;
-},{"react":"n8MK","./DockData":"zh3I","./Divider":"Lzzn","./DockPanel":"ohUB"}],"tXcC":[function(require,module,exports) {
+},{"react":"n8MK","./DockData":"zh3I","./Divider":"Lzzn","./DockPanel":"ohUB","classnames":"qb7c"}],"tXcC":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -49724,7 +49726,11 @@ exports.FloatBox = void 0;
 
 const react_1 = __importDefault(require("react"));
 
+const DockData_1 = require("./DockData");
+
 const DockPanel_1 = require("./DockPanel");
+
+const classnames_1 = __importDefault(require("classnames"));
 
 class FloatBox extends react_1.default.PureComponent {
   render() {
@@ -49744,14 +49750,15 @@ class FloatBox extends react_1.default.PureComponent {
     }
 
     return react_1.default.createElement("div", {
-      className: 'dock-box dock-fbox'
+      className: classnames_1.default("dock-box dock-fbox", this.context.getClassName())
     }, childrenRender);
   }
 
 }
 
 exports.FloatBox = FloatBox;
-},{"react":"n8MK","./DockPanel":"ohUB"}],"EWaN":[function(require,module,exports) {
+FloatBox.contextType = DockData_1.DockContextType;
+},{"react":"n8MK","./DockData":"zh3I","./DockPanel":"ohUB","classnames":"qb7c"}],"EWaN":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50049,7 +50056,11 @@ exports.MaxBox = void 0;
 
 const react_1 = __importDefault(require("react"));
 
+const DockData_1 = require("./DockData");
+
 const DockPanel_1 = require("./DockPanel");
+
+const classnames_1 = __importDefault(require("classnames"));
 
 class MaxBox extends react_1.default.PureComponent {
   render() {
@@ -50061,7 +50072,7 @@ class MaxBox extends react_1.default.PureComponent {
         tabs: []
       });
       return react_1.default.createElement("div", {
-        className: "dock-box dock-mbox dock-mbox-show"
+        className: classnames_1.default("dock-box dock-mbox dock-mbox-show", this.context.getClassName())
       }, react_1.default.createElement(DockPanel_1.DockPanel, {
         size: 100,
         panelData: panelData
@@ -50071,14 +50082,14 @@ class MaxBox extends react_1.default.PureComponent {
       let hidePanelData = this.hidePanelData;
       this.hidePanelData = null;
       return react_1.default.createElement("div", {
-        className: "dock-box dock-mbox dock-mbox-hide"
+        className: classnames_1.default("dock-box dock-mbox dock-mbox-hide", this.context.getClassName())
       }, react_1.default.createElement(DockPanel_1.DockPanel, {
         size: 100,
         panelData: hidePanelData
       }));
     } else {
       return react_1.default.createElement("div", {
-        className: "dock-box dock-mbox dock-mbox-hide"
+        className: classnames_1.default("dock-box dock-mbox dock-mbox-hide", this.context.getClassName())
       });
     }
   }
@@ -50086,7 +50097,8 @@ class MaxBox extends react_1.default.PureComponent {
 }
 
 exports.MaxBox = MaxBox;
-},{"react":"n8MK","./DockPanel":"ohUB"}],"iJyS":[function(require,module,exports) {
+MaxBox.contextType = DockData_1.DockContextType;
+},{"react":"n8MK","./DockData":"zh3I","./DockPanel":"ohUB","classnames":"qb7c"}],"iJyS":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -50166,6 +50178,8 @@ const DragManager = __importStar(require("./dragdrop/DragManager"));
 const MaxBox_1 = require("./MaxBox");
 
 const WindowBox_1 = require("./WindowBox");
+
+const classnames_1 = __importDefault(require("classnames"));
 
 class DockPortalManager extends react_1.default.PureComponent {
   constructor() {
@@ -50669,7 +50683,8 @@ class DockLayout extends DockPortalManager {
     this.tempLayout = null;
     let {
       style,
-      maximizeTo
+      maximizeTo,
+      className
     } = this.props;
     let {
       layout,
@@ -50720,7 +50735,7 @@ class DockLayout extends DockPortalManager {
 
     return react_1.default.createElement("div", {
       ref: this.getRef,
-      className: "dock-layout",
+      className: classnames_1.default("dock-layout", className),
       style: style
     }, react_1.default.createElement(DockData_1.DockContextProvider, {
       value: this
@@ -50877,10 +50892,22 @@ class DockLayout extends DockPortalManager {
     return null;
   }
 
+  getExternalData() {
+    return this.props.externalData;
+  }
+
+  getDefaultDndSpec() {
+    return this.props.defaultDndSpec;
+  }
+
+  getClassName() {
+    return this.props.className;
+  }
+
 }
 
 exports.DockLayout = DockLayout;
-},{"react":"n8MK","react-dom":"NKHc","lodash/debounce":"CXfR","./DockData":"zh3I","./DockBox":"GMUE","./FloatBox":"tXcC","./DockPanel":"ohUB","./Algorithm":"wqok","./Serializer":"EWaN","./dragdrop/DragManager":"EJTb","./MaxBox":"Lojd","./WindowBox":"ObQG"}],"yQx6":[function(require,module,exports) {
+},{"react":"n8MK","react-dom":"NKHc","lodash/debounce":"CXfR","./DockData":"zh3I","./DockBox":"GMUE","./FloatBox":"tXcC","./DockPanel":"ohUB","./Algorithm":"wqok","./Serializer":"EWaN","./dragdrop/DragManager":"EJTb","./MaxBox":"Lojd","./WindowBox":"ObQG","classnames":"qb7c"}],"yQx6":[function(require,module,exports) {
 "use strict";
 
 var __rest = this && this.__rest || function (s, e) {
@@ -50910,6 +50937,8 @@ const react_1 = __importDefault(require("react"));
 const DockData_1 = require("./DockData");
 
 const Divider_1 = require("./Divider");
+
+const classnames_1 = __importDefault(require("classnames"));
 
 class DividerBox extends react_1.default.PureComponent {
   constructor() {
@@ -51022,7 +51051,7 @@ class DividerBox extends react_1.default.PureComponent {
 
     return react_1.default.createElement("div", Object.assign({
       ref: this.getRef,
-      className: cls
+      className: classnames_1.default(cls, this.context.getClassName())
     }, others), childrenRender);
   }
 
@@ -51030,7 +51059,7 @@ class DividerBox extends react_1.default.PureComponent {
 
 exports.DividerBox = DividerBox;
 DividerBox.contextType = DockData_1.DockContextType;
-},{"react":"n8MK","./DockData":"zh3I","./Divider":"Lzzn"}],"VNNP":[function(require,module,exports) {
+},{"react":"n8MK","./DockData":"zh3I","./Divider":"Lzzn","classnames":"qb7c"}],"VNNP":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {

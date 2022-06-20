@@ -49273,8 +49273,8 @@ class DockPanel extends react_1.default.PureComponent {
           }
       }
 
-      panelData.w = Math.max(panelData.w || 0, 100);
-      panelData.h = Math.max(panelData.h || 0, 100);
+      panelData.w = Math.max(panelData.w || 0, panelData.minWidth || 0);
+      panelData.h = Math.max(panelData.h || 0, panelData.minHeight || 0);
       this.forceUpdate();
     };
 

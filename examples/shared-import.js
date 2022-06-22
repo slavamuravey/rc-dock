@@ -49408,7 +49408,7 @@ class DockPanel extends react_1.default.PureComponent {
       onPanelHeaderDragStart = null;
     }
 
-    let cls = `dock-panel ${panelClass ? panelClass : ''}${dropFromPanel ? ' dock-panel-dropping' : ''}${draggingHeader ? ' dragging' : ''}`;
+    let cls = `dock-panel ${panelClass ? panelClass : ''}${dropFromPanel ? ' dock-panel-dropping' : ''}${draggingHeader ? ' dragging' : ''}${panelData.tabs.length === 1 ? ' dock-panel-one-tab' : ''}`;
     let flex = 1;
 
     if (isHBox && widthFlex != null) {

@@ -50679,7 +50679,9 @@ class DockLayout extends DockPortalManager {
 
 
   render() {
-    // clear tempLayout
+    var _a, _b, _c; // clear tempLayout
+
+
     this.tempLayout = null;
     let {
       style,
@@ -50733,6 +50735,7 @@ class DockLayout extends DockPortalManager {
       }
     }
 
+    const tabPosition = (_c = (_b = (_a = dropRect === null || dropRect === void 0 ? void 0 : dropRect.source) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.parent) === null || _c === void 0 ? void 0 : _c.tabPosition;
     return react_1.default.createElement("div", {
       ref: this.getRef,
       className: classnames_1.default("dock-layout", className),
@@ -50748,7 +50751,10 @@ class DockLayout extends DockPortalManager {
       boxData: layout.windowbox
     }), maximize, portals), react_1.default.createElement("div", {
       className: classnames_1.default("dock-drop-indicator", {
-        "dock-drop-indicator-float": (dropRect === null || dropRect === void 0 ? void 0 : dropRect.direction) === 'float'
+        "dock-drop-indicator-float": (dropRect === null || dropRect === void 0 ? void 0 : dropRect.direction) === 'float',
+        "dock-drop-indicator-tab-horizontal": (dropRect === null || dropRect === void 0 ? void 0 : dropRect.direction) === 'before-tab' || (dropRect === null || dropRect === void 0 ? void 0 : dropRect.direction) === 'after-tab',
+        "dock-drop-indicator-tab-vertical": (dropRect === null || dropRect === void 0 ? void 0 : dropRect.direction) === 'under-tab' || (dropRect === null || dropRect === void 0 ? void 0 : dropRect.direction) === 'above-tab',
+        [`dock-drop-indicator-tab-${tabPosition}`]: tabPosition
       }),
       style: dropRectStyle
     }));

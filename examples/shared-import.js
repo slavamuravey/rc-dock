@@ -50679,7 +50679,7 @@ class DockLayout extends DockPortalManager {
 
 
   render() {
-    var _a, _b, _c; // clear tempLayout
+    var _a, _b, _c, _d; // clear tempLayout
 
 
     this.tempLayout = null;
@@ -50738,7 +50738,9 @@ class DockLayout extends DockPortalManager {
     const tabPosition = (_c = (_b = (_a = dropRect === null || dropRect === void 0 ? void 0 : dropRect.source) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.parent) === null || _c === void 0 ? void 0 : _c.tabPosition;
     return react_1.default.createElement("div", {
       ref: this.getRef,
-      className: classnames_1.default("dock-layout", className),
+      className: classnames_1.default("dock-layout", className, {
+        "dock-layout-empty-dock-box": layout.dockbox.children.length === 1 && ((_d = layout.dockbox.children[0]) === null || _d === void 0 ? void 0 : _d.tabs.length) === 0
+      }),
       style: style
     }, react_1.default.createElement(DockData_1.DockContextProvider, {
       value: this

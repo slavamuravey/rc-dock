@@ -48071,6 +48071,8 @@ const Algorithm_1 = require("./Algorithm");
 
 const WindowBox_1 = require("./WindowBox");
 
+const classnames_1 = __importDefault(require("classnames"));
+
 function findParentPanel(element) {
   for (let i = 0; i < 10; ++i) {
     if (!element) {
@@ -48445,7 +48447,7 @@ class DockTabs extends react_1.default.PureComponent {
     }
 
     return react_1.default.createElement(rc_tabs_1.default, {
-      prefixCls: "dock",
+      prefixCls: classnames_1.default(this.context.getClassName(), "dock"),
       moreIcon: "...",
       animated: animated,
       renderTabBar: this.renderTabBar,
@@ -48460,7 +48462,7 @@ class DockTabs extends react_1.default.PureComponent {
 exports.DockTabs = DockTabs;
 DockTabs.contextType = DockData_1.DockContextType;
 DockTabs.propKeys = ['group', 'tabs', 'activeId', 'onTabChange'];
-},{"react":"n8MK","./DockData":"zh3I","rc-tabs":"FgVr","rc-menu":"VH7R","rc-dropdown":"SyQB","./dragdrop/DragManager":"EJTb","./dragdrop/DragDropDiv":"HyIX","./DockTabBar":"Ec16","./DockTabPane":"ZavB","./Algorithm":"wqok","./WindowBox":"ObQG"}],"YpI8":[function(require,module,exports) {
+},{"react":"n8MK","./DockData":"zh3I","rc-tabs":"FgVr","rc-menu":"VH7R","rc-dropdown":"SyQB","./dragdrop/DragManager":"EJTb","./dragdrop/DragDropDiv":"HyIX","./DockTabBar":"Ec16","./DockTabPane":"ZavB","./Algorithm":"wqok","./WindowBox":"ObQG","classnames":"qb7c"}],"YpI8":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {

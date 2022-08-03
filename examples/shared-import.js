@@ -30589,6 +30589,20 @@ class DndDragDropDiv extends react_1.default.PureComponent {
     };
   }
 
+  componentDidMount() {
+    var _a;
+
+    const {
+      connectDragPreview,
+      dndSpec
+    } = this.props;
+    const preview = (_a = dndSpec === null || dndSpec === void 0 ? void 0 : dndSpec.dragSourceSpec) === null || _a === void 0 ? void 0 : _a.preview;
+
+    if (preview) {
+      connectDragPreview(preview.elementOrNode, preview.options);
+    }
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.isOver && !this.props.isOver) {
       if (this.props.onDragLeaveT) {
@@ -30619,6 +30633,7 @@ class DndDragDropDiv extends react_1.default.PureComponent {
       // drag props
       isDragging,
       connectDragSource,
+      connectDragPreview,
       // drop props
       isOver,
       canDrop,
@@ -30629,7 +30644,7 @@ class DndDragDropDiv extends react_1.default.PureComponent {
       dndSpec,
       externalData
     } = _a,
-        others = __rest(_a, ["getRef", "children", "className", "directDragT", "onDragStartT", "onDragMoveT", "onDragEndT", "onDragOverT", "onDragLeaveT", "onDropT", "onGestureStartT", "onGestureMoveT", "onGestureEndT", "useRightButtonDragT", "tabData", "isDragging", "connectDragSource", "isOver", "canDrop", "connectDropTarget", "isOverCurrent", "itemType", "dndSpec", "externalData"]);
+        others = __rest(_a, ["getRef", "children", "className", "directDragT", "onDragStartT", "onDragMoveT", "onDragEndT", "onDragOverT", "onDragLeaveT", "onDropT", "onGestureStartT", "onGestureMoveT", "onGestureEndT", "useRightButtonDragT", "tabData", "isDragging", "connectDragSource", "connectDragPreview", "isOver", "canDrop", "connectDropTarget", "isOverCurrent", "itemType", "dndSpec", "externalData"]);
 
     if (canDrag(this.props)) {
       if (className) {
@@ -30869,6 +30884,7 @@ const dragSpec = {
 function dragCollect(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
   };
 }

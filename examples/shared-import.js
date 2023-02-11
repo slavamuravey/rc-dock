@@ -17477,13 +17477,34 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = _Dropdown.default;
 exports.default = _default;
-},{"./Dropdown":"rgdw"}],"EJTb":[function(require,module,exports) {
+},{"./Dropdown":"rgdw"}],"CZvM":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.groupClassNames = void 0;
+
+const groupClassNames = (groupNames = '') => groupNames.split(' ').filter(value => value !== '').map(name => `dock-style-${name}`);
+
+exports.groupClassNames = groupClassNames;
+},{}],"EJTb":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.removeDragStateListener = exports.addDragStateListener = exports.destroyDraggingElement = exports.removeHandlers = exports.addHandlers = exports.isDragging = exports.DragState = void 0;
+
+const classnames_1 = __importDefault(require("classnames"));
+
+const Utils_1 = require("../Utils");
 
 class DragState {
   constructor(event, component, init = false) {
@@ -17685,12 +17706,10 @@ let _draggingDiv;
 let _draggingIcon;
 
 function _createDraggingDiv(doc) {
-  var _a;
-
   _draggingDiv = doc.createElement('div');
   _draggingIcon = doc.createElement('div');
   const tabGroup = _data && 'tabGroup' in _data ? _data['tabGroup'] : undefined;
-  _draggingDiv.className = ((_a = tabGroup === null || tabGroup === void 0 ? void 0 : tabGroup.split(' ').map(name => `dock-style-${name}`)) !== null && _a !== void 0 ? _a : []).concat('dragging-layer').join(' ');
+  _draggingDiv.className = classnames_1.default(Utils_1.groupClassNames(tabGroup), 'dragging-layer');
 
   _draggingDiv.appendChild(document.createElement('div')); // place holder for dragging element
 
@@ -17810,7 +17829,7 @@ if (typeof window !== 'undefined' && window.navigator && window.navigator.platfo
     passive: false
   });
 }
-},{}],"cItD":[function(require,module,exports) {
+},{"classnames":"qb7c","../Utils":"CZvM"}],"cItD":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20980,6 +20999,12 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -21000,6 +21025,10 @@ const DockDropLayer_1 = require("./DockDropLayer");
 const Algorithm_1 = require("./Algorithm");
 
 const DockDropEdge_1 = require("./DockDropEdge");
+
+const Utils_1 = require("./Utils");
+
+const classnames_1 = __importDefault(require("classnames"));
 
 class DockPanel extends React.PureComponent {
   constructor() {
@@ -21388,12 +21417,7 @@ class DockPanel extends React.PureComponent {
       }
     }
 
-    let panelClass;
-
-    if (styleName) {
-      panelClass = styleName.split(' ').map(name => `dock-style-${name}`).join(' ');
-    }
-
+    let panelClass = classnames_1.default(Utils_1.groupClassNames(styleName));
     let isMax = (parent === null || parent === void 0 ? void 0 : parent.mode) === 'maximize';
     let isFloat = (parent === null || parent === void 0 ? void 0 : parent.mode) === 'float';
     let isHBox = (parent === null || parent === void 0 ? void 0 : parent.mode) === 'horizontal';
@@ -21533,7 +21557,7 @@ class DockPanel extends React.PureComponent {
 
 exports.DockPanel = DockPanel;
 DockPanel.contextType = DockData_1.DockContextType;
-},{"react":"n8MK","./DockData":"zh3I","./DockTabs":"nskJ","./dragdrop/DragDropDiv":"HyIX","./dragdrop/DragManager":"EJTb","./DockDropLayer":"YpI8","./Algorithm":"wqok","./DockDropEdge":"QpCJ"}],"LPFX":[function(require,module,exports) {
+},{"react":"n8MK","./DockData":"zh3I","./DockTabs":"nskJ","./dragdrop/DragDropDiv":"HyIX","./dragdrop/DragManager":"EJTb","./DockDropLayer":"YpI8","./Algorithm":"wqok","./DockDropEdge":"QpCJ","./Utils":"CZvM","classnames":"qb7c"}],"LPFX":[function(require,module,exports) {
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -21998,6 +22022,10 @@ const Algorithm_1 = require("./Algorithm");
 
 const WindowBox_1 = require("./WindowBox");
 
+const Utils_1 = require("./Utils");
+
+const classnames_1 = __importDefault(require("classnames"));
+
 function findParentPanel(element) {
   for (let i = 0; i < 10; ++i) {
     if (!element) {
@@ -22373,7 +22401,8 @@ class DockTabs extends React.PureComponent {
       animated: animated,
       renderTabBar: this.renderTabBar,
       activeKey: activeId,
-      onChange: this.onTabChange
+      onChange: this.onTabChange,
+      popupClassName: classnames_1.default(Utils_1.groupClassNames(group))
     }, children);
   }
 
@@ -22382,7 +22411,7 @@ class DockTabs extends React.PureComponent {
 exports.DockTabs = DockTabs;
 DockTabs.contextType = DockData_1.DockContextType;
 DockTabs.propKeys = ['group', 'tabs', 'activeId', 'onTabChange'];
-},{"react":"n8MK","./DockData":"zh3I","rc-tabs":"FgVr","rc-menu":"VH7R","rc-dropdown":"SyQB","./dragdrop/DragManager":"EJTb","./dragdrop/DragDropDiv":"HyIX","./DockTabBar":"Ec16","./DockTabPane":"ZavB","./Algorithm":"wqok","./WindowBox":"ObQG"}],"Lzzn":[function(require,module,exports) {
+},{"react":"n8MK","./DockData":"zh3I","rc-tabs":"FgVr","rc-menu":"VH7R","rc-dropdown":"SyQB","./dragdrop/DragManager":"EJTb","./dragdrop/DragDropDiv":"HyIX","./DockTabBar":"Ec16","./DockTabPane":"ZavB","./Algorithm":"wqok","./WindowBox":"ObQG","./Utils":"CZvM","classnames":"qb7c"}],"Lzzn":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {

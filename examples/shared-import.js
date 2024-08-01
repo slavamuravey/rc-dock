@@ -959,7 +959,7 @@ function _objectSpread2(target) {
 
   return target;
 }
-},{"./defineProperty.js":"gpd2"}],"qb7c":[function(require,module,exports) {
+},{"./defineProperty.js":"gpd2"}],"yl9j":[function(require,module,exports) {
 var define;
 /*!
 	Copyright (c) 2018 Jed Watson.
@@ -1022,6 +1022,426 @@ var define;
 	}
 }());
 
+},{}],"XbWx":[function(require,module,exports) {
+/**
+ * @license React
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+'use strict';var b=Symbol.for("react.element"),c=Symbol.for("react.portal"),d=Symbol.for("react.fragment"),e=Symbol.for("react.strict_mode"),f=Symbol.for("react.profiler"),g=Symbol.for("react.provider"),h=Symbol.for("react.context"),k=Symbol.for("react.server_context"),l=Symbol.for("react.forward_ref"),m=Symbol.for("react.suspense"),n=Symbol.for("react.suspense_list"),p=Symbol.for("react.memo"),q=Symbol.for("react.lazy"),t=Symbol.for("react.offscreen"),u;u=Symbol.for("react.module.reference");
+function v(a){if("object"===typeof a&&null!==a){var r=a.$$typeof;switch(r){case b:switch(a=a.type,a){case d:case f:case e:case m:case n:return a;default:switch(a=a&&a.$$typeof,a){case k:case h:case l:case q:case p:case g:return a;default:return r}}case c:return r}}}exports.ContextConsumer=h;exports.ContextProvider=g;exports.Element=b;exports.ForwardRef=l;exports.Fragment=d;exports.Lazy=q;exports.Memo=p;exports.Portal=c;exports.Profiler=f;exports.StrictMode=e;exports.Suspense=m;
+exports.SuspenseList=n;exports.isAsyncMode=function(){return!1};exports.isConcurrentMode=function(){return!1};exports.isContextConsumer=function(a){return v(a)===h};exports.isContextProvider=function(a){return v(a)===g};exports.isElement=function(a){return"object"===typeof a&&null!==a&&a.$$typeof===b};exports.isForwardRef=function(a){return v(a)===l};exports.isFragment=function(a){return v(a)===d};exports.isLazy=function(a){return v(a)===q};exports.isMemo=function(a){return v(a)===p};
+exports.isPortal=function(a){return v(a)===c};exports.isProfiler=function(a){return v(a)===f};exports.isStrictMode=function(a){return v(a)===e};exports.isSuspense=function(a){return v(a)===m};exports.isSuspenseList=function(a){return v(a)===n};
+exports.isValidElementType=function(a){return"string"===typeof a||"function"===typeof a||a===d||a===f||a===e||a===m||a===n||a===t||"object"===typeof a&&null!==a&&(a.$$typeof===q||a.$$typeof===p||a.$$typeof===g||a.$$typeof===h||a.$$typeof===l||a.$$typeof===u||void 0!==a.getModuleId)?!0:!1};exports.typeOf=v;
+
+},{}],"N5Ym":[function(require,module,exports) {
+'use strict';
+
+if ("production" === 'production') {
+  module.exports = require('./cjs/react-is.production.min.js');
+} else {
+  module.exports = require('./cjs/react-is.development.js');
+}
+},{"./cjs/react-is.production.min.js":"XbWx"}],"zO4a":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = toArray;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactIs = require("react-is");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function toArray(children) {
+  var option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var ret = [];
+
+  _react.default.Children.forEach(children, function (child) {
+    if ((child === undefined || child === null) && !option.keepEmpty) {
+      return;
+    }
+
+    if (Array.isArray(child)) {
+      ret = ret.concat(toArray(child));
+    } else if ((0, _reactIs.isFragment)(child) && child.props) {
+      ret = ret.concat(toArray(child.props.children, option));
+    } else {
+      ret.push(child);
+    }
+  });
+
+  return ret;
+}
+},{"react":"n8MK","react-is":"N5Ym"}],"R6MQ":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default() {
+  if (typeof navigator === 'undefined' || typeof window === 'undefined') {
+    return false;
+  }
+
+  var agent = navigator.userAgent || navigator.vendor || window.opera;
+  return /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(agent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw-(n|u)|c55\/|capi|ccwa|cdm-|cell|chtm|cldc|cmd-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc-s|devi|dica|dmob|do(c|p)o|ds(12|-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(-|_)|g1 u|g560|gene|gf-5|g-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd-(m|p|t)|hei-|hi(pt|ta)|hp( i|ip)|hs-c|ht(c(-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i-(20|go|ma)|i230|iac( |-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|-[a-w])|libw|lynx|m1-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|-([1-8]|c))|phil|pire|pl(ay|uc)|pn-2|po(ck|rt|se)|prox|psio|pt-g|qa-a|qc(07|12|21|32|60|-[2-7]|i-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h-|oo|p-)|sdk\/|se(c(-|0|1)|47|mc|nd|ri)|sgh-|shar|sie(-|m)|sk-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h-|v-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl-|tdg-|tel(i|m)|tim-|t-mo|to(pl|sh)|ts(70|m-|m3|m5)|tx-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas-|your|zeto|zte-/i.test(agent === null || agent === void 0 ? void 0 : agent.substr(0, 4));
+};
+
+exports.default = _default;
+},{}],"ssYe":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useEvent;
+
+var React = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function useEvent(callback) {
+  var fnRef = React.useRef();
+  fnRef.current = callback;
+  var memoFn = React.useCallback(function () {
+    var _fnRef$current;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return (_fnRef$current = fnRef.current) === null || _fnRef$current === void 0 ? void 0 : _fnRef$current.call.apply(_fnRef$current, [fnRef].concat(args));
+  }, []);
+  return memoFn;
+}
+},{"react":"n8MK"}],"s2cK":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = canUseDom;
+
+function canUseDom() {
+  return !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+}
+},{}],"ZlGx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useLayoutUpdateEffect = exports.default = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _canUseDom = _interopRequireDefault(require("../Dom/canUseDom"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+/**
+ * Wrap `React.useLayoutEffect` which will not throw warning message in test env
+ */
+var useInternalLayoutEffect = "production" !== 'test' && (0, _canUseDom.default)() ? React.useLayoutEffect : React.useEffect;
+
+var useLayoutEffect = function useLayoutEffect(callback, deps) {
+  var firstMountRef = React.useRef(true);
+  useInternalLayoutEffect(function () {
+    return callback(firstMountRef.current);
+  }, deps); // We tell react that first mount has passed
+
+  useInternalLayoutEffect(function () {
+    firstMountRef.current = false;
+    return function () {
+      firstMountRef.current = true;
+    };
+  }, []);
+};
+
+var useLayoutUpdateEffect = function useLayoutUpdateEffect(callback, deps) {
+  useLayoutEffect(function (firstMount) {
+    if (!firstMount) {
+      return callback();
+    }
+  }, deps);
+};
+
+exports.useLayoutUpdateEffect = useLayoutUpdateEffect;
+var _default = useLayoutEffect;
+exports.default = _default;
+},{"react":"n8MK","../Dom/canUseDom":"s2cK"}],"nSoY":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useSafeState;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var React = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Same as React.useState but `setState` accept `ignoreDestroy` param to not to setState after destroyed.
+ * We do not make this auto is to avoid real memory leak.
+ * Developer should confirm it's safe to ignore themselves.
+ */
+function useSafeState(defaultValue) {
+  var destroyRef = React.useRef(false);
+
+  var _React$useState = React.useState(defaultValue),
+      _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
+      value = _React$useState2[0],
+      setValue = _React$useState2[1];
+
+  React.useEffect(function () {
+    destroyRef.current = false;
+    return function () {
+      destroyRef.current = true;
+    };
+  }, []);
+
+  function safeSetState(updater, ignoreDestroy) {
+    if (ignoreDestroy && destroyRef.current) {
+      return;
+    }
+
+    setValue(updater);
+  }
+
+  return [value, safeSetState];
+}
+},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK"}],"w0MT":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useMergedState;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var _useEvent = _interopRequireDefault(require("./useEvent"));
+
+var _useLayoutEffect = require("./useLayoutEffect");
+
+var _useState5 = _interopRequireDefault(require("./useState"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/** We only think `undefined` is empty */
+function hasValue(value) {
+  return value !== undefined;
+}
+/**
+ * Similar to `useState` but will use props value if provided.
+ * Note that internal use rc-util `useState` hook.
+ */
+
+
+function useMergedState(defaultStateValue, option) {
+  var _ref = option || {},
+      defaultValue = _ref.defaultValue,
+      value = _ref.value,
+      onChange = _ref.onChange,
+      postState = _ref.postState; // ======================= Init =======================
+
+
+  var _useState = (0, _useState5.default)(function () {
+    if (hasValue(value)) {
+      return value;
+    } else if (hasValue(defaultValue)) {
+      return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
+    } else {
+      return typeof defaultStateValue === 'function' ? defaultStateValue() : defaultStateValue;
+    }
+  }),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+      innerValue = _useState2[0],
+      setInnerValue = _useState2[1];
+
+  var mergedValue = value !== undefined ? value : innerValue;
+  var postMergedValue = postState ? postState(mergedValue) : mergedValue; // ====================== Change ======================
+
+  var onChangeFn = (0, _useEvent.default)(onChange);
+
+  var _useState3 = (0, _useState5.default)([mergedValue]),
+      _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+      prevValue = _useState4[0],
+      setPrevValue = _useState4[1];
+
+  (0, _useLayoutEffect.useLayoutUpdateEffect)(function () {
+    var prev = prevValue[0];
+
+    if (innerValue !== prev) {
+      onChangeFn(innerValue, prev);
+    }
+  }, [prevValue]); // Sync value back to `undefined` when it from control to un-control
+
+  (0, _useLayoutEffect.useLayoutUpdateEffect)(function () {
+    if (!hasValue(value)) {
+      setInnerValue(value);
+    }
+  }, [value]); // ====================== Update ======================
+
+  var triggerChange = (0, _useEvent.default)(function (updater, ignoreDestroy) {
+    setInnerValue(updater, ignoreDestroy);
+    setPrevValue([mergedValue], ignoreDestroy);
+  });
+  return [postMergedValue, triggerChange];
+}
+},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","./useEvent":"ssYe","./useLayoutEffect":"ZlGx","./useState":"nSoY"}],"vw6u":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _arrayWithoutHoles;
+
+var _arrayLikeToArray = _interopRequireDefault(require("./arrayLikeToArray.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return (0, _arrayLikeToArray.default)(arr);
+}
+},{"./arrayLikeToArray.js":"rI22"}],"bG0g":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _iterableToArray;
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+},{}],"gdEH":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _nonIterableSpread;
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+},{}],"Qv3s":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _toConsumableArray;
+
+var _arrayWithoutHoles = _interopRequireDefault(require("./arrayWithoutHoles.js"));
+
+var _iterableToArray = _interopRequireDefault(require("./iterableToArray.js"));
+
+var _unsupportedIterableToArray = _interopRequireDefault(require("./unsupportedIterableToArray.js"));
+
+var _nonIterableSpread = _interopRequireDefault(require("./nonIterableSpread.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) {
+  return (0, _arrayWithoutHoles.default)(arr) || (0, _iterableToArray.default)(arr) || (0, _unsupportedIterableToArray.default)(arr) || (0, _nonIterableSpread.default)();
+}
+},{"./arrayWithoutHoles.js":"vw6u","./iterableToArray.js":"bG0g","./unsupportedIterableToArray.js":"AOxl","./nonIterableSpread.js":"gdEH"}],"dtu8":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var raf = function raf(callback) {
+  return +setTimeout(callback, 16);
+};
+
+var caf = function caf(num) {
+  return clearTimeout(num);
+};
+
+if (typeof window !== 'undefined' && 'requestAnimationFrame' in window) {
+  raf = function raf(callback) {
+    return window.requestAnimationFrame(callback);
+  };
+
+  caf = function caf(handle) {
+    return window.cancelAnimationFrame(handle);
+  };
+}
+
+var rafUUID = 0;
+var rafIds = new Map();
+
+function cleanup(id) {
+  rafIds.delete(id);
+}
+
+var wrapperRaf = function wrapperRaf(callback) {
+  var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+  rafUUID += 1;
+  var id = rafUUID;
+
+  function callRef(leftTimes) {
+    if (leftTimes === 0) {
+      // Clean up
+      cleanup(id); // Trigger
+
+      callback();
+    } else {
+      // Next raf
+      var realId = raf(function () {
+        callRef(leftTimes - 1);
+      }); // Bind real raf id
+
+      rafIds.set(id, realId);
+    }
+  }
+
+  callRef(times);
+  return id;
+};
+
+wrapperRaf.cancel = function (id) {
+  var realId = rafIds.get(id);
+  cleanup(id);
+  return caf(realId);
+};
+
+if ("production" !== 'production') {
+  wrapperRaf.ids = function () {
+    return rafIds;
+  };
+}
+
+var _default = wrapperRaf;
+exports.default = _default;
 },{}],"RsE0":[function(require,module,exports) {
 /** @license React v16.13.1
  * react-is.production.min.js
@@ -1081,392 +1501,7 @@ function toArray(children) {
 
   return ret;
 }
-},{"react":"n8MK","react-is":"H1RQ"}],"nb8J":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _default = function _default() {
-  if (typeof navigator === 'undefined' || typeof window === 'undefined') {
-    return false;
-  }
-
-  var agent = navigator.userAgent || navigator.vendor || window.opera;
-  return /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(agent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw-(n|u)|c55\/|capi|ccwa|cdm-|cell|chtm|cldc|cmd-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc-s|devi|dica|dmob|do(c|p)o|ds(12|-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(-|_)|g1 u|g560|gene|gf-5|g-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd-(m|p|t)|hei-|hi(pt|ta)|hp( i|ip)|hs-c|ht(c(-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i-(20|go|ma)|i230|iac( |-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|-[a-w])|libw|lynx|m1-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|-([1-8]|c))|phil|pire|pl(ay|uc)|pn-2|po(ck|rt|se)|prox|psio|pt-g|qa-a|qc(07|12|21|32|60|-[2-7]|i-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h-|oo|p-)|sdk\/|se(c(-|0|1)|47|mc|nd|ri)|sgh-|shar|sie(-|m)|sk-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h-|v-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl-|tdg-|tel(i|m)|tim-|t-mo|to(pl|sh)|ts(70|m-|m3|m5)|tx-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas-|your|zeto|zte-/i.test(agent === null || agent === void 0 ? void 0 : agent.substr(0, 4));
-};
-
-exports.default = _default;
-},{}],"BtBu":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = useEvent;
-
-var React = _interopRequireWildcard(require("react"));
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function useEvent(callback) {
-  var fnRef = React.useRef();
-  fnRef.current = callback;
-  var memoFn = React.useCallback(function () {
-    var _fnRef$current;
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return (_fnRef$current = fnRef.current) === null || _fnRef$current === void 0 ? void 0 : _fnRef$current.call.apply(_fnRef$current, [fnRef].concat(args));
-  }, []);
-  return memoFn;
-}
-},{"react":"n8MK"}],"VhF6":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = canUseDom;
-
-function canUseDom() {
-  return !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-}
-},{}],"wqHO":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.useLayoutUpdateEffect = exports.default = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _canUseDom = _interopRequireDefault(require("../Dom/canUseDom"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-/**
- * Wrap `React.useLayoutEffect` which will not throw warning message in test env
- */
-var useLayoutEffect = "production" !== 'test' && (0, _canUseDom.default)() ? React.useLayoutEffect : React.useEffect;
-var _default = useLayoutEffect;
-exports.default = _default;
-
-var useLayoutUpdateEffect = function useLayoutUpdateEffect(callback, deps) {
-  var firstMountRef = React.useRef(true);
-  useLayoutEffect(function () {
-    if (!firstMountRef.current) {
-      return callback();
-    }
-  }, deps); // We tell react that first mount has passed
-
-  useLayoutEffect(function () {
-    firstMountRef.current = false;
-    return function () {
-      firstMountRef.current = true;
-    };
-  }, []);
-};
-
-exports.useLayoutUpdateEffect = useLayoutUpdateEffect;
-},{"react":"n8MK","../Dom/canUseDom":"VhF6"}],"OlRb":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = useSafeState;
-
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
-
-var React = _interopRequireWildcard(require("react"));
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Same as React.useState but `setState` accept `ignoreDestroy` param to not to setState after destroyed.
- * We do not make this auto is to avoid real memory leak.
- * Developer should confirm it's safe to ignore themselves.
- */
-function useSafeState(defaultValue) {
-  var destroyRef = React.useRef(false);
-
-  var _React$useState = React.useState(defaultValue),
-      _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
-      value = _React$useState2[0],
-      setValue = _React$useState2[1];
-
-  React.useEffect(function () {
-    destroyRef.current = false;
-    return function () {
-      destroyRef.current = true;
-    };
-  }, []);
-
-  function safeSetState(updater, ignoreDestroy) {
-    if (ignoreDestroy && destroyRef.current) {
-      return;
-    }
-
-    setValue(updater);
-  }
-
-  return [value, safeSetState];
-}
-},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK"}],"zMpY":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = useMergedState;
-
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
-
-var React = _interopRequireWildcard(require("react"));
-
-var _useEvent = _interopRequireDefault(require("./useEvent"));
-
-var _useLayoutEffect = _interopRequireWildcard(require("./useLayoutEffect"));
-
-var _useState3 = _interopRequireDefault(require("./useState"));
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Source;
-
-(function (Source) {
-  Source[Source["INNER"] = 0] = "INNER";
-  Source[Source["PROP"] = 1] = "PROP";
-})(Source || (Source = {}));
-/** We only think `undefined` is empty */
-
-
-function hasValue(value) {
-  return value !== undefined;
-}
-/**
- * Similar to `useState` but will use props value if provided.
- * Note that internal use rc-util `useState` hook.
- */
-
-
-function useMergedState(defaultStateValue, option) {
-  var _ref = option || {},
-      defaultValue = _ref.defaultValue,
-      value = _ref.value,
-      onChange = _ref.onChange,
-      postState = _ref.postState; // ======================= Init =======================
-
-
-  var _useState = (0, _useState3.default)(function () {
-    var finalValue = undefined;
-    var source;
-
-    if (hasValue(value)) {
-      finalValue = value;
-      source = Source.PROP;
-    } else if (hasValue(defaultValue)) {
-      finalValue = typeof defaultValue === 'function' ? defaultValue() : defaultValue;
-      source = Source.PROP;
-    } else {
-      finalValue = typeof defaultStateValue === 'function' ? defaultStateValue() : defaultStateValue;
-      source = Source.INNER;
-    }
-
-    return [finalValue, source, finalValue];
-  }),
-      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-      mergedValue = _useState2[0],
-      setMergedValue = _useState2[1];
-
-  var chosenValue = hasValue(value) ? value : mergedValue[0];
-  var postMergedValue = postState ? postState(chosenValue) : chosenValue; // ======================= Sync =======================
-
-  (0, _useLayoutEffect.useLayoutUpdateEffect)(function () {
-    setMergedValue(function (_ref2) {
-      var _ref3 = (0, _slicedToArray2.default)(_ref2, 1),
-          prevValue = _ref3[0];
-
-      return [value, Source.PROP, prevValue];
-    });
-  }, [value]); // ====================== Update ======================
-
-  var changeEventPrevRef = React.useRef();
-  var triggerChange = (0, _useEvent.default)(function (updater, ignoreDestroy) {
-    setMergedValue(function (prev) {
-      var _prev = (0, _slicedToArray2.default)(prev, 3),
-          prevValue = _prev[0],
-          prevSource = _prev[1],
-          prevPrevValue = _prev[2];
-
-      var nextValue = typeof updater === 'function' ? updater(prevValue) : updater; // Do nothing if value not change
-
-      if (nextValue === prevValue) {
-        return prev;
-      } // Use prev prev value if is in a batch update to avoid missing data
-
-
-      var overridePrevValue = prevSource === Source.INNER && changeEventPrevRef.current !== prevPrevValue ? prevPrevValue : prevValue;
-      return [nextValue, Source.INNER, overridePrevValue];
-    }, ignoreDestroy);
-  }); // ====================== Change ======================
-
-  var onChangeFn = (0, _useEvent.default)(onChange);
-  (0, _useLayoutEffect.default)(function () {
-    var _mergedValue = (0, _slicedToArray2.default)(mergedValue, 3),
-        current = _mergedValue[0],
-        source = _mergedValue[1],
-        prev = _mergedValue[2];
-
-    if (current !== prev && source === Source.INNER) {
-      onChangeFn(current, prev);
-      changeEventPrevRef.current = prev;
-    }
-  }, [mergedValue]);
-  return [postMergedValue, triggerChange];
-}
-},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","./useEvent":"BtBu","./useLayoutEffect":"wqHO","./useState":"OlRb"}],"vw6u":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _arrayWithoutHoles;
-
-var _arrayLikeToArray = _interopRequireDefault(require("./arrayLikeToArray.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return (0, _arrayLikeToArray.default)(arr);
-}
-},{"./arrayLikeToArray.js":"rI22"}],"bG0g":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _iterableToArray;
-
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
-}
-},{}],"gdEH":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _nonIterableSpread;
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-},{}],"Qv3s":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _toConsumableArray;
-
-var _arrayWithoutHoles = _interopRequireDefault(require("./arrayWithoutHoles.js"));
-
-var _iterableToArray = _interopRequireDefault(require("./iterableToArray.js"));
-
-var _unsupportedIterableToArray = _interopRequireDefault(require("./unsupportedIterableToArray.js"));
-
-var _nonIterableSpread = _interopRequireDefault(require("./nonIterableSpread.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) {
-  return (0, _arrayWithoutHoles.default)(arr) || (0, _iterableToArray.default)(arr) || (0, _unsupportedIterableToArray.default)(arr) || (0, _nonIterableSpread.default)();
-}
-},{"./arrayWithoutHoles.js":"vw6u","./iterableToArray.js":"bG0g","./unsupportedIterableToArray.js":"AOxl","./nonIterableSpread.js":"gdEH"}],"adDJ":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = wrapperRaf;
-
-var raf = function raf(callback) {
-  return +setTimeout(callback, 16);
-};
-
-var caf = function caf(num) {
-  return clearTimeout(num);
-};
-
-if (typeof window !== 'undefined' && 'requestAnimationFrame' in window) {
-  raf = function raf(callback) {
-    return window.requestAnimationFrame(callback);
-  };
-
-  caf = function caf(handle) {
-    return window.cancelAnimationFrame(handle);
-  };
-}
-
-var rafUUID = 0;
-var rafIds = new Map();
-
-function cleanup(id) {
-  rafIds.delete(id);
-}
-
-function wrapperRaf(callback) {
-  var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-  rafUUID += 1;
-  var id = rafUUID;
-
-  function callRef(leftTimes) {
-    if (leftTimes === 0) {
-      // Clean up
-      cleanup(id); // Trigger
-
-      callback();
-    } else {
-      // Next raf
-      var realId = raf(function () {
-        callRef(leftTimes - 1);
-      }); // Bind real raf id
-
-      rafIds.set(id, realId);
-    }
-  }
-
-  callRef(times);
-  return id;
-}
-
-wrapperRaf.cancel = function (id) {
-  var realId = rafIds.get(id);
-  cleanup(realId);
-  return caf(realId);
-};
-},{}],"YOfO":[function(require,module,exports) {
+},{"react":"n8MK","react-is":"H1RQ"}],"YOfO":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3723,7 +3758,7 @@ function useRafState(defaultState) {
 
   return [state.current, updater];
 }
-},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/raf":"adDJ"}],"Imvn":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/raf":"dtu8"}],"iYnE":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3756,6 +3791,7 @@ var KeyCode = {
    * NUMLOCK on FF/Safari Mac
    */
   NUM_CENTER: 12,
+  // NUMLOCK on FF/Safari Mac
 
   /**
    * ENTER
@@ -3801,41 +3837,49 @@ var KeyCode = {
    * PAGE_UP
    */
   PAGE_UP: 33,
+  // also NUM_NORTH_EAST
 
   /**
    * PAGE_DOWN
    */
   PAGE_DOWN: 34,
+  // also NUM_SOUTH_EAST
 
   /**
    * END
    */
   END: 35,
+  // also NUM_SOUTH_WEST
 
   /**
    * HOME
    */
   HOME: 36,
+  // also NUM_NORTH_WEST
 
   /**
    * LEFT
    */
   LEFT: 37,
+  // also NUM_WEST
 
   /**
    * UP
    */
   UP: 38,
+  // also NUM_NORTH
 
   /**
    * RIGHT
    */
   RIGHT: 39,
+  // also NUM_EAST
 
   /**
    * DOWN
    */
   DOWN: 40,
+  // also NUM_SOUTH
 
   /**
    * PRINT_SCREEN
@@ -3846,11 +3890,13 @@ var KeyCode = {
    * INSERT
    */
   INSERT: 45,
+  // also NUM_INSERT
 
   /**
    * DELETE
    */
   DELETE: 46,
+  // also NUM_DELETE
 
   /**
    * ZERO
@@ -3906,6 +3952,7 @@ var KeyCode = {
    * QUESTION_MARK
    */
   QUESTION_MARK: 63,
+  // needs localization
 
   /**
    * A
@@ -4041,6 +4088,7 @@ var KeyCode = {
    * META
    */
   META: 91,
+  // WIN_KEY_LEFT
 
   /**
    * WIN_KEY_RIGHT
@@ -4196,56 +4244,67 @@ var KeyCode = {
    * SEMICOLON
    */
   SEMICOLON: 186,
+  // needs localization
 
   /**
    * DASH
    */
   DASH: 189,
+  // needs localization
 
   /**
    * EQUALS
    */
   EQUALS: 187,
+  // needs localization
 
   /**
    * COMMA
    */
   COMMA: 188,
+  // needs localization
 
   /**
    * PERIOD
    */
   PERIOD: 190,
+  // needs localization
 
   /**
    * SLASH
    */
   SLASH: 191,
+  // needs localization
 
   /**
    * APOSTROPHE
    */
   APOSTROPHE: 192,
+  // needs localization
 
   /**
    * SINGLE_QUOTE
    */
   SINGLE_QUOTE: 222,
+  // needs localization
 
   /**
    * OPEN_SQUARE_BRACKET
    */
   OPEN_SQUARE_BRACKET: 219,
+  // needs localization
 
   /**
    * BACKSLASH
    */
   BACKSLASH: 220,
+  // needs localization
 
   /**
    * CLOSE_SQUARE_BRACKET
    */
   CLOSE_SQUARE_BRACKET: 221,
+  // needs localization
 
   /**
    * WIN_KEY
@@ -4256,6 +4315,7 @@ var KeyCode = {
    * MAC_FF_META
    */
   MAC_FF_META: 224,
+  // Firefox (Gecko) fires this for the meta key instead of 91
 
   /**
    * WIN_IME
@@ -4460,7 +4520,7 @@ function TabNode(_ref, ref) {
 var _default = /*#__PURE__*/React.forwardRef(TabNode);
 
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","react":"n8MK","classnames":"qb7c","rc-util/es/KeyCode":"Imvn"}],"uhKO":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","react":"n8MK","classnames":"yl9j","rc-util/es/KeyCode":"iYnE"}],"uhKO":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4637,7 +4697,150 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
   return true;
 };
 
-},{}],"Hqa3":[function(require,module,exports) {
+},{}],"SNA5":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.call = call;
+exports.default = void 0;
+exports.note = note;
+exports.noteOnce = noteOnce;
+exports.preMessage = void 0;
+exports.resetWarned = resetWarned;
+exports.warning = warning;
+exports.warningOnce = warningOnce;
+
+/* eslint-disable no-console */
+var warned = {};
+var preWarningFns = [];
+/**
+ * Pre warning enable you to parse content before console.error.
+ * Modify to null will prevent warning.
+ */
+
+var preMessage = function preMessage(fn) {
+  preWarningFns.push(fn);
+};
+/**
+ * Warning if condition not match.
+ * @param valid Condition
+ * @param message Warning message
+ * @example
+ * ```js
+ * warning(false, 'some error'); // print some error
+ * warning(true, 'some error'); // print nothing
+ * warning(1 === 2, 'some error'); // print some error
+ * ```
+ */
+
+
+exports.preMessage = preMessage;
+
+function warning(valid, message) {
+  if ("production" !== 'production' && !valid && console !== undefined) {
+    var finalMessage = preWarningFns.reduce(function (msg, preMessageFn) {
+      return preMessageFn(msg !== null && msg !== void 0 ? msg : '', 'warning');
+    }, message);
+
+    if (finalMessage) {
+      console.error("Warning: ".concat(finalMessage));
+    }
+  }
+}
+/** @see Similar to {@link warning} */
+
+
+function note(valid, message) {
+  if ("production" !== 'production' && !valid && console !== undefined) {
+    var finalMessage = preWarningFns.reduce(function (msg, preMessageFn) {
+      return preMessageFn(msg !== null && msg !== void 0 ? msg : '', 'note');
+    }, message);
+
+    if (finalMessage) {
+      console.warn("Note: ".concat(finalMessage));
+    }
+  }
+}
+
+function resetWarned() {
+  warned = {};
+}
+
+function call(method, valid, message) {
+  if (!valid && !warned[message]) {
+    method(false, message);
+    warned[message] = true;
+  }
+}
+/** @see Same as {@link warning}, but only warn once for the same message */
+
+
+function warningOnce(valid, message) {
+  call(warning, valid, message);
+}
+/** @see Same as {@link warning}, but only warn once for the same message */
+
+
+function noteOnce(valid, message) {
+  call(note, valid, message);
+}
+
+warningOnce.preMessage = preMessage;
+warningOnce.resetWarned = resetWarned;
+warningOnce.noteOnce = noteOnce;
+var _default = warningOnce;
+exports.default = _default;
+},{}],"akeE":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useLayoutUpdateEffect = exports.default = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _canUseDom = _interopRequireDefault(require("../Dom/canUseDom"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+/**
+ * Wrap `React.useLayoutEffect` which will not throw warning message in test env
+ */
+var useInternalLayoutEffect = "production" !== 'test' && (0, _canUseDom.default)() ? React.useLayoutEffect : React.useEffect;
+
+var useLayoutEffect = function useLayoutEffect(callback, deps) {
+  var firstMountRef = React.useRef(true);
+  useInternalLayoutEffect(function () {
+    return callback(firstMountRef.current);
+  }, deps); // We tell react that first mount has passed
+
+  useInternalLayoutEffect(function () {
+    firstMountRef.current = false;
+    return function () {
+      firstMountRef.current = true;
+    };
+  }, []);
+};
+
+var useLayoutUpdateEffect = function useLayoutUpdateEffect(callback, deps) {
+  useLayoutEffect(function (firstMount) {
+    if (!firstMount) {
+      return callback();
+    }
+  }, deps);
+};
+
+exports.useLayoutUpdateEffect = useLayoutUpdateEffect;
+var _default = useLayoutEffect;
+exports.default = _default;
+},{"react":"n8MK","../Dom/canUseDom":"s2cK"}],"Hqa3":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4740,65 +4943,117 @@ var Item = /*#__PURE__*/React.forwardRef(InternalItem);
 Item.displayName = 'Item';
 var _default = Item;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"qb7c","rc-resize-observer":"q9L5"}],"Xajk":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"yl9j","rc-resize-observer":"q9L5"}],"Bec3":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.useBatchFrameState = useBatchFrameState;
-
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
-
-var _react = require("react");
+exports.default = channelUpdate;
 
 var _raf = _interopRequireDefault(require("rc-util/es/raf"));
 
-var _useState3 = _interopRequireDefault(require("rc-util/es/hooks/useState"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function channelUpdate(callback) {
+  if (typeof MessageChannel === 'undefined') {
+    (0, _raf.default)(callback);
+  } else {
+    var channel = new MessageChannel();
+
+    channel.port1.onmessage = function () {
+      return callback();
+    };
+
+    channel.port2.postMessage(undefined);
+  }
+}
+},{"rc-util/es/raf":"dtu8"}],"aMyL":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useEffectState;
+exports.useBatcher = useBatcher;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var _useEvent = _interopRequireDefault(require("rc-util/es/hooks/useEvent"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _reactDom = require("react-dom");
+
+var _channelUpdate = _interopRequireDefault(require("./channelUpdate"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * State generate. Return a `setState` but it will flush all state with one render to save perf.
- * This is not a realization of `unstable_batchedUpdates`.
+ * Batcher for record any `useEffectState` need update.
  */
-function useBatchFrameState() {
-  var _useState = (0, _useState3.default)({}),
-      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-      forceUpdate = _useState2[1];
+function useBatcher() {
+  // Updater Trigger
+  var updateFuncRef = React.useRef(null); // Notify update
 
-  var statesRef = (0, _react.useRef)([]);
-  var walkingIndex = 0;
-  var beforeFrameId = 0;
-
-  function createState(defaultValue) {
-    var myIndex = walkingIndex;
-    walkingIndex += 1; // Fill value if not exist yet
-
-    if (statesRef.current.length < myIndex + 1) {
-      statesRef.current[myIndex] = defaultValue;
-    } // Return filled as `setState`
-
-
-    var value = statesRef.current[myIndex];
-
-    function setValue(val) {
-      statesRef.current[myIndex] = typeof val === 'function' ? val(statesRef.current[myIndex]) : val;
-
-      _raf.default.cancel(beforeFrameId); // Flush with batch
-
-
-      beforeFrameId = (0, _raf.default)(function () {
-        forceUpdate({}, true);
+  var notifyEffectUpdate = function notifyEffectUpdate(callback) {
+    if (!updateFuncRef.current) {
+      updateFuncRef.current = [];
+      (0, _channelUpdate.default)(function () {
+        (0, _reactDom.unstable_batchedUpdates)(function () {
+          updateFuncRef.current.forEach(function (fn) {
+            fn();
+          });
+          updateFuncRef.current = null;
+        });
       });
     }
 
-    return [value, setValue];
-  }
+    updateFuncRef.current.push(callback);
+  };
 
-  return createState;
+  return notifyEffectUpdate;
 }
-},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/raf":"adDJ","rc-util/es/hooks/useState":"OlRb"}],"dmCC":[function(require,module,exports) {
+/**
+ * Trigger state update by `useLayoutEffect` to save perf.
+ */
+
+
+function useEffectState(notifyEffectUpdate, defaultValue) {
+  // Value
+  var _React$useState = React.useState(defaultValue),
+      _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
+      stateValue = _React$useState2[0],
+      setStateValue = _React$useState2[1]; // Set State
+
+
+  var setEffectVal = (0, _useEvent.default)(function (nextValue) {
+    notifyEffectUpdate(function () {
+      setStateValue(nextValue);
+    });
+  });
+  return [stateValue, setEffectVal];
+}
+},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","rc-util/es/hooks/useEvent":"ssYe","react":"n8MK","react-dom":"NKHc","./channelUpdate":"Bec3"}],"Os65":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.OverflowContext = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var OverflowContext = /*#__PURE__*/_react.default.createContext(null);
+
+exports.OverflowContext = OverflowContext;
+},{"react":"n8MK"}],"dmCC":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4816,7 +5071,7 @@ var _classnames = _interopRequireDefault(require("classnames"));
 
 var _Item = _interopRequireDefault(require("./Item"));
 
-var _Overflow = require("./Overflow");
+var _context = require("./context");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -4829,7 +5084,7 @@ var _excluded = ["component"],
     _excluded3 = ["className"];
 
 var InternalRawItem = function InternalRawItem(props, ref) {
-  var context = React.useContext(_Overflow.OverflowContext); // Render directly when context not provided
+  var context = React.useContext(_context.OverflowContext); // Render directly when context not provided
 
   if (!context) {
     var _props$component = props.component,
@@ -4846,7 +5101,7 @@ var InternalRawItem = function InternalRawItem(props, ref) {
   var className = props.className,
       restProps = (0, _objectWithoutProperties2.default)(props, _excluded3); // Do not pass context to sub item to avoid multiple measure
 
-  return /*#__PURE__*/React.createElement(_Overflow.OverflowContext.Provider, {
+  return /*#__PURE__*/React.createElement(_context.OverflowContext.Provider, {
     value: null
   }, /*#__PURE__*/React.createElement(_Item.default, (0, _extends2.default)({
     ref: ref,
@@ -4858,13 +5113,19 @@ var RawItem = /*#__PURE__*/React.forwardRef(InternalRawItem);
 RawItem.displayName = 'RawItem';
 var _default = RawItem;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"qb7c","./Item":"Hqa3","./Overflow":"lyHO"}],"lyHO":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"yl9j","./Item":"Hqa3","./context":"Os65"}],"lyHO":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.OverflowContext = void 0;
+Object.defineProperty(exports, "OverflowContext", {
+  enumerable: true,
+  get: function () {
+    return _context.OverflowContext;
+  }
+});
+exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
 
@@ -4884,9 +5145,11 @@ var _useLayoutEffect = _interopRequireDefault(require("rc-util/es/hooks/useLayou
 
 var _Item = _interopRequireDefault(require("./Item"));
 
-var _useBatchFrameState = require("./hooks/useBatchFrameState");
+var _useEffectState11 = _interopRequireWildcard(require("./hooks/useEffectState"));
 
 var _RawItem = _interopRequireDefault(require("./RawItem"));
+
+var _context = require("./context");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -4895,8 +5158,6 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _excluded = ["prefixCls", "data", "renderItem", "renderRawItem", "itemKey", "itemWidth", "ssr", "style", "className", "maxCount", "renderRest", "renderRawRest", "suffix", "component", "itemComponent", "onVisibleChange"];
-var OverflowContext = /*#__PURE__*/React.createContext(null);
-exports.OverflowContext = OverflowContext;
 var RESPONSIVE = 'responsive';
 var INVALIDATE = 'invalidate';
 
@@ -4926,35 +5187,35 @@ function Overflow(props, ref) {
       itemComponent = props.itemComponent,
       onVisibleChange = props.onVisibleChange,
       restProps = (0, _objectWithoutProperties2.default)(props, _excluded);
-  var createUseState = (0, _useBatchFrameState.useBatchFrameState)();
   var fullySSR = ssr === 'full';
+  var notifyEffectUpdate = (0, _useEffectState11.useBatcher)();
 
-  var _createUseState = createUseState(null),
-      _createUseState2 = (0, _slicedToArray2.default)(_createUseState, 2),
-      containerWidth = _createUseState2[0],
-      setContainerWidth = _createUseState2[1];
+  var _useEffectState = (0, _useEffectState11.default)(notifyEffectUpdate, null),
+      _useEffectState2 = (0, _slicedToArray2.default)(_useEffectState, 2),
+      containerWidth = _useEffectState2[0],
+      setContainerWidth = _useEffectState2[1];
 
   var mergedContainerWidth = containerWidth || 0;
 
-  var _createUseState3 = createUseState(new Map()),
-      _createUseState4 = (0, _slicedToArray2.default)(_createUseState3, 2),
-      itemWidths = _createUseState4[0],
-      setItemWidths = _createUseState4[1];
+  var _useEffectState3 = (0, _useEffectState11.default)(notifyEffectUpdate, new Map()),
+      _useEffectState4 = (0, _slicedToArray2.default)(_useEffectState3, 2),
+      itemWidths = _useEffectState4[0],
+      setItemWidths = _useEffectState4[1];
 
-  var _createUseState5 = createUseState(0),
-      _createUseState6 = (0, _slicedToArray2.default)(_createUseState5, 2),
-      prevRestWidth = _createUseState6[0],
-      setPrevRestWidth = _createUseState6[1];
+  var _useEffectState5 = (0, _useEffectState11.default)(notifyEffectUpdate, 0),
+      _useEffectState6 = (0, _slicedToArray2.default)(_useEffectState5, 2),
+      prevRestWidth = _useEffectState6[0],
+      setPrevRestWidth = _useEffectState6[1];
 
-  var _createUseState7 = createUseState(0),
-      _createUseState8 = (0, _slicedToArray2.default)(_createUseState7, 2),
-      restWidth = _createUseState8[0],
-      setRestWidth = _createUseState8[1];
+  var _useEffectState7 = (0, _useEffectState11.default)(notifyEffectUpdate, 0),
+      _useEffectState8 = (0, _slicedToArray2.default)(_useEffectState7, 2),
+      restWidth = _useEffectState8[0],
+      setRestWidth = _useEffectState8[1];
 
-  var _createUseState9 = createUseState(0),
-      _createUseState10 = (0, _slicedToArray2.default)(_createUseState9, 2),
-      suffixWidth = _createUseState10[0],
-      setSuffixWidth = _createUseState10[1];
+  var _useEffectState9 = (0, _useEffectState11.default)(notifyEffectUpdate, 0),
+      _useEffectState10 = (0, _slicedToArray2.default)(_useEffectState9, 2),
+      suffixWidth = _useEffectState10[0],
+      setSuffixWidth = _useEffectState10[1];
 
   var _useState = (0, React.useState)(null),
       _useState2 = (0, _slicedToArray2.default)(_useState, 2),
@@ -5081,7 +5342,7 @@ function Overflow(props, ref) {
   }
 
   (0, _useLayoutEffect.default)(function () {
-    if (mergedContainerWidth && mergedRestWidth && mergedData) {
+    if (mergedContainerWidth && typeof mergedRestWidth === 'number' && mergedData) {
       var totalWidth = suffixWidth;
       var len = mergedData.length;
       var lastIndex = len - 1; // When data count change to 0, reset this since not loop will reach
@@ -5146,7 +5407,7 @@ function Overflow(props, ref) {
 
   var internalRenderItemNode = renderRawItem ? function (item, index) {
     var key = getKey(item, index);
-    return /*#__PURE__*/React.createElement(OverflowContext.Provider, {
+    return /*#__PURE__*/React.createElement(_context.OverflowContext.Provider, {
       key: key,
       value: (0, _objectSpread2.default)((0, _objectSpread2.default)({}, itemSharedProps), {}, {
         order: index,
@@ -5181,7 +5442,7 @@ function Overflow(props, ref) {
     var mergedRenderRest = renderRest || defaultRenderRest;
     restNode = /*#__PURE__*/React.createElement(_Item.default, (0, _extends2.default)({}, itemSharedProps, restContextProps), typeof mergedRenderRest === 'function' ? mergedRenderRest(omittedItems) : mergedRenderRest);
   } else if (renderRawRest) {
-    restNode = /*#__PURE__*/React.createElement(OverflowContext.Provider, {
+    restNode = /*#__PURE__*/React.createElement(_context.OverflowContext.Provider, {
       value: (0, _objectSpread2.default)((0, _objectSpread2.default)({}, itemSharedProps), restContextProps)
     }, renderRawRest(omittedItems));
   }
@@ -5218,7 +5479,7 @@ ForwardOverflow.INVALIDATE = INVALIDATE; // Convert to generic type
 
 var _default = ForwardOverflow;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"qb7c","rc-resize-observer":"q9L5","rc-util/es/hooks/useLayoutEffect":"wqHO","./Item":"Hqa3","./hooks/useBatchFrameState":"Xajk","./RawItem":"dmCC"}],"H6C2":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"yl9j","rc-resize-observer":"q9L5","rc-util/es/hooks/useLayoutEffect":"akeE","./Item":"Hqa3","./hooks/useEffectState":"aMyL","./RawItem":"dmCC","./context":"Os65"}],"H6C2":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5232,7 +5493,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = _Overflow.default;
 exports.default = _default;
-},{"./Overflow":"lyHO"}],"P8ML":[function(require,module,exports) {
+},{"./Overflow":"lyHO"}],"SloJ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5255,7 +5516,7 @@ function omit(obj, fields) {
 
   return clone;
 }
-},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT"}],"WRUc":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT"}],"WYcT":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5310,7 +5571,7 @@ function InheritableContextProvider(_ref) {
     value: inheritableContext
   }, children);
 }
-},{"@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK","rc-util/es/hooks/useMemo":"HDr6","shallowequal":"pz6A"}],"LQKT":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK","rc-util/es/hooks/useMemo":"HDr6","shallowequal":"pz6A"}],"Xkih":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5356,7 +5617,7 @@ function useActive(eventKey, disabled, onMouseEnter, onMouseLeave) {
 
   return ret;
 }
-},{"react":"n8MK","../context/MenuContext":"WRUc"}],"cvmo":[function(require,module,exports) {
+},{"react":"n8MK","../context/MenuContext":"WYcT"}],"BXDu":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5387,7 +5648,7 @@ function warnItemProp(_ref) {
   });
   return restInfo;
 }
-},{"@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","rc-util/es/warning":"YOfO"}],"E0zE":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","rc-util/es/warning":"SNA5"}],"D26q":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5420,7 +5681,7 @@ function Icon(_ref) {
 
   return iconNode || children || null;
 }
-},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK"}],"Pnmu":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK"}],"FwHP":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5453,7 +5714,7 @@ function useDirectionStyle(level) {
     paddingLeft: len * inlineIndent
   };
 }
-},{"react":"n8MK","../context/MenuContext":"WRUc"}],"thAF":[function(require,module,exports) {
+},{"react":"n8MK","../context/MenuContext":"WYcT"}],"N39B":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5494,7 +5755,7 @@ function useFullPath(eventKey) {
 
 var PathUserContext = /*#__PURE__*/React.createContext(null);
 exports.PathUserContext = PathUserContext;
-},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","react":"n8MK"}],"VB3D":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","react":"n8MK"}],"WSOX":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5529,7 +5790,7 @@ function useMenuId(eventKey) {
   var id = React.useContext(IdContext);
   return getMenuId(id, eventKey);
 }
-},{"react":"n8MK"}],"V73O":[function(require,module,exports) {
+},{"react":"n8MK"}],"cUpN":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5546,7 +5807,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 var PrivateContext = /*#__PURE__*/React.createContext({});
 var _default = PrivateContext;
 exports.default = _default;
-},{"react":"n8MK"}],"NeBp":[function(require,module,exports) {
+},{"react":"n8MK"}],"MECx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5804,7 +6065,7 @@ function MenuItem(props) {
 
 var _default = MenuItem;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/classCallCheck":"VEjx","@babel/runtime/helpers/esm/createClass":"l5p4","@babel/runtime/helpers/esm/inherits":"NT06","@babel/runtime/helpers/esm/createSuper":"m5aa","react":"n8MK","classnames":"qb7c","rc-overflow":"H6C2","rc-util/es/warning":"YOfO","rc-util/es/KeyCode":"Imvn","rc-util/es/omit":"P8ML","./context/MenuContext":"WRUc","./hooks/useActive":"LQKT","./utils/warnUtil":"cvmo","./Icon":"E0zE","./hooks/useDirectionStyle":"Pnmu","./context/PathContext":"thAF","./context/IdContext":"VB3D","./context/PrivateContext":"V73O"}],"T1Gl":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/classCallCheck":"VEjx","@babel/runtime/helpers/esm/createClass":"l5p4","@babel/runtime/helpers/esm/inherits":"NT06","@babel/runtime/helpers/esm/createSuper":"m5aa","react":"n8MK","classnames":"yl9j","rc-overflow":"H6C2","rc-util/es/warning":"SNA5","rc-util/es/KeyCode":"iYnE","rc-util/es/omit":"SloJ","./context/MenuContext":"WYcT","./hooks/useActive":"Xkih","./utils/warnUtil":"BXDu","./Icon":"D26q","./hooks/useDirectionStyle":"FwHP","./context/PathContext":"N39B","./context/IdContext":"WSOX","./context/PrivateContext":"cUpN"}],"G0UT":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5919,7 +6180,7 @@ function parseItems(children, items, keyPath) {
 
   return parseChildren(childNodes, keyPath);
 }
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/typeof":"xLw6","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","react":"n8MK","rc-util/es/Children/toArray":"artt","..":"VH7R"}],"vAIo":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/typeof":"xLw6","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","react":"n8MK","rc-util/es/Children/toArray":"zO4a","..":"QOgl"}],"nuyy":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5951,7 +6212,7 @@ function useMemoCallback(func) {
   }, []);
   return func ? callback : undefined;
 }
-},{"react":"n8MK"}],"imhB":[function(require,module,exports) {
+},{"react":"n8MK"}],"lSTh":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5999,7 +6260,70 @@ var SubMenuList = /*#__PURE__*/React.forwardRef(InternalSubMenuList);
 SubMenuList.displayName = 'SubMenuList';
 var _default = SubMenuList;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"qb7c","../context/MenuContext":"WRUc"}],"asZT":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"yl9j","../context/MenuContext":"WYcT"}],"adDJ":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = wrapperRaf;
+
+var raf = function raf(callback) {
+  return +setTimeout(callback, 16);
+};
+
+var caf = function caf(num) {
+  return clearTimeout(num);
+};
+
+if (typeof window !== 'undefined' && 'requestAnimationFrame' in window) {
+  raf = function raf(callback) {
+    return window.requestAnimationFrame(callback);
+  };
+
+  caf = function caf(handle) {
+    return window.cancelAnimationFrame(handle);
+  };
+}
+
+var rafUUID = 0;
+var rafIds = new Map();
+
+function cleanup(id) {
+  rafIds.delete(id);
+}
+
+function wrapperRaf(callback) {
+  var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+  rafUUID += 1;
+  var id = rafUUID;
+
+  function callRef(leftTimes) {
+    if (leftTimes === 0) {
+      // Clean up
+      cleanup(id); // Trigger
+
+      callback();
+    } else {
+      // Next raf
+      var realId = raf(function () {
+        callRef(leftTimes - 1);
+      }); // Bind real raf id
+
+      rafIds.set(id, realId);
+    }
+  }
+
+  callRef(times);
+  return id;
+}
+
+wrapperRaf.cancel = function (id) {
+  var realId = rafIds.get(id);
+  cleanup(realId);
+  return caf(realId);
+};
+},{}],"asZT":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6119,7 +6443,7 @@ var Portal = /*#__PURE__*/(0, _react.forwardRef)(function (props, ref) {
 });
 var _default = Portal;
 exports.default = _default;
-},{"react":"n8MK","react-dom":"NKHc","./Dom/canUseDom":"VhF6"}],"Hyzp":[function(require,module,exports) {
+},{"react":"n8MK","react-dom":"NKHc","./Dom/canUseDom":"s2cK"}],"Hyzp":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6264,7 +6588,7 @@ function getTransitionName(transitionName, transitionType) {
 
   return "".concat(transitionName, "-").concat(transitionType);
 }
-},{"@babel/runtime/helpers/esm/typeof":"xLw6","rc-util/es/Dom/canUseDom":"VhF6"}],"JzRG":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/typeof":"xLw6","rc-util/es/Dom/canUseDom":"s2cK"}],"JzRG":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6358,7 +6682,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var useIsomorphicLayoutEffect = (0, _canUseDom.default)() ? _react.useLayoutEffect : _react.useEffect;
 var _default = useIsomorphicLayoutEffect;
 exports.default = _default;
-},{"react":"n8MK","rc-util/es/Dom/canUseDom":"VhF6"}],"hnmF":[function(require,module,exports) {
+},{"react":"n8MK","rc-util/es/Dom/canUseDom":"s2cK"}],"hnmF":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6451,7 +6775,7 @@ var _default = function _default(status, callback) {
 };
 
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/hooks/useState":"OlRb","../interface":"JzRG","./useNextFrame":"LIDo","./useIsomorphicLayoutEffect":"szcY"}],"UjUO":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/hooks/useState":"nSoY","../interface":"JzRG","./useNextFrame":"LIDo","./useIsomorphicLayoutEffect":"szcY"}],"UjUO":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6758,7 +7082,7 @@ function useStatus(supportMotion, visible, getElement, _ref) {
 
   return [status, step, mergedStyle, asyncVisible !== null && asyncVisible !== void 0 ? asyncVisible : visible];
 }
-},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/hooks/useState":"OlRb","../interface":"JzRG","./useStepQueue":"hnmF","./useDomMotionEvents":"UjUO","./useIsomorphicLayoutEffect":"szcY"}],"FYGt":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/hooks/useState":"nSoY","../interface":"JzRG","./useStepQueue":"hnmF","./useDomMotionEvents":"UjUO","./useIsomorphicLayoutEffect":"szcY"}],"FYGt":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6979,7 +7303,7 @@ function genCSSMotion(config) {
 var _default = genCSSMotion(_motion.supportTransition);
 
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/typeof":"xLw6","react":"n8MK","rc-util/es/Dom/findDOMNode":"beML","rc-util/es/ref":"AOnv","classnames":"qb7c","./util/motion":"m1Rl","./interface":"JzRG","./hooks/useStatus":"mvOU","./DomWrapper":"FYGt","./hooks/useStepQueue":"hnmF"}],"cJs0":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/typeof":"xLw6","react":"n8MK","rc-util/es/Dom/findDOMNode":"beML","rc-util/es/ref":"AOnv","classnames":"yl9j","./util/motion":"m1Rl","./interface":"JzRG","./hooks/useStatus":"mvOU","./DomWrapper":"FYGt","./hooks/useStepQueue":"hnmF"}],"cJs0":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7397,7 +7721,7 @@ function Mask(props) {
     });
   });
 }
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK","classnames":"qb7c","rc-motion":"VTMl","../utils/legacyUtil":"uFoq"}],"dPHJ":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK","classnames":"yl9j","rc-motion":"VTMl","../utils/legacyUtil":"uFoq"}],"dPHJ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11620,7 +11944,49 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // export this package's api
 var _default = _Align.default;
 exports.default = _default;
-},{"./Align":"He3b"}],"vf0F":[function(require,module,exports) {
+},{"./Align":"He3b"}],"wqHO":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useLayoutUpdateEffect = exports.default = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _canUseDom = _interopRequireDefault(require("../Dom/canUseDom"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+/**
+ * Wrap `React.useLayoutEffect` which will not throw warning message in test env
+ */
+var useLayoutEffect = "production" !== 'test' && (0, _canUseDom.default)() ? React.useLayoutEffect : React.useEffect;
+var _default = useLayoutEffect;
+exports.default = _default;
+
+var useLayoutUpdateEffect = function useLayoutUpdateEffect(callback, deps) {
+  var firstMountRef = React.useRef(true);
+  useLayoutEffect(function () {
+    if (!firstMountRef.current) {
+      return callback();
+    }
+  }, deps); // We tell react that first mount has passed
+
+  useLayoutEffect(function () {
+    firstMountRef.current = false;
+    return function () {
+      firstMountRef.current = true;
+    };
+  }, []);
+};
+
+exports.useLayoutUpdateEffect = useLayoutUpdateEffect;
+},{"react":"n8MK","../Dom/canUseDom":"s2cK"}],"vf0F":[function(require,module,exports) {
 var define;
 "use strict";
 
@@ -12134,7 +12500,7 @@ var _default = function _default(visible, doMeasure) {
 };
 
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/regeneratorRuntime":"vf0F","@babel/runtime/helpers/esm/asyncToGenerator":"vCa3","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/raf":"adDJ","rc-util/es/hooks/useState":"OlRb"}],"sDvT":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/regeneratorRuntime":"vf0F","@babel/runtime/helpers/esm/asyncToGenerator":"vCa3","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/raf":"adDJ","rc-util/es/hooks/useState":"nSoY"}],"sDvT":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12437,7 +12803,7 @@ var PopupInner = /*#__PURE__*/React.forwardRef(function (props, ref) {
 PopupInner.displayName = 'PopupInner';
 var _default = PopupInner;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-align":"AVA2","rc-util/es/hooks/useLayoutEffect":"wqHO","rc-motion":"VTMl","classnames":"qb7c","./useVisibleStatus":"rCyv","../utils/legacyUtil":"uFoq","./useStretchStyle":"sDvT"}],"NMjy":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-align":"AVA2","rc-util/es/hooks/useLayoutEffect":"wqHO","rc-motion":"VTMl","classnames":"yl9j","./useVisibleStatus":"rCyv","../utils/legacyUtil":"uFoq","./useStretchStyle":"sDvT"}],"NMjy":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12520,7 +12886,7 @@ var MobilePopupInner = /*#__PURE__*/React.forwardRef(function (props, ref) {
 MobilePopupInner.displayName = 'MobilePopupInner';
 var _default = MobilePopupInner;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK","rc-motion":"VTMl","classnames":"qb7c"}],"Pprj":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK","rc-motion":"VTMl","classnames":"yl9j"}],"Pprj":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12592,7 +12958,7 @@ var Popup = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
 Popup.displayName = 'Popup';
 var _default = Popup;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","rc-util/es/isMobile":"nb8J","./Mask":"haQR","./PopupInner":"r56U","./MobilePopupInner":"NMjy"}],"f2pu":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","rc-util/es/isMobile":"R6MQ","./Mask":"haQR","./PopupInner":"r56U","./MobilePopupInner":"NMjy"}],"f2pu":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13462,7 +13828,7 @@ function generateTrigger(PortalComponent) {
 var _default = generateTrigger(_Portal.default);
 
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/classCallCheck":"VEjx","@babel/runtime/helpers/esm/createClass":"l5p4","@babel/runtime/helpers/esm/assertThisInitialized":"bk0i","@babel/runtime/helpers/esm/inherits":"NT06","@babel/runtime/helpers/esm/createSuper":"m5aa","react":"n8MK","react-dom":"NKHc","rc-util/es/raf":"adDJ","rc-util/es/Dom/contains":"asZT","rc-util/es/Dom/findDOMNode":"beML","rc-util/es/ref":"AOnv","rc-util/es/Dom/addEventListener":"v9LT","rc-util/es/Portal":"LoYh","classnames":"qb7c","./utils/alignUtil":"Hyzp","./Popup":"Pprj","./context":"f2pu"}],"OUxT":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/classCallCheck":"VEjx","@babel/runtime/helpers/esm/createClass":"l5p4","@babel/runtime/helpers/esm/assertThisInitialized":"bk0i","@babel/runtime/helpers/esm/inherits":"NT06","@babel/runtime/helpers/esm/createSuper":"m5aa","react":"n8MK","react-dom":"NKHc","rc-util/es/raf":"adDJ","rc-util/es/Dom/contains":"asZT","rc-util/es/Dom/findDOMNode":"beML","rc-util/es/ref":"AOnv","rc-util/es/Dom/addEventListener":"v9LT","rc-util/es/Portal":"LoYh","classnames":"yl9j","./utils/alignUtil":"Hyzp","./Popup":"Pprj","./context":"f2pu"}],"n9tA":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13521,7 +13887,7 @@ var placementsRtl = {
 exports.placementsRtl = placementsRtl;
 var _default = placements;
 exports.default = _default;
-},{}],"fjqJ":[function(require,module,exports) {
+},{}],"lcAX":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13540,7 +13906,7 @@ function getMotion(mode, motion, defaultMotions) {
 
   return undefined;
 }
-},{}],"hvs0":[function(require,module,exports) {
+},{}],"Cs4U":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13647,7 +14013,7 @@ function PopupTrigger(_ref) {
     popupMotion: mergedMotion
   }, children);
 }
-},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-trigger":"PZMl","classnames":"qb7c","rc-util/es/raf":"adDJ","../context/MenuContext":"WRUc","../placements":"OUxT","../utils/motionUtil":"fjqJ"}],"l2u9":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-trigger":"PZMl","classnames":"yl9j","rc-util/es/raf":"dtu8","../context/MenuContext":"WYcT","../placements":"n9tA","../utils/motionUtil":"lcAX"}],"XNDn":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13750,7 +14116,7 @@ function InlineSubMenuList(_ref) {
     }, children);
   }));
 }
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-motion":"VTMl","../utils/motionUtil":"fjqJ","../context/MenuContext":"WRUc","./SubMenuList":"imhB"}],"lVAn":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-motion":"VTMl","../utils/motionUtil":"lcAX","../context/MenuContext":"WYcT","./SubMenuList":"lSTh"}],"lAgC":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14075,7 +14441,50 @@ function SubMenu(props) {
     value: connectedKeyPath
   }, renderNode);
 }
-},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"qb7c","rc-overflow":"H6C2","rc-util/es/warning":"YOfO","./SubMenuList":"imhB","../utils/nodeUtil":"T1Gl","../context/MenuContext":"WRUc","../hooks/useMemoCallback":"vAIo","./PopupTrigger":"hvs0","../Icon":"E0zE","../hooks/useActive":"LQKT","../utils/warnUtil":"cvmo","../hooks/useDirectionStyle":"Pnmu","./InlineSubMenuList":"l2u9","../context/PathContext":"thAF","../context/IdContext":"VB3D","../context/PrivateContext":"V73O"}],"Dfmp":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"yl9j","rc-overflow":"H6C2","rc-util/es/warning":"SNA5","./SubMenuList":"lSTh","../utils/nodeUtil":"G0UT","../context/MenuContext":"WYcT","../hooks/useMemoCallback":"nuyy","./PopupTrigger":"Cs4U","../Icon":"D26q","../hooks/useActive":"Xkih","../utils/warnUtil":"BXDu","../hooks/useDirectionStyle":"FwHP","./InlineSubMenuList":"XNDn","../context/PathContext":"N39B","../context/IdContext":"WSOX","../context/PrivateContext":"cUpN"}],"BOdz":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(element) {
+  if (!element) {
+    return false;
+  }
+
+  if (element instanceof Element) {
+    if (element.offsetParent) {
+      return true;
+    }
+
+    if (element.getBBox) {
+      var _getBBox = element.getBBox(),
+          width = _getBBox.width,
+          height = _getBBox.height;
+
+      if (width || height) {
+        return true;
+      }
+    }
+
+    if (element.getBoundingClientRect) {
+      var _element$getBoundingC = element.getBoundingClientRect(),
+          _width = _element$getBoundingC.width,
+          _height = _element$getBoundingC.height;
+
+      if (_width || _height) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+};
+
+exports.default = _default;
+},{}],"doJJ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14179,7 +14588,7 @@ function limitTabRange(node, e) {
     }
   }
 }
-},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","./isVisible":"dPHJ"}],"g0Ae":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","./isVisible":"BOdz"}],"bUws":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14487,7 +14896,7 @@ function useAccessibility(mode, activeKey, isRtl, id, containerRef, getKeys, get
     originOnKeyDown === null || originOnKeyDown === void 0 ? void 0 : originOnKeyDown(e);
   };
 }
-},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","react":"n8MK","rc-util/es/KeyCode":"Imvn","rc-util/es/raf":"adDJ","rc-util/es/Dom/focus":"Dfmp","../context/IdContext":"VB3D"}],"nOjm":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","react":"n8MK","rc-util/es/KeyCode":"iYnE","rc-util/es/raf":"dtu8","rc-util/es/Dom/focus":"doJJ","../context/IdContext":"WSOX"}],"EovY":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14525,7 +14934,7 @@ function useUUID(id) {
   }, []);
   return uuid;
 }
-},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/hooks/useMergedState":"zMpY"}],"sR1M":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/hooks/useMergedState":"w0MT"}],"btE1":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14537,7 +14946,7 @@ function nextSlice(callback) {
   /* istanbul ignore next */
   Promise.resolve().then(callback);
 }
-},{}],"FDUp":[function(require,module,exports) {
+},{}],"StnJ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14681,7 +15090,7 @@ function useKeyRecords() {
     getSubPathKeys: getSubPathKeys
   };
 }
-},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/warning":"YOfO","../utils/timeUtil":"sR1M"}],"JLqT":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/warning":"SNA5","../utils/timeUtil":"btE1"}],"tjgp":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15165,7 +15574,7 @@ var Menu = /*#__PURE__*/React.forwardRef(function (props, ref) {
 });
 var _default = Menu;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"qb7c","shallowequal":"pz6A","rc-util/es/hooks/useMergedState":"zMpY","rc-util/es/warning":"YOfO","rc-overflow":"H6C2","./MenuItem":"NeBp","./utils/nodeUtil":"T1Gl","./context/MenuContext":"WRUc","./hooks/useMemoCallback":"vAIo","./utils/warnUtil":"cvmo","./SubMenu":"lVAn","./hooks/useAccessibility":"g0Ae","./hooks/useUUID":"nOjm","./context/PathContext":"thAF","./hooks/useKeyRecords":"FDUp","./context/IdContext":"VB3D","./context/PrivateContext":"V73O"}],"vrf4":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"yl9j","shallowequal":"pz6A","rc-util/es/hooks/useMergedState":"w0MT","rc-util/es/warning":"SNA5","rc-overflow":"H6C2","./MenuItem":"MECx","./utils/nodeUtil":"G0UT","./context/MenuContext":"WYcT","./hooks/useMemoCallback":"nuyy","./utils/warnUtil":"BXDu","./SubMenu":"lAgC","./hooks/useAccessibility":"bUws","./hooks/useUUID":"EovY","./context/PathContext":"N39B","./hooks/useKeyRecords":"StnJ","./context/IdContext":"WSOX","./context/PrivateContext":"cUpN"}],"Vp9R":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15235,7 +15644,7 @@ function MenuItemGroup(_ref2) {
 
   return /*#__PURE__*/React.createElement(InternalMenuItemGroup, (0, _omit.default)(props, ['warnKey']), childList);
 }
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"qb7c","rc-util/es/omit":"P8ML","./utils/nodeUtil":"T1Gl","./context/MenuContext":"WRUc","./context/PathContext":"thAF"}],"hlbq":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"yl9j","rc-util/es/omit":"SloJ","./utils/nodeUtil":"G0UT","./context/MenuContext":"WYcT","./context/PathContext":"N39B"}],"ViKM":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15275,7 +15684,7 @@ function Divider(_ref) {
     style: style
   });
 }
-},{"react":"n8MK","classnames":"qb7c","./context/MenuContext":"WRUc","./context/PathContext":"thAF"}],"VH7R":[function(require,module,exports) {
+},{"react":"n8MK","classnames":"yl9j","./context/MenuContext":"WYcT","./context/PathContext":"N39B"}],"QOgl":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15346,7 +15755,7 @@ ExportMenu.ItemGroup = _MenuItemGroup.default;
 ExportMenu.Divider = _Divider.default;
 var _default = ExportMenu;
 exports.default = _default;
-},{"./Menu":"JLqT","./MenuItem":"NeBp","./SubMenu":"lVAn","./MenuItemGroup":"vrf4","./context/PathContext":"thAF","./Divider":"hlbq"}],"K12W":[function(require,module,exports) {
+},{"./Menu":"tjgp","./MenuItem":"MECx","./SubMenu":"lAgC","./MenuItemGroup":"Vp9R","./context/PathContext":"N39B","./Divider":"ViKM"}],"GgDZ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15398,7 +15807,743 @@ var placements = {
 };
 var _default = placements;
 exports.default = _default;
-},{}],"LIX0":[function(require,module,exports) {
+},{}],"Imvn":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+/**
+ * @ignore
+ * some key-codes definition and utils from closure-library
+ * @author yiminghe@gmail.com
+ */
+var KeyCode = {
+  /**
+   * MAC_ENTER
+   */
+  MAC_ENTER: 3,
+
+  /**
+   * BACKSPACE
+   */
+  BACKSPACE: 8,
+
+  /**
+   * TAB
+   */
+  TAB: 9,
+
+  /**
+   * NUMLOCK on FF/Safari Mac
+   */
+  NUM_CENTER: 12,
+
+  /**
+   * ENTER
+   */
+  ENTER: 13,
+
+  /**
+   * SHIFT
+   */
+  SHIFT: 16,
+
+  /**
+   * CTRL
+   */
+  CTRL: 17,
+
+  /**
+   * ALT
+   */
+  ALT: 18,
+
+  /**
+   * PAUSE
+   */
+  PAUSE: 19,
+
+  /**
+   * CAPS_LOCK
+   */
+  CAPS_LOCK: 20,
+
+  /**
+   * ESC
+   */
+  ESC: 27,
+
+  /**
+   * SPACE
+   */
+  SPACE: 32,
+
+  /**
+   * PAGE_UP
+   */
+  PAGE_UP: 33,
+
+  /**
+   * PAGE_DOWN
+   */
+  PAGE_DOWN: 34,
+
+  /**
+   * END
+   */
+  END: 35,
+
+  /**
+   * HOME
+   */
+  HOME: 36,
+
+  /**
+   * LEFT
+   */
+  LEFT: 37,
+
+  /**
+   * UP
+   */
+  UP: 38,
+
+  /**
+   * RIGHT
+   */
+  RIGHT: 39,
+
+  /**
+   * DOWN
+   */
+  DOWN: 40,
+
+  /**
+   * PRINT_SCREEN
+   */
+  PRINT_SCREEN: 44,
+
+  /**
+   * INSERT
+   */
+  INSERT: 45,
+
+  /**
+   * DELETE
+   */
+  DELETE: 46,
+
+  /**
+   * ZERO
+   */
+  ZERO: 48,
+
+  /**
+   * ONE
+   */
+  ONE: 49,
+
+  /**
+   * TWO
+   */
+  TWO: 50,
+
+  /**
+   * THREE
+   */
+  THREE: 51,
+
+  /**
+   * FOUR
+   */
+  FOUR: 52,
+
+  /**
+   * FIVE
+   */
+  FIVE: 53,
+
+  /**
+   * SIX
+   */
+  SIX: 54,
+
+  /**
+   * SEVEN
+   */
+  SEVEN: 55,
+
+  /**
+   * EIGHT
+   */
+  EIGHT: 56,
+
+  /**
+   * NINE
+   */
+  NINE: 57,
+
+  /**
+   * QUESTION_MARK
+   */
+  QUESTION_MARK: 63,
+
+  /**
+   * A
+   */
+  A: 65,
+
+  /**
+   * B
+   */
+  B: 66,
+
+  /**
+   * C
+   */
+  C: 67,
+
+  /**
+   * D
+   */
+  D: 68,
+
+  /**
+   * E
+   */
+  E: 69,
+
+  /**
+   * F
+   */
+  F: 70,
+
+  /**
+   * G
+   */
+  G: 71,
+
+  /**
+   * H
+   */
+  H: 72,
+
+  /**
+   * I
+   */
+  I: 73,
+
+  /**
+   * J
+   */
+  J: 74,
+
+  /**
+   * K
+   */
+  K: 75,
+
+  /**
+   * L
+   */
+  L: 76,
+
+  /**
+   * M
+   */
+  M: 77,
+
+  /**
+   * N
+   */
+  N: 78,
+
+  /**
+   * O
+   */
+  O: 79,
+
+  /**
+   * P
+   */
+  P: 80,
+
+  /**
+   * Q
+   */
+  Q: 81,
+
+  /**
+   * R
+   */
+  R: 82,
+
+  /**
+   * S
+   */
+  S: 83,
+
+  /**
+   * T
+   */
+  T: 84,
+
+  /**
+   * U
+   */
+  U: 85,
+
+  /**
+   * V
+   */
+  V: 86,
+
+  /**
+   * W
+   */
+  W: 87,
+
+  /**
+   * X
+   */
+  X: 88,
+
+  /**
+   * Y
+   */
+  Y: 89,
+
+  /**
+   * Z
+   */
+  Z: 90,
+
+  /**
+   * META
+   */
+  META: 91,
+
+  /**
+   * WIN_KEY_RIGHT
+   */
+  WIN_KEY_RIGHT: 92,
+
+  /**
+   * CONTEXT_MENU
+   */
+  CONTEXT_MENU: 93,
+
+  /**
+   * NUM_ZERO
+   */
+  NUM_ZERO: 96,
+
+  /**
+   * NUM_ONE
+   */
+  NUM_ONE: 97,
+
+  /**
+   * NUM_TWO
+   */
+  NUM_TWO: 98,
+
+  /**
+   * NUM_THREE
+   */
+  NUM_THREE: 99,
+
+  /**
+   * NUM_FOUR
+   */
+  NUM_FOUR: 100,
+
+  /**
+   * NUM_FIVE
+   */
+  NUM_FIVE: 101,
+
+  /**
+   * NUM_SIX
+   */
+  NUM_SIX: 102,
+
+  /**
+   * NUM_SEVEN
+   */
+  NUM_SEVEN: 103,
+
+  /**
+   * NUM_EIGHT
+   */
+  NUM_EIGHT: 104,
+
+  /**
+   * NUM_NINE
+   */
+  NUM_NINE: 105,
+
+  /**
+   * NUM_MULTIPLY
+   */
+  NUM_MULTIPLY: 106,
+
+  /**
+   * NUM_PLUS
+   */
+  NUM_PLUS: 107,
+
+  /**
+   * NUM_MINUS
+   */
+  NUM_MINUS: 109,
+
+  /**
+   * NUM_PERIOD
+   */
+  NUM_PERIOD: 110,
+
+  /**
+   * NUM_DIVISION
+   */
+  NUM_DIVISION: 111,
+
+  /**
+   * F1
+   */
+  F1: 112,
+
+  /**
+   * F2
+   */
+  F2: 113,
+
+  /**
+   * F3
+   */
+  F3: 114,
+
+  /**
+   * F4
+   */
+  F4: 115,
+
+  /**
+   * F5
+   */
+  F5: 116,
+
+  /**
+   * F6
+   */
+  F6: 117,
+
+  /**
+   * F7
+   */
+  F7: 118,
+
+  /**
+   * F8
+   */
+  F8: 119,
+
+  /**
+   * F9
+   */
+  F9: 120,
+
+  /**
+   * F10
+   */
+  F10: 121,
+
+  /**
+   * F11
+   */
+  F11: 122,
+
+  /**
+   * F12
+   */
+  F12: 123,
+
+  /**
+   * NUMLOCK
+   */
+  NUMLOCK: 144,
+
+  /**
+   * SEMICOLON
+   */
+  SEMICOLON: 186,
+
+  /**
+   * DASH
+   */
+  DASH: 189,
+
+  /**
+   * EQUALS
+   */
+  EQUALS: 187,
+
+  /**
+   * COMMA
+   */
+  COMMA: 188,
+
+  /**
+   * PERIOD
+   */
+  PERIOD: 190,
+
+  /**
+   * SLASH
+   */
+  SLASH: 191,
+
+  /**
+   * APOSTROPHE
+   */
+  APOSTROPHE: 192,
+
+  /**
+   * SINGLE_QUOTE
+   */
+  SINGLE_QUOTE: 222,
+
+  /**
+   * OPEN_SQUARE_BRACKET
+   */
+  OPEN_SQUARE_BRACKET: 219,
+
+  /**
+   * BACKSLASH
+   */
+  BACKSLASH: 220,
+
+  /**
+   * CLOSE_SQUARE_BRACKET
+   */
+  CLOSE_SQUARE_BRACKET: 221,
+
+  /**
+   * WIN_KEY
+   */
+  WIN_KEY: 224,
+
+  /**
+   * MAC_FF_META
+   */
+  MAC_FF_META: 224,
+
+  /**
+   * WIN_IME
+   */
+  WIN_IME: 229,
+  // ======================== Function ========================
+
+  /**
+   * whether text and modified key is entered at the same time.
+   */
+  isTextModifyingKeyEvent: function isTextModifyingKeyEvent(e) {
+    var keyCode = e.keyCode;
+
+    if (e.altKey && !e.ctrlKey || e.metaKey || // Function keys don't generate text
+    keyCode >= KeyCode.F1 && keyCode <= KeyCode.F12) {
+      return false;
+    } // The following keys are quite harmless, even in combination with
+    // CTRL, ALT or SHIFT.
+
+
+    switch (keyCode) {
+      case KeyCode.ALT:
+      case KeyCode.CAPS_LOCK:
+      case KeyCode.CONTEXT_MENU:
+      case KeyCode.CTRL:
+      case KeyCode.DOWN:
+      case KeyCode.END:
+      case KeyCode.ESC:
+      case KeyCode.HOME:
+      case KeyCode.INSERT:
+      case KeyCode.LEFT:
+      case KeyCode.MAC_FF_META:
+      case KeyCode.META:
+      case KeyCode.NUMLOCK:
+      case KeyCode.NUM_CENTER:
+      case KeyCode.PAGE_DOWN:
+      case KeyCode.PAGE_UP:
+      case KeyCode.PAUSE:
+      case KeyCode.PRINT_SCREEN:
+      case KeyCode.RIGHT:
+      case KeyCode.SHIFT:
+      case KeyCode.UP:
+      case KeyCode.WIN_KEY:
+      case KeyCode.WIN_KEY_RIGHT:
+        return false;
+
+      default:
+        return true;
+    }
+  },
+
+  /**
+   * whether character is entered.
+   */
+  isCharacterKey: function isCharacterKey(keyCode) {
+    if (keyCode >= KeyCode.ZERO && keyCode <= KeyCode.NINE) {
+      return true;
+    }
+
+    if (keyCode >= KeyCode.NUM_ZERO && keyCode <= KeyCode.NUM_MULTIPLY) {
+      return true;
+    }
+
+    if (keyCode >= KeyCode.A && keyCode <= KeyCode.Z) {
+      return true;
+    } // Safari sends zero key code for non-latin characters.
+
+
+    if (window.navigator.userAgent.indexOf('WebKit') !== -1 && keyCode === 0) {
+      return true;
+    }
+
+    switch (keyCode) {
+      case KeyCode.SPACE:
+      case KeyCode.QUESTION_MARK:
+      case KeyCode.NUM_PLUS:
+      case KeyCode.NUM_MINUS:
+      case KeyCode.NUM_PERIOD:
+      case KeyCode.NUM_DIVISION:
+      case KeyCode.SEMICOLON:
+      case KeyCode.DASH:
+      case KeyCode.EQUALS:
+      case KeyCode.COMMA:
+      case KeyCode.PERIOD:
+      case KeyCode.SLASH:
+      case KeyCode.APOSTROPHE:
+      case KeyCode.SINGLE_QUOTE:
+      case KeyCode.OPEN_SQUARE_BRACKET:
+      case KeyCode.BACKSLASH:
+      case KeyCode.CLOSE_SQUARE_BRACKET:
+        return true;
+
+      default:
+        return false;
+    }
+  }
+};
+var _default = KeyCode;
+exports.default = _default;
+},{}],"Dfmp":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.backLastFocusNode = backLastFocusNode;
+exports.clearLastFocusNode = clearLastFocusNode;
+exports.getFocusNodeList = getFocusNodeList;
+exports.limitTabRange = limitTabRange;
+exports.saveLastFocusNode = saveLastFocusNode;
+
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/toConsumableArray"));
+
+var _isVisible = _interopRequireDefault(require("./isVisible"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function focusable(node) {
+  var includePositive = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  if ((0, _isVisible.default)(node)) {
+    var nodeName = node.nodeName.toLowerCase();
+    var isFocusableElement = // Focusable element
+    ['input', 'select', 'textarea', 'button'].includes(nodeName) || // Editable element
+    node.isContentEditable || // Anchor with href element
+    nodeName === 'a' && !!node.getAttribute('href'); // Get tabIndex
+
+    var tabIndexAttr = node.getAttribute('tabindex');
+    var tabIndexNum = Number(tabIndexAttr); // Parse as number if validate
+
+    var tabIndex = null;
+
+    if (tabIndexAttr && !Number.isNaN(tabIndexNum)) {
+      tabIndex = tabIndexNum;
+    } else if (isFocusableElement && tabIndex === null) {
+      tabIndex = 0;
+    } // Block focusable if disabled
+
+
+    if (isFocusableElement && node.disabled) {
+      tabIndex = null;
+    }
+
+    return tabIndex !== null && (tabIndex >= 0 || includePositive && tabIndex < 0);
+  }
+
+  return false;
+}
+
+function getFocusNodeList(node) {
+  var includePositive = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var res = (0, _toConsumableArray2.default)(node.querySelectorAll('*')).filter(function (child) {
+    return focusable(child, includePositive);
+  });
+
+  if (focusable(node, includePositive)) {
+    res.unshift(node);
+  }
+
+  return res;
+}
+
+var lastFocusElement = null;
+/** @deprecated Do not use since this may failed when used in async */
+
+function saveLastFocusNode() {
+  lastFocusElement = document.activeElement;
+}
+/** @deprecated Do not use since this may failed when used in async */
+
+
+function clearLastFocusNode() {
+  lastFocusElement = null;
+}
+/** @deprecated Do not use since this may failed when used in async */
+
+
+function backLastFocusNode() {
+  if (lastFocusElement) {
+    try {
+      // 元素可能已经被移动了
+      lastFocusElement.focus();
+      /* eslint-disable no-empty */
+    } catch (e) {// empty
+    }
+    /* eslint-enable no-empty */
+
+  }
+}
+
+function limitTabRange(node, e) {
+  if (e.keyCode === 9) {
+    var tabNodeList = getFocusNodeList(node);
+    var lastTabNode = tabNodeList[e.shiftKey ? 0 : tabNodeList.length - 1];
+    var leavingTab = lastTabNode === document.activeElement || node === document.activeElement;
+
+    if (leavingTab) {
+      var target = tabNodeList[e.shiftKey ? tabNodeList.length - 1 : 0];
+      target.focus();
+      e.preventDefault();
+    }
+  }
+}
+},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","./isVisible":"dPHJ"}],"FshY":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15504,7 +16649,7 @@ function useAccessibility(_ref) {
     };
   }, [visible]); // eslint-disable-line react-hooks/exhaustive-deps
 }
-},{"react":"n8MK","rc-util/es/KeyCode":"Imvn","rc-util/es/raf":"adDJ","rc-util/es/Dom/focus":"Dfmp"}],"WPA7":[function(require,module,exports) {
+},{"react":"n8MK","rc-util/es/KeyCode":"Imvn","rc-util/es/raf":"adDJ","rc-util/es/Dom/focus":"Dfmp"}],"rgdw":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15689,7 +16834,7 @@ function Dropdown(props, ref) {
 var _default = /*#__PURE__*/React.forwardRef(Dropdown);
 
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","rc-trigger":"PZMl","classnames":"qb7c","./placements":"K12W","./hooks/useAccessibility":"LIX0"}],"LcOg":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","rc-trigger":"PZMl","classnames":"yl9j","./placements":"GgDZ","./hooks/useAccessibility":"FshY"}],"SyQB":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15703,7 +16848,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = _Dropdown.default;
 exports.default = _default;
-},{"./Dropdown":"WPA7"}],"kT7Q":[function(require,module,exports) {
+},{"./Dropdown":"rgdw"}],"kT7Q":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15970,7 +17115,7 @@ var _default = /*#__PURE__*/React.memo( /*#__PURE__*/React.forwardRef(OperationN
 });
 
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","classnames":"qb7c","rc-util/es/KeyCode":"Imvn","rc-menu":"VH7R","rc-dropdown":"LcOg","./AddButton":"kT7Q"}],"vHWa":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","classnames":"yl9j","rc-util/es/KeyCode":"iYnE","rc-menu":"QOgl","rc-dropdown":"SyQB","./AddButton":"kT7Q"}],"vHWa":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16758,7 +17903,7 @@ function TabNavList(props, ref) {
 var _default = /*#__PURE__*/React.forwardRef(TabNavList);
 
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/typeof":"xLw6","react":"n8MK","classnames":"qb7c","rc-util/es/raf":"adDJ","rc-resize-observer":"q9L5","../hooks/useRaf":"LCWf","./TabNode":"VleC","../hooks/useOffsets":"uhKO","../hooks/useVisibleRange":"eQ4Y","./OperationNode":"MhTA","../TabContext":"vHWa","../hooks/useTouchMove":"MZjt","../hooks/useRefs":"Sb61","./AddButton":"kT7Q","../hooks/useSyncState":"AAQN"}],"om2l":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/typeof":"xLw6","react":"n8MK","classnames":"yl9j","rc-util/es/raf":"dtu8","rc-resize-observer":"q9L5","../hooks/useRaf":"LCWf","./TabNode":"VleC","../hooks/useOffsets":"uhKO","../hooks/useVisibleRange":"eQ4Y","./OperationNode":"MhTA","../TabContext":"vHWa","../hooks/useTouchMove":"MZjt","../hooks/useRefs":"Sb61","./AddButton":"kT7Q","../hooks/useSyncState":"AAQN"}],"om2l":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16813,7 +17958,7 @@ function TabPanelList(_ref) {
     });
   })));
 }
-},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","react":"n8MK","classnames":"qb7c","../TabContext":"vHWa"}],"Fb5J":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","react":"n8MK","classnames":"yl9j","../TabContext":"vHWa"}],"Fb5J":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16881,7 +18026,7 @@ function TabPane(_ref) {
     className: (0, _classnames.default)("".concat(prefixCls, "-tabpane"), active && "".concat(prefixCls, "-tabpane-active"), className)
   }, (active || visited || forceRender) && children);
 }
-},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","classnames":"qb7c"}],"zJYA":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","classnames":"yl9j"}],"zJYA":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -17142,7 +18287,7 @@ var ForwardTabs = /*#__PURE__*/React.forwardRef(Tabs);
 ForwardTabs.TabPane = _TabPane.default;
 var _default = ForwardTabs;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/typeof":"xLw6","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK","classnames":"qb7c","rc-util/es/Children/toArray":"artt","rc-util/es/isMobile":"nb8J","rc-util/es/hooks/useMergedState":"zMpY","./TabNavList":"Piyq","./TabPanelList":"om2l","./TabPanelList/TabPane":"Fb5J","./TabContext":"vHWa"}],"FgVr":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/typeof":"xLw6","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK","classnames":"yl9j","rc-util/es/Children/toArray":"zO4a","rc-util/es/isMobile":"R6MQ","rc-util/es/hooks/useMergedState":"w0MT","./TabNavList":"Piyq","./TabPanelList":"om2l","./TabPanelList/TabPane":"Fb5J","./TabContext":"vHWa"}],"FgVr":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -17164,7 +18309,417 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _default = _Tabs.default;
 exports.default = _default;
-},{"./Tabs":"zJYA","./TabPanelList/TabPane":"Fb5J"}],"FshY":[function(require,module,exports) {
+},{"./Tabs":"zJYA","./TabPanelList/TabPane":"Fb5J"}],"RFRG":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useLayoutUpdateEffect = exports.default = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _canUseDom = _interopRequireDefault(require("../Dom/canUseDom"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+/**
+ * Wrap `React.useLayoutEffect` which will not throw warning message in test env
+ */
+var useInternalLayoutEffect = "production" !== 'test' && (0, _canUseDom.default)() ? React.useLayoutEffect : React.useEffect;
+
+var useLayoutEffect = function useLayoutEffect(callback, deps) {
+  var firstMountRef = React.useRef(true);
+  useInternalLayoutEffect(function () {
+    return callback(firstMountRef.current);
+  }, deps); // We tell react that first mount has passed
+
+  useInternalLayoutEffect(function () {
+    firstMountRef.current = false;
+    return function () {
+      firstMountRef.current = true;
+    };
+  }, []);
+};
+
+var useLayoutUpdateEffect = function useLayoutUpdateEffect(callback, deps) {
+  useLayoutEffect(function (firstMount) {
+    if (!firstMount) {
+      return callback();
+    }
+  }, deps);
+};
+
+exports.useLayoutUpdateEffect = useLayoutUpdateEffect;
+var _default = useLayoutEffect;
+exports.default = _default;
+},{"react":"n8MK","../Dom/canUseDom":"s2cK"}],"UovL":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useMergedState;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var _useEvent = _interopRequireDefault(require("./useEvent"));
+
+var _useLayoutEffect = require("./useLayoutEffect");
+
+var _useState5 = _interopRequireDefault(require("./useState"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/** We only think `undefined` is empty */
+function hasValue(value) {
+  return value !== undefined;
+}
+/**
+ * Similar to `useState` but will use props value if provided.
+ * Note that internal use rc-util `useState` hook.
+ */
+
+
+function useMergedState(defaultStateValue, option) {
+  var _ref = option || {},
+      defaultValue = _ref.defaultValue,
+      value = _ref.value,
+      onChange = _ref.onChange,
+      postState = _ref.postState; // ======================= Init =======================
+
+
+  var _useState = (0, _useState5.default)(function () {
+    if (hasValue(value)) {
+      return value;
+    } else if (hasValue(defaultValue)) {
+      return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
+    } else {
+      return typeof defaultStateValue === 'function' ? defaultStateValue() : defaultStateValue;
+    }
+  }),
+      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+      innerValue = _useState2[0],
+      setInnerValue = _useState2[1];
+
+  var mergedValue = value !== undefined ? value : innerValue;
+  var postMergedValue = postState ? postState(mergedValue) : mergedValue; // ====================== Change ======================
+
+  var onChangeFn = (0, _useEvent.default)(onChange);
+
+  var _useState3 = (0, _useState5.default)([mergedValue]),
+      _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+      prevValue = _useState4[0],
+      setPrevValue = _useState4[1];
+
+  (0, _useLayoutEffect.useLayoutUpdateEffect)(function () {
+    var prev = prevValue[0];
+
+    if (innerValue !== prev) {
+      onChangeFn(innerValue, prev);
+    }
+  }, [prevValue]); // Sync value back to `undefined` when it from control to un-control
+
+  (0, _useLayoutEffect.useLayoutUpdateEffect)(function () {
+    if (!hasValue(value)) {
+      setInnerValue(value);
+    }
+  }, [value]); // ====================== Update ======================
+
+  var triggerChange = (0, _useEvent.default)(function (updater, ignoreDestroy) {
+    setInnerValue(updater, ignoreDestroy);
+    setPrevValue([mergedValue], ignoreDestroy);
+  });
+  return [postMergedValue, triggerChange];
+}
+},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","./useEvent":"ssYe","./useLayoutEffect":"RFRG","./useState":"nSoY"}],"n49D":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/typeof"));
+
+var _warning = _interopRequireDefault(require("./warning"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Deeply compares two object literals.
+ * @param obj1 object 1
+ * @param obj2 object 2
+ * @param shallow shallow compare
+ * @returns
+ */
+function isEqual(obj1, obj2) {
+  var shallow = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false; // https://github.com/mapbox/mapbox-gl-js/pull/5979/files#diff-fde7145050c47cc3a306856efd5f9c3016e86e859de9afbd02c879be5067e58f
+
+  var refSet = new Set();
+
+  function deepEqual(a, b) {
+    var level = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+    var circular = refSet.has(a);
+    (0, _warning.default)(!circular, 'Warning: There may be circular references');
+
+    if (circular) {
+      return false;
+    }
+
+    if (a === b) {
+      return true;
+    }
+
+    if (shallow && level > 1) {
+      return false;
+    }
+
+    refSet.add(a);
+    var newLevel = level + 1;
+
+    if (Array.isArray(a)) {
+      if (!Array.isArray(b) || a.length !== b.length) {
+        return false;
+      }
+
+      for (var i = 0; i < a.length; i++) {
+        if (!deepEqual(a[i], b[i], newLevel)) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    if (a && b && (0, _typeof2.default)(a) === 'object' && (0, _typeof2.default)(b) === 'object') {
+      var keys = Object.keys(a);
+
+      if (keys.length !== Object.keys(b).length) {
+        return false;
+      }
+
+      return keys.every(function (key) {
+        return deepEqual(a[key], b[key], newLevel);
+      });
+    } // other
+
+
+    return false;
+  }
+
+  return deepEqual(obj1, obj2);
+}
+
+var _default = isEqual;
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/typeof":"xLw6","./warning":"SNA5"}],"WRUc":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MenuContext = void 0;
+exports.default = InheritableContextProvider;
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectSpread2"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _useMemo = _interopRequireDefault(require("rc-util/es/hooks/useMemo"));
+
+var _isEqual = _interopRequireDefault(require("rc-util/es/isEqual"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _excluded = ["children", "locked"];
+var MenuContext = /*#__PURE__*/React.createContext(null);
+exports.MenuContext = MenuContext;
+
+function mergeProps(origin, target) {
+  var clone = (0, _objectSpread2.default)({}, origin);
+  Object.keys(target).forEach(function (key) {
+    var value = target[key];
+
+    if (value !== undefined) {
+      clone[key] = value;
+    }
+  });
+  return clone;
+}
+
+function InheritableContextProvider(_ref) {
+  var children = _ref.children,
+      locked = _ref.locked,
+      restProps = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  var context = React.useContext(MenuContext);
+  var inheritableContext = (0, _useMemo.default)(function () {
+    return mergeProps(context, restProps);
+  }, [context, restProps], function (prev, next) {
+    return !locked && (prev[0] !== next[0] || !(0, _isEqual.default)(prev[1], next[1], true));
+  });
+  return /*#__PURE__*/React.createElement(MenuContext.Provider, {
+    value: inheritableContext
+  }, children);
+}
+},{"@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/objectSpread2":"UKeT","react":"n8MK","rc-util/es/hooks/useMemo":"HDr6","rc-util/es/isEqual":"n49D"}],"thAF":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PathUserContext = exports.PathTrackerContext = exports.PathRegisterContext = void 0;
+exports.useFullPath = useFullPath;
+exports.useMeasure = useMeasure;
+
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/toConsumableArray"));
+
+var React = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var EmptyList = []; // ========================= Path Register =========================
+
+var PathRegisterContext = /*#__PURE__*/React.createContext(null);
+exports.PathRegisterContext = PathRegisterContext;
+
+function useMeasure() {
+  return React.useContext(PathRegisterContext);
+} // ========================= Path Tracker ==========================
+
+
+var PathTrackerContext = /*#__PURE__*/React.createContext(EmptyList);
+exports.PathTrackerContext = PathTrackerContext;
+
+function useFullPath(eventKey) {
+  var parentKeyPath = React.useContext(PathTrackerContext);
+  return React.useMemo(function () {
+    return eventKey !== undefined ? [].concat((0, _toConsumableArray2.default)(parentKeyPath), [eventKey]) : parentKeyPath;
+  }, [parentKeyPath, eventKey]);
+} // =========================== Path User ===========================
+
+
+var PathUserContext = /*#__PURE__*/React.createContext(null);
+exports.PathUserContext = PathUserContext;
+},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","react":"n8MK"}],"sObw":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.backLastFocusNode = backLastFocusNode;
+exports.clearLastFocusNode = clearLastFocusNode;
+exports.getFocusNodeList = getFocusNodeList;
+exports.limitTabRange = limitTabRange;
+exports.saveLastFocusNode = saveLastFocusNode;
+
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/toConsumableArray"));
+
+var _isVisible = _interopRequireDefault(require("./isVisible"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function focusable(node) {
+  var includePositive = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  if ((0, _isVisible.default)(node)) {
+    var nodeName = node.nodeName.toLowerCase();
+    var isFocusableElement = // Focusable element
+    ['input', 'select', 'textarea', 'button'].includes(nodeName) || // Editable element
+    node.isContentEditable || // Anchor with href element
+    nodeName === 'a' && !!node.getAttribute('href'); // Get tabIndex
+
+    var tabIndexAttr = node.getAttribute('tabindex');
+    var tabIndexNum = Number(tabIndexAttr); // Parse as number if validate
+
+    var tabIndex = null;
+
+    if (tabIndexAttr && !Number.isNaN(tabIndexNum)) {
+      tabIndex = tabIndexNum;
+    } else if (isFocusableElement && tabIndex === null) {
+      tabIndex = 0;
+    } // Block focusable if disabled
+
+
+    if (isFocusableElement && node.disabled) {
+      tabIndex = null;
+    }
+
+    return tabIndex !== null && (tabIndex >= 0 || includePositive && tabIndex < 0);
+  }
+
+  return false;
+}
+
+function getFocusNodeList(node) {
+  var includePositive = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var res = (0, _toConsumableArray2.default)(node.querySelectorAll('*')).filter(function (child) {
+    return focusable(child, includePositive);
+  });
+
+  if (focusable(node, includePositive)) {
+    res.unshift(node);
+  }
+
+  return res;
+}
+
+var lastFocusElement = null;
+/** @deprecated Do not use since this may failed when used in async */
+
+function saveLastFocusNode() {
+  lastFocusElement = document.activeElement;
+}
+/** @deprecated Do not use since this may failed when used in async */
+
+
+function clearLastFocusNode() {
+  lastFocusElement = null;
+}
+/** @deprecated Do not use since this may failed when used in async */
+
+
+function backLastFocusNode() {
+  if (lastFocusElement) {
+    try {
+      // 元素可能已经被移动了
+      lastFocusElement.focus();
+      /* eslint-disable no-empty */
+    } catch (e) {// empty
+    }
+    /* eslint-enable no-empty */
+
+  }
+}
+
+function limitTabRange(node, e) {
+  if (e.keyCode === 9) {
+    var tabNodeList = getFocusNodeList(node);
+    var lastTabNode = tabNodeList[e.shiftKey ? 0 : tabNodeList.length - 1];
+    var leavingTab = lastTabNode === document.activeElement || node === document.activeElement;
+
+    if (leavingTab) {
+      var target = tabNodeList[e.shiftKey ? tabNodeList.length - 1 : 0];
+      target.focus();
+      e.preventDefault();
+    }
+  }
+}
+},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","./isVisible":"BOdz"}],"g0Ae":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -17172,91 +18727,705 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = useAccessibility;
 
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/defineProperty"));
+
 var React = _interopRequireWildcard(require("react"));
 
 var _KeyCode = _interopRequireDefault(require("rc-util/es/KeyCode"));
 
 var _raf = _interopRequireDefault(require("rc-util/es/raf"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _focus = require("rc-util/es/Dom/focus");
+
+var _IdContext = require("../context/IdContext");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var ESC = _KeyCode.default.ESC,
-    TAB = _KeyCode.default.TAB;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function useAccessibility(_ref) {
-  var visible = _ref.visible,
-      setTriggerVisible = _ref.setTriggerVisible,
-      triggerRef = _ref.triggerRef,
-      menuRef = _ref.menuRef,
-      onVisibleChange = _ref.onVisibleChange,
-      autoFocus = _ref.autoFocus;
-  var focusMenuRef = React.useRef(false);
+// destruct to reduce minify size
+var LEFT = _KeyCode.default.LEFT,
+    RIGHT = _KeyCode.default.RIGHT,
+    UP = _KeyCode.default.UP,
+    DOWN = _KeyCode.default.DOWN,
+    ENTER = _KeyCode.default.ENTER,
+    ESC = _KeyCode.default.ESC,
+    HOME = _KeyCode.default.HOME,
+    END = _KeyCode.default.END;
+var ArrowKeys = [UP, DOWN, LEFT, RIGHT];
 
-  var handleCloseMenuAndReturnFocus = function handleCloseMenuAndReturnFocus() {
-    if (visible && triggerRef.current) {
-      var _triggerRef$current, _triggerRef$current$t, _triggerRef$current$t2, _triggerRef$current$t3;
+function getOffset(mode, isRootLevel, isRtl, which) {
+  var _inline, _horizontal, _vertical, _offsets;
 
-      (_triggerRef$current = triggerRef.current) === null || _triggerRef$current === void 0 ? void 0 : (_triggerRef$current$t = _triggerRef$current.triggerRef) === null || _triggerRef$current$t === void 0 ? void 0 : (_triggerRef$current$t2 = _triggerRef$current$t.current) === null || _triggerRef$current$t2 === void 0 ? void 0 : (_triggerRef$current$t3 = _triggerRef$current$t2.focus) === null || _triggerRef$current$t3 === void 0 ? void 0 : _triggerRef$current$t3.call(_triggerRef$current$t2);
-      setTriggerVisible(false);
+  var prev = 'prev';
+  var next = 'next';
+  var children = 'children';
+  var parent = 'parent'; // Inline enter is special that we use unique operation
 
-      if (typeof onVisibleChange === 'function') {
-        onVisibleChange(false);
-      }
-    }
+  if (mode === 'inline' && which === ENTER) {
+    return {
+      inlineTrigger: true
+    };
+  }
+
+  var inline = (_inline = {}, (0, _defineProperty2.default)(_inline, UP, prev), (0, _defineProperty2.default)(_inline, DOWN, next), _inline);
+  var horizontal = (_horizontal = {}, (0, _defineProperty2.default)(_horizontal, LEFT, isRtl ? next : prev), (0, _defineProperty2.default)(_horizontal, RIGHT, isRtl ? prev : next), (0, _defineProperty2.default)(_horizontal, DOWN, children), (0, _defineProperty2.default)(_horizontal, ENTER, children), _horizontal);
+  var vertical = (_vertical = {}, (0, _defineProperty2.default)(_vertical, UP, prev), (0, _defineProperty2.default)(_vertical, DOWN, next), (0, _defineProperty2.default)(_vertical, ENTER, children), (0, _defineProperty2.default)(_vertical, ESC, parent), (0, _defineProperty2.default)(_vertical, LEFT, isRtl ? children : parent), (0, _defineProperty2.default)(_vertical, RIGHT, isRtl ? parent : children), _vertical);
+  var offsets = {
+    inline: inline,
+    horizontal: horizontal,
+    vertical: vertical,
+    inlineSub: inline,
+    horizontalSub: vertical,
+    verticalSub: vertical
   };
+  var type = (_offsets = offsets["".concat(mode).concat(isRootLevel ? '' : 'Sub')]) === null || _offsets === void 0 ? void 0 : _offsets[which];
 
-  var focusMenu = function focusMenu() {
-    var _menuRef$current, _menuRef$current$focu;
+  switch (type) {
+    case prev:
+      return {
+        offset: -1,
+        sibling: true
+      };
 
-    (_menuRef$current = menuRef.current) === null || _menuRef$current === void 0 ? void 0 : (_menuRef$current$focu = _menuRef$current.focus) === null || _menuRef$current$focu === void 0 ? void 0 : _menuRef$current$focu.call(_menuRef$current);
-    focusMenuRef.current = true;
-  };
+    case next:
+      return {
+        offset: 1,
+        sibling: true
+      };
 
-  var handleKeyDown = function handleKeyDown(event) {
-    var _menuRef$current2;
+    case parent:
+      return {
+        offset: -1,
+        sibling: false
+      };
 
-    switch (event.keyCode) {
-      case ESC:
-        handleCloseMenuAndReturnFocus();
-        break;
+    case children:
+      return {
+        offset: 1,
+        sibling: false
+      };
 
-      case TAB:
-        if (!focusMenuRef.current && ((_menuRef$current2 = menuRef.current) === null || _menuRef$current2 === void 0 ? void 0 : _menuRef$current2.focus)) {
-          event.preventDefault();
-          focusMenu();
-        } else {
-          handleCloseMenuAndReturnFocus();
-        }
+    default:
+      return null;
+  }
+}
 
-        break;
+function findContainerUL(element) {
+  var current = element;
+
+  while (current) {
+    if (current.getAttribute('data-menu-list')) {
+      return current;
     }
+
+    current = current.parentElement;
+  } // Normally should not reach this line
+
+  /* istanbul ignore next */
+
+
+  return null;
+}
+/**
+ * Find focused element within element set provided
+ */
+
+
+function getFocusElement(activeElement, elements) {
+  var current = activeElement || document.activeElement;
+
+  while (current) {
+    if (elements.has(current)) {
+      return current;
+    }
+
+    current = current.parentElement;
+  }
+
+  return null;
+}
+/**
+ * Get focusable elements from the element set under provided container
+ */
+
+
+function getFocusableElements(container, elements) {
+  var list = (0, _focus.getFocusNodeList)(container, true);
+  return list.filter(function (ele) {
+    return elements.has(ele);
+  });
+}
+
+function getNextFocusElement(parentQueryContainer, elements, focusMenuElement) {
+  var offset = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1; // Key on the menu item will not get validate parent container
+
+  if (!parentQueryContainer) {
+    return null;
+  } // List current level menu item elements
+
+
+  var sameLevelFocusableMenuElementList = getFocusableElements(parentQueryContainer, elements); // Find next focus index
+
+  var count = sameLevelFocusableMenuElementList.length;
+  var focusIndex = sameLevelFocusableMenuElementList.findIndex(function (ele) {
+    return focusMenuElement === ele;
+  });
+
+  if (offset < 0) {
+    if (focusIndex === -1) {
+      focusIndex = count - 1;
+    } else {
+      focusIndex -= 1;
+    }
+  } else if (offset > 0) {
+    focusIndex += 1;
+  }
+
+  focusIndex = (focusIndex + count) % count; // Focus menu item
+
+  return sameLevelFocusableMenuElementList[focusIndex];
+}
+
+function useAccessibility(mode, activeKey, isRtl, id, containerRef, getKeys, getKeyPath, triggerActiveKey, triggerAccessibilityOpen, originOnKeyDown) {
+  var rafRef = React.useRef();
+  var activeRef = React.useRef();
+  activeRef.current = activeKey;
+
+  var cleanRaf = function cleanRaf() {
+    _raf.default.cancel(rafRef.current);
   };
 
   React.useEffect(function () {
-    if (visible) {
-      window.addEventListener('keydown', handleKeyDown);
+    return function () {
+      cleanRaf();
+    };
+  }, []);
+  return function (e) {
+    var which = e.which;
 
-      if (autoFocus) {
-        // FIXME: hack with raf
-        (0, _raf.default)(focusMenu, 3);
+    if ([].concat(ArrowKeys, [ENTER, ESC, HOME, END]).includes(which)) {
+      // Convert key to elements
+      var elements;
+      var key2element;
+      var element2key; // >>> Wrap as function since we use raf for some case
+
+      var refreshElements = function refreshElements() {
+        elements = new Set();
+        key2element = new Map();
+        element2key = new Map();
+        var keys = getKeys();
+        keys.forEach(function (key) {
+          var element = document.querySelector("[data-menu-id='".concat((0, _IdContext.getMenuId)(id, key), "']"));
+
+          if (element) {
+            elements.add(element);
+            element2key.set(element, key);
+            key2element.set(key, element);
+          }
+        });
+        return elements;
+      };
+
+      refreshElements(); // First we should find current focused MenuItem/SubMenu element
+
+      var activeElement = key2element.get(activeKey);
+      var focusMenuElement = getFocusElement(activeElement, elements);
+      var focusMenuKey = element2key.get(focusMenuElement);
+      var offsetObj = getOffset(mode, getKeyPath(focusMenuKey, true).length === 1, isRtl, which); // Some mode do not have fully arrow operation like inline
+
+      if (!offsetObj && which !== HOME && which !== END) {
+        return;
+      } // Arrow prevent default to avoid page scroll
+
+
+      if (ArrowKeys.includes(which) || [HOME, END].includes(which)) {
+        e.preventDefault();
       }
 
-      return function () {
-        window.removeEventListener('keydown', handleKeyDown);
-        focusMenuRef.current = false;
+      var tryFocus = function tryFocus(menuElement) {
+        if (menuElement) {
+          var focusTargetElement = menuElement; // Focus to link instead of menu item if possible
+
+          var link = menuElement.querySelector('a');
+
+          if (link !== null && link !== void 0 && link.getAttribute('href')) {
+            focusTargetElement = link;
+          }
+
+          var targetKey = element2key.get(menuElement);
+          triggerActiveKey(targetKey);
+          /**
+           * Do not `useEffect` here since `tryFocus` may trigger async
+           * which makes React sync update the `activeKey`
+           * that force render before `useRef` set the next activeKey
+           */
+
+          cleanRaf();
+          rafRef.current = (0, _raf.default)(function () {
+            if (activeRef.current === targetKey) {
+              focusTargetElement.focus();
+            }
+          });
+        }
       };
+
+      if ([HOME, END].includes(which) || offsetObj.sibling || !focusMenuElement) {
+        // ========================== Sibling ==========================
+        // Find walkable focus menu element container
+        var parentQueryContainer;
+
+        if (!focusMenuElement || mode === 'inline') {
+          parentQueryContainer = containerRef.current;
+        } else {
+          parentQueryContainer = findContainerUL(focusMenuElement);
+        } // Get next focus element
+
+
+        var targetElement;
+        var focusableElements = getFocusableElements(parentQueryContainer, elements);
+
+        if (which === HOME) {
+          targetElement = focusableElements[0];
+        } else if (which === END) {
+          targetElement = focusableElements[focusableElements.length - 1];
+        } else {
+          targetElement = getNextFocusElement(parentQueryContainer, elements, focusMenuElement, offsetObj.offset);
+        } // Focus menu item
+
+
+        tryFocus(targetElement); // ======================= InlineTrigger =======================
+      } else if (offsetObj.inlineTrigger) {
+        // Inline trigger no need switch to sub menu item
+        triggerAccessibilityOpen(focusMenuKey); // =========================== Level ===========================
+      } else if (offsetObj.offset > 0) {
+        triggerAccessibilityOpen(focusMenuKey, true);
+        cleanRaf();
+        rafRef.current = (0, _raf.default)(function () {
+          // Async should resync elements
+          refreshElements();
+          var controlId = focusMenuElement.getAttribute('aria-controls');
+          var subQueryContainer = document.getElementById(controlId); // Get sub focusable menu item
+
+          var targetElement = getNextFocusElement(subQueryContainer, elements); // Focus menu item
+
+          tryFocus(targetElement);
+        }, 5);
+      } else if (offsetObj.offset < 0) {
+        var keyPath = getKeyPath(focusMenuKey, true);
+        var parentKey = keyPath[keyPath.length - 2];
+        var parentMenuElement = key2element.get(parentKey); // Focus menu item
+
+        triggerAccessibilityOpen(parentKey, false);
+        tryFocus(parentMenuElement);
+      }
+    } // Pass origin key down event
+
+
+    originOnKeyDown === null || originOnKeyDown === void 0 ? void 0 : originOnKeyDown(e);
+  };
+}
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","react":"n8MK","rc-util/es/KeyCode":"iYnE","rc-util/es/raf":"dtu8","rc-util/es/Dom/focus":"sObw","../context/IdContext":"WSOX"}],"FDUp":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.OVERFLOW_KEY = void 0;
+exports.default = useKeyRecords;
+
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/toConsumableArray"));
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _warning = _interopRequireDefault(require("rc-util/es/warning"));
+
+var _timeUtil = require("../utils/timeUtil");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PATH_SPLIT = '__RC_UTIL_PATH_SPLIT__';
+
+var getPathStr = function getPathStr(keyPath) {
+  return keyPath.join(PATH_SPLIT);
+};
+
+var getPathKeys = function getPathKeys(keyPathStr) {
+  return keyPathStr.split(PATH_SPLIT);
+};
+
+var OVERFLOW_KEY = 'rc-menu-more';
+exports.OVERFLOW_KEY = OVERFLOW_KEY;
+
+function useKeyRecords() {
+  var _React$useState = React.useState({}),
+      _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
+      internalForceUpdate = _React$useState2[1];
+
+  var key2pathRef = (0, React.useRef)(new Map());
+  var path2keyRef = (0, React.useRef)(new Map());
+
+  var _React$useState3 = React.useState([]),
+      _React$useState4 = (0, _slicedToArray2.default)(_React$useState3, 2),
+      overflowKeys = _React$useState4[0],
+      setOverflowKeys = _React$useState4[1];
+
+  var updateRef = (0, React.useRef)(0);
+  var destroyRef = (0, React.useRef)(false);
+
+  var forceUpdate = function forceUpdate() {
+    if (!destroyRef.current) {
+      internalForceUpdate({});
+    }
+  };
+
+  var registerPath = (0, React.useCallback)(function (key, keyPath) {
+    // Warning for invalidate or duplicated `key`
+    if ("production" !== 'production') {
+      (0, _warning.default)(!key2pathRef.current.has(key), "Duplicated key '".concat(key, "' used in Menu by path [").concat(keyPath.join(' > '), "]"));
+    } // Fill map
+
+
+    var connectedPath = getPathStr(keyPath);
+    path2keyRef.current.set(connectedPath, key);
+    key2pathRef.current.set(key, connectedPath);
+    updateRef.current += 1;
+    var id = updateRef.current;
+    (0, _timeUtil.nextSlice)(function () {
+      if (id === updateRef.current) {
+        forceUpdate();
+      }
+    });
+  }, []);
+  var unregisterPath = (0, React.useCallback)(function (key, keyPath) {
+    var connectedPath = getPathStr(keyPath);
+    path2keyRef.current.delete(connectedPath);
+    key2pathRef.current.delete(key);
+  }, []);
+  var refreshOverflowKeys = (0, React.useCallback)(function (keys) {
+    setOverflowKeys(keys);
+  }, []);
+  var getKeyPath = (0, React.useCallback)(function (eventKey, includeOverflow) {
+    var fullPath = key2pathRef.current.get(eventKey) || '';
+    var keys = getPathKeys(fullPath);
+
+    if (includeOverflow && overflowKeys.includes(keys[0])) {
+      keys.unshift(OVERFLOW_KEY);
     }
 
+    return keys;
+  }, [overflowKeys]);
+  var isSubPathKey = (0, React.useCallback)(function (pathKeys, eventKey) {
+    return pathKeys.some(function (pathKey) {
+      var pathKeyList = getKeyPath(pathKey, true);
+      return pathKeyList.includes(eventKey);
+    });
+  }, [getKeyPath]);
+
+  var getKeys = function getKeys() {
+    var keys = (0, _toConsumableArray2.default)(key2pathRef.current.keys());
+
+    if (overflowKeys.length) {
+      keys.push(OVERFLOW_KEY);
+    }
+
+    return keys;
+  };
+  /**
+   * Find current key related child path keys
+   */
+
+
+  var getSubPathKeys = (0, React.useCallback)(function (key) {
+    var connectedPath = "".concat(key2pathRef.current.get(key)).concat(PATH_SPLIT);
+    var pathKeys = new Set();
+    (0, _toConsumableArray2.default)(path2keyRef.current.keys()).forEach(function (pathKey) {
+      if (pathKey.startsWith(connectedPath)) {
+        pathKeys.add(path2keyRef.current.get(pathKey));
+      }
+    });
+    return pathKeys;
+  }, []);
+  React.useEffect(function () {
     return function () {
-      focusMenuRef.current = false;
+      destroyRef.current = true;
     };
-  }, [visible]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
+  return {
+    // Register
+    registerPath: registerPath,
+    unregisterPath: unregisterPath,
+    refreshOverflowKeys: refreshOverflowKeys,
+    // Util
+    isSubPathKey: isSubPathKey,
+    getKeyPath: getKeyPath,
+    getKeys: getKeys,
+    getSubPathKeys: getSubPathKeys
+  };
 }
-},{"react":"n8MK","rc-util/es/KeyCode":"Imvn","rc-util/es/raf":"adDJ"}],"rgdw":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/warning":"SNA5","../utils/timeUtil":"btE1"}],"nOjm":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useUUID;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _useMergedState3 = _interopRequireDefault(require("rc-util/es/hooks/useMergedState"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var uniquePrefix = Math.random().toFixed(5).toString().slice(2);
+var internalId = 0;
+
+function useUUID(id) {
+  var _useMergedState = (0, _useMergedState3.default)(id, {
+    value: id
+  }),
+      _useMergedState2 = (0, _slicedToArray2.default)(_useMergedState, 2),
+      uuid = _useMergedState2[0],
+      setUUID = _useMergedState2[1];
+
+  React.useEffect(function () {
+    internalId += 1;
+    var newId = "production" === 'test' ? 'test' : "".concat(uniquePrefix, "-").concat(internalId);
+    setUUID("rc-menu-uuid-".concat(newId));
+  }, []);
+  return uuid;
+}
+},{"@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-util/es/hooks/useMergedState":"UovL"}],"aD5v":[function(require,module,exports) {
+'use strict';
+
+if ("production" === 'production') {
+  module.exports = require('./cjs/react-is.production.min.js');
+} else {
+  module.exports = require('./cjs/react-is.development.js');
+}
+},{"./cjs/react-is.production.min.js":"XbWx"}],"cFFP":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.composeRef = composeRef;
+exports.fillRef = fillRef;
+exports.supportNodeRef = supportNodeRef;
+exports.supportRef = supportRef;
+exports.useComposeRef = useComposeRef;
+
+var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/typeof"));
+
+var _react = require("react");
+
+var _reactIs = require("react-is");
+
+var _useMemo = _interopRequireDefault(require("./hooks/useMemo"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* eslint-disable no-param-reassign */
+function fillRef(ref, node) {
+  if (typeof ref === 'function') {
+    ref(node);
+  } else if ((0, _typeof2.default)(ref) === 'object' && ref && 'current' in ref) {
+    ref.current = node;
+  }
+}
+/**
+ * Merge refs into one ref function to support ref passing.
+ */
+
+
+function composeRef() {
+  for (var _len = arguments.length, refs = new Array(_len), _key = 0; _key < _len; _key++) {
+    refs[_key] = arguments[_key];
+  }
+
+  var refList = refs.filter(function (ref) {
+    return ref;
+  });
+
+  if (refList.length <= 1) {
+    return refList[0];
+  }
+
+  return function (node) {
+    refs.forEach(function (ref) {
+      fillRef(ref, node);
+    });
+  };
+}
+
+function useComposeRef() {
+  for (var _len2 = arguments.length, refs = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    refs[_key2] = arguments[_key2];
+  }
+
+  return (0, _useMemo.default)(function () {
+    return composeRef.apply(void 0, refs);
+  }, refs, function (prev, next) {
+    return prev.length !== next.length || prev.every(function (ref, i) {
+      return ref !== next[i];
+    });
+  });
+}
+
+function supportRef(nodeOrComponent) {
+  var _type$prototype, _nodeOrComponent$prot;
+
+  var type = (0, _reactIs.isMemo)(nodeOrComponent) ? nodeOrComponent.type.type : nodeOrComponent.type; // Function component node
+
+  if (typeof type === 'function' && !((_type$prototype = type.prototype) !== null && _type$prototype !== void 0 && _type$prototype.render) && type.$$typeof !== _reactIs.ForwardRef) {
+    return false;
+  } // Class component
+
+
+  if (typeof nodeOrComponent === 'function' && !((_nodeOrComponent$prot = nodeOrComponent.prototype) !== null && _nodeOrComponent$prot !== void 0 && _nodeOrComponent$prot.render) && nodeOrComponent.$$typeof !== _reactIs.ForwardRef) {
+    return false;
+  }
+
+  return true;
+}
+
+function supportNodeRef(node) {
+  if (! /*#__PURE__*/(0, _react.isValidElement)(node)) {
+    return false;
+  }
+
+  if ((0, _reactIs.isFragment)(node)) {
+    return false;
+  }
+
+  return supportRef(node);
+}
+/* eslint-enable */
+},{"@babel/runtime/helpers/esm/typeof":"xLw6","react":"n8MK","react-is":"aD5v","./hooks/useMemo":"HDr6"}],"LQKT":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useActive;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _MenuContext = require("../context/MenuContext");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function useActive(eventKey, disabled, onMouseEnter, onMouseLeave) {
+  var _React$useContext = React.useContext(_MenuContext.MenuContext),
+      activeKey = _React$useContext.activeKey,
+      onActive = _React$useContext.onActive,
+      onInactive = _React$useContext.onInactive;
+
+  var ret = {
+    active: activeKey === eventKey
+  }; // Skip when disabled
+
+  if (!disabled) {
+    ret.onMouseEnter = function (domEvent) {
+      onMouseEnter === null || onMouseEnter === void 0 ? void 0 : onMouseEnter({
+        key: eventKey,
+        domEvent: domEvent
+      });
+      onActive(eventKey);
+    };
+
+    ret.onMouseLeave = function (domEvent) {
+      onMouseLeave === null || onMouseLeave === void 0 ? void 0 : onMouseLeave({
+        key: eventKey,
+        domEvent: domEvent
+      });
+      onInactive(eventKey);
+    };
+  }
+
+  return ret;
+}
+},{"react":"n8MK","../context/MenuContext":"WRUc"}],"Pnmu":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useDirectionStyle;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _MenuContext = require("../context/MenuContext");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function useDirectionStyle(level) {
+  var _React$useContext = React.useContext(_MenuContext.MenuContext),
+      mode = _React$useContext.mode,
+      rtl = _React$useContext.rtl,
+      inlineIndent = _React$useContext.inlineIndent;
+
+  if (mode !== 'inline') {
+    return null;
+  }
+
+  var len = level;
+  return rtl ? {
+    paddingRight: len * inlineIndent
+  } : {
+    paddingLeft: len * inlineIndent
+  };
+}
+},{"react":"n8MK","../context/MenuContext":"WRUc"}],"cvmo":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.warnItemProp = warnItemProp;
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _warning = _interopRequireDefault(require("rc-util/es/warning"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _excluded = ["item"];
+
+/**
+ * `onClick` event return `info.item` which point to react node directly.
+ * We should warning this since it will not work on FC.
+ */
+function warnItemProp(_ref) {
+  var item = _ref.item,
+      restInfo = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  Object.defineProperty(restInfo, 'item', {
+    get: function get() {
+      (0, _warning.default)(false, '`info.item` is deprecated since we will move to function component that not provides React Node instance in future.');
+      return item;
+    }
+  });
+  return restInfo;
+}
+},{"@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","rc-util/es/warning":"SNA5"}],"NeBp":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -17264,13 +19433,478 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/defineProperty"));
+
 var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectSpread2"));
+
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/toConsumableArray"));
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/createClass"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/inherits"));
+
+var _createSuper2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/createSuper"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _rcOverflow = _interopRequireDefault(require("rc-overflow"));
+
+var _KeyCode = _interopRequireDefault(require("rc-util/es/KeyCode"));
+
+var _omit = _interopRequireDefault(require("rc-util/es/omit"));
+
+var _ref = require("rc-util/es/ref");
+
+var _warning = _interopRequireDefault(require("rc-util/es/warning"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _IdContext = require("./context/IdContext");
+
+var _MenuContext = require("./context/MenuContext");
+
+var _PathContext = require("./context/PathContext");
+
+var _PrivateContext = _interopRequireDefault(require("./context/PrivateContext"));
+
+var _useActive2 = _interopRequireDefault(require("./hooks/useActive"));
+
+var _useDirectionStyle = _interopRequireDefault(require("./hooks/useDirectionStyle"));
+
+var _Icon = _interopRequireDefault(require("./Icon"));
+
+var _warnUtil = require("./utils/warnUtil");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _excluded = ["title", "attribute", "elementRef"],
+    _excluded2 = ["style", "className", "eventKey", "warnKey", "disabled", "itemIcon", "children", "role", "onMouseEnter", "onMouseLeave", "onClick", "onKeyDown", "onFocus"],
+    _excluded3 = ["active"];
+
+// Since Menu event provide the `info.item` which point to the MenuItem node instance.
+// We have to use class component here.
+// This should be removed from doc & api in future.
+var LegacyMenuItem = /*#__PURE__*/function (_React$Component) {
+  (0, _inherits2.default)(LegacyMenuItem, _React$Component);
+
+  var _super = (0, _createSuper2.default)(LegacyMenuItem);
+
+  function LegacyMenuItem() {
+    (0, _classCallCheck2.default)(this, LegacyMenuItem);
+    return _super.apply(this, arguments);
+  }
+
+  (0, _createClass2.default)(LegacyMenuItem, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          title = _this$props.title,
+          attribute = _this$props.attribute,
+          elementRef = _this$props.elementRef,
+          restProps = (0, _objectWithoutProperties2.default)(_this$props, _excluded); // Here the props are eventually passed to the DOM element.
+      // React does not recognize non-standard attributes.
+      // Therefore, remove the props that is not used here.
+      // ref: https://github.com/ant-design/ant-design/issues/41395
+
+      var passedProps = (0, _omit.default)(restProps, ['eventKey', 'popupClassName', 'popupOffset', 'onTitleClick']);
+      (0, _warning.default)(!attribute, '`attribute` of Menu.Item is deprecated. Please pass attribute directly.');
+      return /*#__PURE__*/React.createElement(_rcOverflow.default.Item, (0, _extends2.default)({}, attribute, {
+        title: typeof title === 'string' ? title : undefined
+      }, passedProps, {
+        ref: elementRef
+      }));
+    }
+  }]);
+  return LegacyMenuItem;
+}(React.Component);
+/**
+ * Real Menu Item component
+ */
+
+
+var InternalMenuItem = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  var _classNames;
+
+  var style = props.style,
+      className = props.className,
+      eventKey = props.eventKey,
+      warnKey = props.warnKey,
+      disabled = props.disabled,
+      itemIcon = props.itemIcon,
+      children = props.children,
+      role = props.role,
+      onMouseEnter = props.onMouseEnter,
+      onMouseLeave = props.onMouseLeave,
+      onClick = props.onClick,
+      onKeyDown = props.onKeyDown,
+      onFocus = props.onFocus,
+      restProps = (0, _objectWithoutProperties2.default)(props, _excluded2);
+  var domDataId = (0, _IdContext.useMenuId)(eventKey);
+
+  var _React$useContext = React.useContext(_MenuContext.MenuContext),
+      prefixCls = _React$useContext.prefixCls,
+      onItemClick = _React$useContext.onItemClick,
+      contextDisabled = _React$useContext.disabled,
+      overflowDisabled = _React$useContext.overflowDisabled,
+      contextItemIcon = _React$useContext.itemIcon,
+      selectedKeys = _React$useContext.selectedKeys,
+      onActive = _React$useContext.onActive;
+
+  var _React$useContext2 = React.useContext(_PrivateContext.default),
+      _internalRenderMenuItem = _React$useContext2._internalRenderMenuItem;
+
+  var itemCls = "".concat(prefixCls, "-item");
+  var legacyMenuItemRef = React.useRef();
+  var elementRef = React.useRef();
+  var mergedDisabled = contextDisabled || disabled;
+  var mergedEleRef = (0, _ref.useComposeRef)(ref, elementRef);
+  var connectedKeys = (0, _PathContext.useFullPath)(eventKey); // ================================ Warn ================================
+
+  if ("production" !== 'production' && warnKey) {
+    (0, _warning.default)(false, 'MenuItem should not leave undefined `key`.');
+  } // ============================= Info =============================
+
+
+  var getEventInfo = function getEventInfo(e) {
+    return {
+      key: eventKey,
+      // Note: For legacy code is reversed which not like other antd component
+      keyPath: (0, _toConsumableArray2.default)(connectedKeys).reverse(),
+      item: legacyMenuItemRef.current,
+      domEvent: e
+    };
+  }; // ============================= Icon =============================
+
+
+  var mergedItemIcon = itemIcon || contextItemIcon; // ============================ Active ============================
+
+  var _useActive = (0, _useActive2.default)(eventKey, mergedDisabled, onMouseEnter, onMouseLeave),
+      active = _useActive.active,
+      activeProps = (0, _objectWithoutProperties2.default)(_useActive, _excluded3); // ============================ Select ============================
+
+
+  var selected = selectedKeys.includes(eventKey); // ======================== DirectionStyle ========================
+
+  var directionStyle = (0, _useDirectionStyle.default)(connectedKeys.length); // ============================ Events ============================
+
+  var onInternalClick = function onInternalClick(e) {
+    if (mergedDisabled) {
+      return;
+    }
+
+    var info = getEventInfo(e);
+    onClick === null || onClick === void 0 ? void 0 : onClick((0, _warnUtil.warnItemProp)(info));
+    onItemClick(info);
+  };
+
+  var onInternalKeyDown = function onInternalKeyDown(e) {
+    onKeyDown === null || onKeyDown === void 0 ? void 0 : onKeyDown(e);
+
+    if (e.which === _KeyCode.default.ENTER) {
+      var info = getEventInfo(e); // Legacy. Key will also trigger click event
+
+      onClick === null || onClick === void 0 ? void 0 : onClick((0, _warnUtil.warnItemProp)(info));
+      onItemClick(info);
+    }
+  };
+  /**
+   * Used for accessibility. Helper will focus element without key board.
+   * We should manually trigger an active
+   */
+
+
+  var onInternalFocus = function onInternalFocus(e) {
+    onActive(eventKey);
+    onFocus === null || onFocus === void 0 ? void 0 : onFocus(e);
+  }; // ============================ Render ============================
+
+
+  var optionRoleProps = {};
+
+  if (props.role === 'option') {
+    optionRoleProps['aria-selected'] = selected;
+  }
+
+  var renderNode = /*#__PURE__*/React.createElement(LegacyMenuItem, (0, _extends2.default)({
+    ref: legacyMenuItemRef,
+    elementRef: mergedEleRef,
+    role: role === null ? 'none' : role || 'menuitem',
+    tabIndex: disabled ? null : -1,
+    "data-menu-id": overflowDisabled && domDataId ? null : domDataId
+  }, restProps, activeProps, optionRoleProps, {
+    component: "li",
+    "aria-disabled": disabled,
+    style: (0, _objectSpread2.default)((0, _objectSpread2.default)({}, directionStyle), style),
+    className: (0, _classnames.default)(itemCls, (_classNames = {}, (0, _defineProperty2.default)(_classNames, "".concat(itemCls, "-active"), active), (0, _defineProperty2.default)(_classNames, "".concat(itemCls, "-selected"), selected), (0, _defineProperty2.default)(_classNames, "".concat(itemCls, "-disabled"), mergedDisabled), _classNames), className),
+    onClick: onInternalClick,
+    onKeyDown: onInternalKeyDown,
+    onFocus: onInternalFocus
+  }), children, /*#__PURE__*/React.createElement(_Icon.default, {
+    props: (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
+      isSelected: selected
+    }),
+    icon: mergedItemIcon
+  }));
+
+  if (_internalRenderMenuItem) {
+    renderNode = _internalRenderMenuItem(renderNode, props, {
+      selected: selected
+    });
+  }
+
+  return renderNode;
+});
+
+function MenuItem(props, ref) {
+  var eventKey = props.eventKey; // ==================== Record KeyPath ====================
+
+  var measure = (0, _PathContext.useMeasure)();
+  var connectedKeyPath = (0, _PathContext.useFullPath)(eventKey); // eslint-disable-next-line consistent-return
+
+  React.useEffect(function () {
+    if (measure) {
+      measure.registerPath(eventKey, connectedKeyPath);
+      return function () {
+        measure.unregisterPath(eventKey, connectedKeyPath);
+      };
+    }
+  }, [connectedKeyPath]);
+
+  if (measure) {
+    return null;
+  } // ======================== Render ========================
+
+
+  return /*#__PURE__*/React.createElement(InternalMenuItem, (0, _extends2.default)({}, props, {
+    ref: ref
+  }));
+}
+
+var _default = /*#__PURE__*/React.forwardRef(MenuItem);
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/classCallCheck":"VEjx","@babel/runtime/helpers/esm/createClass":"l5p4","@babel/runtime/helpers/esm/inherits":"NT06","@babel/runtime/helpers/esm/createSuper":"m5aa","classnames":"yl9j","rc-overflow":"H6C2","rc-util/es/KeyCode":"iYnE","rc-util/es/omit":"SloJ","rc-util/es/ref":"cFFP","rc-util/es/warning":"SNA5","react":"n8MK","./context/IdContext":"WSOX","./context/MenuContext":"WRUc","./context/PathContext":"thAF","./context/PrivateContext":"cUpN","./hooks/useActive":"LQKT","./hooks/useDirectionStyle":"Pnmu","./Icon":"D26q","./utils/warnUtil":"cvmo"}],"imhB":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _MenuContext = require("../context/MenuContext");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _excluded = ["className", "children"];
+
+var InternalSubMenuList = function InternalSubMenuList(_ref, ref) {
+  var className = _ref.className,
+      children = _ref.children,
+      restProps = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+
+  var _React$useContext = React.useContext(_MenuContext.MenuContext),
+      prefixCls = _React$useContext.prefixCls,
+      mode = _React$useContext.mode,
+      rtl = _React$useContext.rtl;
+
+  return /*#__PURE__*/React.createElement("ul", (0, _extends2.default)({
+    className: (0, _classnames.default)(prefixCls, rtl && "".concat(prefixCls, "-rtl"), "".concat(prefixCls, "-sub"), "".concat(prefixCls, "-").concat(mode === 'inline' ? 'inline' : 'vertical'), className),
+    role: "menu"
+  }, restProps, {
+    "data-menu-list": true,
+    ref: ref
+  }), children);
+};
+
+var SubMenuList = /*#__PURE__*/React.forwardRef(InternalSubMenuList);
+SubMenuList.displayName = 'SubMenuList';
+var _default = SubMenuList;
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"yl9j","../context/MenuContext":"WRUc"}],"FJJO":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = toArray;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactIs = require("react-is");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function toArray(children) {
+  var option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var ret = [];
+
+  _react.default.Children.forEach(children, function (child) {
+    if ((child === undefined || child === null) && !option.keepEmpty) {
+      return;
+    }
+
+    if (Array.isArray(child)) {
+      ret = ret.concat(toArray(child));
+    } else if ((0, _reactIs.isFragment)(child) && child.props) {
+      ret = ret.concat(toArray(child.props.children, option));
+    } else {
+      ret.push(child);
+    }
+  });
+
+  return ret;
+}
+},{"react":"n8MK","react-is":"aD5v"}],"T1Gl":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.parseChildren = parseChildren;
+exports.parseItems = parseItems;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/typeof"));
+
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/toConsumableArray"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _toArray = _interopRequireDefault(require("rc-util/es/Children/toArray"));
+
+var _ = require("..");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _excluded = ["label", "children", "key", "type"];
+
+function parseChildren(children, keyPath) {
+  return (0, _toArray.default)(children).map(function (child, index) {
+    if ( /*#__PURE__*/React.isValidElement(child)) {
+      var _eventKey, _child$props;
+
+      var key = child.key;
+      var eventKey = (_eventKey = (_child$props = child.props) === null || _child$props === void 0 ? void 0 : _child$props.eventKey) !== null && _eventKey !== void 0 ? _eventKey : key;
+      var emptyKey = eventKey === null || eventKey === undefined;
+
+      if (emptyKey) {
+        eventKey = "tmp_key-".concat([].concat((0, _toConsumableArray2.default)(keyPath), [index]).join('-'));
+      }
+
+      var cloneProps = {
+        key: eventKey,
+        eventKey: eventKey
+      };
+
+      if ("production" !== 'production' && emptyKey) {
+        cloneProps.warnKey = true;
+      }
+
+      return /*#__PURE__*/React.cloneElement(child, cloneProps);
+    }
+
+    return child;
+  });
+}
+
+function convertItemsToNodes(list) {
+  return (list || []).map(function (opt, index) {
+    if (opt && (0, _typeof2.default)(opt) === 'object') {
+      var _ref = opt,
+          label = _ref.label,
+          children = _ref.children,
+          key = _ref.key,
+          type = _ref.type,
+          restProps = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+      var mergedKey = key !== null && key !== void 0 ? key : "tmp-".concat(index); // MenuItemGroup & SubMenuItem
+
+      if (children || type === 'group') {
+        if (type === 'group') {
+          // Group
+          return /*#__PURE__*/React.createElement(_.MenuItemGroup, (0, _extends2.default)({
+            key: mergedKey
+          }, restProps, {
+            title: label
+          }), convertItemsToNodes(children));
+        } // Sub Menu
+
+
+        return /*#__PURE__*/React.createElement(_.SubMenu, (0, _extends2.default)({
+          key: mergedKey
+        }, restProps, {
+          title: label
+        }), convertItemsToNodes(children));
+      } // MenuItem & Divider
+
+
+      if (type === 'divider') {
+        return /*#__PURE__*/React.createElement(_.Divider, (0, _extends2.default)({
+          key: mergedKey
+        }, restProps));
+      }
+
+      return /*#__PURE__*/React.createElement(_.MenuItem, (0, _extends2.default)({
+        key: mergedKey
+      }, restProps), label);
+    }
+
+    return null;
+  }).filter(function (opt) {
+    return opt;
+  });
+}
+
+function parseItems(children, items, keyPath) {
+  var childNodes = children;
+
+  if (items) {
+    childNodes = convertItemsToNodes(items);
+  }
+
+  return parseChildren(childNodes, keyPath);
+}
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","@babel/runtime/helpers/esm/typeof":"xLw6","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","react":"n8MK","rc-util/es/Children/toArray":"FJJO","..":"VH7R"}],"hvs0":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = PopupTrigger;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/defineProperty"));
 
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectSpread2"));
 
-var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
 
 var React = _interopRequireWildcard(require("react"));
 
@@ -17278,11 +19912,13 @@ var _rcTrigger = _interopRequireDefault(require("rc-trigger"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
-var _placements = _interopRequireDefault(require("./placements"));
+var _raf = _interopRequireDefault(require("rc-util/es/raf"));
 
-var _useAccessibility = _interopRequireDefault(require("./hooks/useAccessibility"));
+var _MenuContext = require("../context/MenuContext");
 
-var _ref = require("rc-util/es/ref");
+var _placements = require("../placements");
+
+var _motionUtil = require("../utils/motionUtil");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -17290,180 +19926,520 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _excluded = ["arrow", "prefixCls", "transitionName", "animation", "align", "placement", "placements", "getPopupContainer", "showAction", "hideAction", "overlayClassName", "overlayStyle", "visible", "trigger", "autoFocus"];
+var popupPlacementMap = {
+  horizontal: 'bottomLeft',
+  vertical: 'rightTop',
+  'vertical-left': 'rightTop',
+  'vertical-right': 'leftTop'
+};
 
-function Dropdown(props, ref) {
-  var _props$arrow = props.arrow,
-      arrow = _props$arrow === void 0 ? false : _props$arrow,
-      _props$prefixCls = props.prefixCls,
-      prefixCls = _props$prefixCls === void 0 ? 'rc-dropdown' : _props$prefixCls,
-      transitionName = props.transitionName,
-      animation = props.animation,
-      align = props.align,
-      _props$placement = props.placement,
-      placement = _props$placement === void 0 ? 'bottomLeft' : _props$placement,
-      _props$placements = props.placements,
-      placements = _props$placements === void 0 ? _placements.default : _props$placements,
-      getPopupContainer = props.getPopupContainer,
-      showAction = props.showAction,
-      hideAction = props.hideAction,
-      overlayClassName = props.overlayClassName,
-      overlayStyle = props.overlayStyle,
-      visible = props.visible,
-      _props$trigger = props.trigger,
-      trigger = _props$trigger === void 0 ? ['hover'] : _props$trigger,
-      autoFocus = props.autoFocus,
-      otherProps = (0, _objectWithoutProperties2.default)(props, _excluded);
+function PopupTrigger(_ref) {
+  var prefixCls = _ref.prefixCls,
+      visible = _ref.visible,
+      children = _ref.children,
+      popup = _ref.popup,
+      popupClassName = _ref.popupClassName,
+      popupOffset = _ref.popupOffset,
+      disabled = _ref.disabled,
+      mode = _ref.mode,
+      onVisibleChange = _ref.onVisibleChange;
 
-  var _React$useState = React.useState(),
+  var _React$useContext = React.useContext(_MenuContext.MenuContext),
+      getPopupContainer = _React$useContext.getPopupContainer,
+      rtl = _React$useContext.rtl,
+      subMenuOpenDelay = _React$useContext.subMenuOpenDelay,
+      subMenuCloseDelay = _React$useContext.subMenuCloseDelay,
+      builtinPlacements = _React$useContext.builtinPlacements,
+      triggerSubMenuAction = _React$useContext.triggerSubMenuAction,
+      forceSubMenuRender = _React$useContext.forceSubMenuRender,
+      rootClassName = _React$useContext.rootClassName,
+      motion = _React$useContext.motion,
+      defaultMotions = _React$useContext.defaultMotions;
+
+  var _React$useState = React.useState(false),
       _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
-      triggerVisible = _React$useState2[0],
-      setTriggerVisible = _React$useState2[1];
+      innerVisible = _React$useState2[0],
+      setInnerVisible = _React$useState2[1];
 
-  var mergedVisible = 'visible' in props ? visible : triggerVisible;
-  var triggerRef = React.useRef(null);
-  React.useImperativeHandle(ref, function () {
-    return triggerRef.current;
-  });
-  var menuRef = React.useRef(null);
-  var menuClassName = "".concat(prefixCls, "-menu");
-  (0, _useAccessibility.default)({
-    visible: mergedVisible,
-    setTriggerVisible: setTriggerVisible,
-    triggerRef: triggerRef,
-    menuRef: menuRef,
-    onVisibleChange: props.onVisibleChange,
-    autoFocus: autoFocus
-  });
+  var placement = rtl ? (0, _objectSpread2.default)((0, _objectSpread2.default)({}, _placements.placementsRtl), builtinPlacements) : (0, _objectSpread2.default)((0, _objectSpread2.default)({}, _placements.placements), builtinPlacements);
+  var popupPlacement = popupPlacementMap[mode];
+  var targetMotion = (0, _motionUtil.getMotion)(mode, motion, defaultMotions);
+  var targetMotionRef = React.useRef(targetMotion);
 
-  var getOverlayElement = function getOverlayElement() {
-    var overlay = props.overlay;
-    var overlayElement;
-
-    if (typeof overlay === 'function') {
-      overlayElement = overlay();
-    } else {
-      overlayElement = overlay;
-    }
-
-    return overlayElement;
-  };
-
-  var onClick = function onClick(e) {
-    var onOverlayClick = props.onOverlayClick;
-    var overlayProps = getOverlayElement().props;
-    setTriggerVisible(false);
-
-    if (onOverlayClick) {
-      onOverlayClick(e);
-    }
-
-    if (overlayProps.onClick) {
-      overlayProps.onClick(e);
-    }
-  };
-
-  var onVisibleChange = function onVisibleChange(newVisible) {
-    var onVisibleChangeProp = props.onVisibleChange;
-    setTriggerVisible(newVisible);
-
-    if (typeof onVisibleChangeProp === 'function') {
-      onVisibleChangeProp(newVisible);
-    }
-  };
-
-  var getMenuElement = function getMenuElement() {
-    var _extraOverlayProps;
-
-    var overlayElement = getOverlayElement(); // @ts-ignore
-
-    var composedMenuRef = (0, _ref.composeRef)(menuRef, overlayElement.ref);
-    var extraOverlayProps = (_extraOverlayProps = {
-      prefixCls: menuClassName
-    }, (0, _defineProperty2.default)(_extraOverlayProps, 'data-dropdown-inject', true), (0, _defineProperty2.default)(_extraOverlayProps, "onClick", onClick), (0, _defineProperty2.default)(_extraOverlayProps, "ref", (0, _ref.supportRef)(overlayElement) ? composedMenuRef : undefined), _extraOverlayProps);
-
-    if (typeof overlayElement.type === 'string') {
-      delete extraOverlayProps.prefixCls;
-      delete extraOverlayProps['data-dropdown-inject'];
-    }
-
-    return /*#__PURE__*/React.createElement(React.Fragment, null, arrow && /*#__PURE__*/React.createElement("div", {
-      className: "".concat(prefixCls, "-arrow")
-    }), /*#__PURE__*/React.cloneElement(overlayElement, extraOverlayProps));
-  };
-
-  var getMenuElementOrLambda = function getMenuElementOrLambda() {
-    var overlay = props.overlay;
-
-    if (typeof overlay === 'function') {
-      return getMenuElement;
-    }
-
-    return getMenuElement();
-  };
-
-  var getMinOverlayWidthMatchTrigger = function getMinOverlayWidthMatchTrigger() {
-    var minOverlayWidthMatchTrigger = props.minOverlayWidthMatchTrigger,
-        alignPoint = props.alignPoint;
-
-    if ('minOverlayWidthMatchTrigger' in props) {
-      return minOverlayWidthMatchTrigger;
-    }
-
-    return !alignPoint;
-  };
-
-  var getOpenClassName = function getOpenClassName() {
-    var openClassName = props.openClassName;
-
-    if (openClassName !== undefined) {
-      return openClassName;
-    }
-
-    return "".concat(prefixCls, "-open");
-  };
-
-  var renderChildren = function renderChildren() {
-    var children = props.children;
-    var childrenProps = children.props ? children.props : {};
-    var childClassName = (0, _classnames.default)(childrenProps.className, getOpenClassName());
-    return mergedVisible && children ? /*#__PURE__*/React.cloneElement(children, {
-      className: childClassName
-    }) : children;
-  };
-
-  var triggerHideAction = hideAction;
-
-  if (!triggerHideAction && trigger.indexOf('contextMenu') !== -1) {
-    triggerHideAction = ['click'];
+  if (mode !== 'inline') {
+    /**
+     * PopupTrigger is only used for vertical and horizontal types.
+     * When collapsed is unfolded, the inline animation will destroy the vertical animation.
+     */
+    targetMotionRef.current = targetMotion;
   }
 
-  return /*#__PURE__*/React.createElement(_rcTrigger.default, (0, _objectSpread2.default)((0, _objectSpread2.default)({
-    builtinPlacements: placements
-  }, otherProps), {}, {
+  var mergedMotion = (0, _objectSpread2.default)((0, _objectSpread2.default)({}, targetMotionRef.current), {}, {
+    leavedClassName: "".concat(prefixCls, "-hidden"),
+    removeOnLeave: false,
+    motionAppear: true
+  }); // Delay to change visible
+
+  var visibleRef = React.useRef();
+  React.useEffect(function () {
+    visibleRef.current = (0, _raf.default)(function () {
+      setInnerVisible(visible);
+    });
+    return function () {
+      _raf.default.cancel(visibleRef.current);
+    };
+  }, [visible]);
+  return /*#__PURE__*/React.createElement(_rcTrigger.default, {
     prefixCls: prefixCls,
-    ref: triggerRef,
-    popupClassName: (0, _classnames.default)(overlayClassName, (0, _defineProperty2.default)({}, "".concat(prefixCls, "-show-arrow"), arrow)),
-    popupStyle: overlayStyle,
-    action: trigger,
-    showAction: showAction,
-    hideAction: triggerHideAction || [],
-    popupPlacement: placement,
-    popupAlign: align,
-    popupTransitionName: transitionName,
-    popupAnimation: animation,
-    popupVisible: mergedVisible,
-    stretch: getMinOverlayWidthMatchTrigger() ? 'minWidth' : '',
-    popup: getMenuElementOrLambda(),
+    popupClassName: (0, _classnames.default)("".concat(prefixCls, "-popup"), (0, _defineProperty2.default)({}, "".concat(prefixCls, "-rtl"), rtl), popupClassName, rootClassName),
+    stretch: mode === 'horizontal' ? 'minWidth' : null,
+    getPopupContainer: getPopupContainer,
+    builtinPlacements: placement,
+    popupPlacement: popupPlacement,
+    popupVisible: innerVisible,
+    popup: popup,
+    popupAlign: popupOffset && {
+      offset: popupOffset
+    },
+    action: disabled ? [] : [triggerSubMenuAction],
+    mouseEnterDelay: subMenuOpenDelay,
+    mouseLeaveDelay: subMenuCloseDelay,
     onPopupVisibleChange: onVisibleChange,
-    getPopupContainer: getPopupContainer
-  }), renderChildren());
+    forceRender: forceSubMenuRender,
+    popupMotion: mergedMotion
+  }, children);
 }
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-trigger":"PZMl","classnames":"yl9j","rc-util/es/raf":"dtu8","../context/MenuContext":"WRUc","../placements":"n9tA","../utils/motionUtil":"lcAX"}],"l2u9":[function(require,module,exports) {
+"use strict";
 
-var _default = /*#__PURE__*/React.forwardRef(Dropdown);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = InlineSubMenuList;
 
-exports.default = _default;
-},{"@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","rc-trigger":"PZMl","classnames":"qb7c","./placements":"K12W","./hooks/useAccessibility":"FshY","rc-util/es/ref":"AOnv"}],"SyQB":[function(require,module,exports) {
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectSpread2"));
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _rcMotion = _interopRequireDefault(require("rc-motion"));
+
+var _motionUtil = require("../utils/motionUtil");
+
+var _MenuContext = _interopRequireWildcard(require("../context/MenuContext"));
+
+var _SubMenuList = _interopRequireDefault(require("./SubMenuList"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function InlineSubMenuList(_ref) {
+  var id = _ref.id,
+      open = _ref.open,
+      keyPath = _ref.keyPath,
+      children = _ref.children;
+  var fixedMode = 'inline';
+
+  var _React$useContext = React.useContext(_MenuContext.MenuContext),
+      prefixCls = _React$useContext.prefixCls,
+      forceSubMenuRender = _React$useContext.forceSubMenuRender,
+      motion = _React$useContext.motion,
+      defaultMotions = _React$useContext.defaultMotions,
+      mode = _React$useContext.mode; // Always use latest mode check
+
+
+  var sameModeRef = React.useRef(false);
+  sameModeRef.current = mode === fixedMode; // We record `destroy` mark here since when mode change from `inline` to others.
+  // The inline list should remove when motion end.
+
+  var _React$useState = React.useState(!sameModeRef.current),
+      _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
+      destroy = _React$useState2[0],
+      setDestroy = _React$useState2[1];
+
+  var mergedOpen = sameModeRef.current ? open : false; // ================================= Effect =================================
+  // Reset destroy state when mode change back
+
+  React.useEffect(function () {
+    if (sameModeRef.current) {
+      setDestroy(false);
+    }
+  }, [mode]); // ================================= Render =================================
+
+  var mergedMotion = (0, _objectSpread2.default)({}, (0, _motionUtil.getMotion)(fixedMode, motion, defaultMotions)); // No need appear since nest inlineCollapse changed
+
+  if (keyPath.length > 1) {
+    mergedMotion.motionAppear = false;
+  } // Hide inline list when mode changed and motion end
+
+
+  var originOnVisibleChanged = mergedMotion.onVisibleChanged;
+
+  mergedMotion.onVisibleChanged = function (newVisible) {
+    if (!sameModeRef.current && !newVisible) {
+      setDestroy(true);
+    }
+
+    return originOnVisibleChanged === null || originOnVisibleChanged === void 0 ? void 0 : originOnVisibleChanged(newVisible);
+  };
+
+  if (destroy) {
+    return null;
+  }
+
+  return /*#__PURE__*/React.createElement(_MenuContext.default, {
+    mode: fixedMode,
+    locked: !sameModeRef.current
+  }, /*#__PURE__*/React.createElement(_rcMotion.default, (0, _extends2.default)({
+    visible: mergedOpen
+  }, mergedMotion, {
+    forceRender: forceSubMenuRender,
+    removeOnLeave: false,
+    leavedClassName: "".concat(prefixCls, "-hidden")
+  }), function (_ref2) {
+    var motionClassName = _ref2.className,
+        motionStyle = _ref2.style;
+    return /*#__PURE__*/React.createElement(_SubMenuList.default, {
+      id: id,
+      className: motionClassName,
+      style: motionStyle
+    }, children);
+  }));
+}
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","react":"n8MK","rc-motion":"VTMl","../utils/motionUtil":"lcAX","../context/MenuContext":"WRUc","./SubMenuList":"imhB"}],"lVAn":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = SubMenu;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/defineProperty"));
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectSpread2"));
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _rcOverflow = _interopRequireDefault(require("rc-overflow"));
+
+var _warning = _interopRequireDefault(require("rc-util/es/warning"));
+
+var _SubMenuList = _interopRequireDefault(require("./SubMenuList"));
+
+var _nodeUtil = require("../utils/nodeUtil");
+
+var _MenuContext = _interopRequireWildcard(require("../context/MenuContext"));
+
+var _useMemoCallback = _interopRequireDefault(require("../hooks/useMemoCallback"));
+
+var _PopupTrigger = _interopRequireDefault(require("./PopupTrigger"));
+
+var _Icon = _interopRequireDefault(require("../Icon"));
+
+var _useActive2 = _interopRequireDefault(require("../hooks/useActive"));
+
+var _warnUtil = require("../utils/warnUtil");
+
+var _useDirectionStyle = _interopRequireDefault(require("../hooks/useDirectionStyle"));
+
+var _InlineSubMenuList = _interopRequireDefault(require("./InlineSubMenuList"));
+
+var _PathContext = require("../context/PathContext");
+
+var _IdContext = require("../context/IdContext");
+
+var _PrivateContext = _interopRequireDefault(require("../context/PrivateContext"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _excluded = ["style", "className", "title", "eventKey", "warnKey", "disabled", "internalPopupClose", "children", "itemIcon", "expandIcon", "popupClassName", "popupOffset", "onClick", "onMouseEnter", "onMouseLeave", "onTitleClick", "onTitleMouseEnter", "onTitleMouseLeave"],
+    _excluded2 = ["active"];
+
+var InternalSubMenu = function InternalSubMenu(props) {
+  var _classNames;
+
+  var style = props.style,
+      className = props.className,
+      title = props.title,
+      eventKey = props.eventKey,
+      warnKey = props.warnKey,
+      disabled = props.disabled,
+      internalPopupClose = props.internalPopupClose,
+      children = props.children,
+      itemIcon = props.itemIcon,
+      expandIcon = props.expandIcon,
+      popupClassName = props.popupClassName,
+      popupOffset = props.popupOffset,
+      onClick = props.onClick,
+      onMouseEnter = props.onMouseEnter,
+      onMouseLeave = props.onMouseLeave,
+      onTitleClick = props.onTitleClick,
+      onTitleMouseEnter = props.onTitleMouseEnter,
+      onTitleMouseLeave = props.onTitleMouseLeave,
+      restProps = (0, _objectWithoutProperties2.default)(props, _excluded);
+  var domDataId = (0, _IdContext.useMenuId)(eventKey);
+
+  var _React$useContext = React.useContext(_MenuContext.MenuContext),
+      prefixCls = _React$useContext.prefixCls,
+      mode = _React$useContext.mode,
+      openKeys = _React$useContext.openKeys,
+      contextDisabled = _React$useContext.disabled,
+      overflowDisabled = _React$useContext.overflowDisabled,
+      activeKey = _React$useContext.activeKey,
+      selectedKeys = _React$useContext.selectedKeys,
+      contextItemIcon = _React$useContext.itemIcon,
+      contextExpandIcon = _React$useContext.expandIcon,
+      onItemClick = _React$useContext.onItemClick,
+      onOpenChange = _React$useContext.onOpenChange,
+      onActive = _React$useContext.onActive;
+
+  var _React$useContext2 = React.useContext(_PrivateContext.default),
+      _internalRenderSubMenuItem = _React$useContext2._internalRenderSubMenuItem;
+
+  var _React$useContext3 = React.useContext(_PathContext.PathUserContext),
+      isSubPathKey = _React$useContext3.isSubPathKey;
+
+  var connectedPath = (0, _PathContext.useFullPath)();
+  var subMenuPrefixCls = "".concat(prefixCls, "-submenu");
+  var mergedDisabled = contextDisabled || disabled;
+  var elementRef = React.useRef();
+  var popupRef = React.useRef(); // ================================ Warn ================================
+
+  if ("production" !== 'production' && warnKey) {
+    (0, _warning.default)(false, 'SubMenu should not leave undefined `key`.');
+  } // ================================ Icon ================================
+
+
+  var mergedItemIcon = itemIcon || contextItemIcon;
+  var mergedExpandIcon = expandIcon || contextExpandIcon; // ================================ Open ================================
+
+  var originOpen = openKeys.includes(eventKey);
+  var open = !overflowDisabled && originOpen; // =============================== Select ===============================
+
+  var childrenSelected = isSubPathKey(selectedKeys, eventKey); // =============================== Active ===============================
+
+  var _useActive = (0, _useActive2.default)(eventKey, mergedDisabled, onTitleMouseEnter, onTitleMouseLeave),
+      active = _useActive.active,
+      activeProps = (0, _objectWithoutProperties2.default)(_useActive, _excluded2); // Fallback of active check to avoid hover on menu title or disabled item
+
+
+  var _React$useState = React.useState(false),
+      _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
+      childrenActive = _React$useState2[0],
+      setChildrenActive = _React$useState2[1];
+
+  var triggerChildrenActive = function triggerChildrenActive(newActive) {
+    if (!mergedDisabled) {
+      setChildrenActive(newActive);
+    }
+  };
+
+  var onInternalMouseEnter = function onInternalMouseEnter(domEvent) {
+    triggerChildrenActive(true);
+    onMouseEnter === null || onMouseEnter === void 0 ? void 0 : onMouseEnter({
+      key: eventKey,
+      domEvent: domEvent
+    });
+  };
+
+  var onInternalMouseLeave = function onInternalMouseLeave(domEvent) {
+    triggerChildrenActive(false);
+    onMouseLeave === null || onMouseLeave === void 0 ? void 0 : onMouseLeave({
+      key: eventKey,
+      domEvent: domEvent
+    });
+  };
+
+  var mergedActive = React.useMemo(function () {
+    if (active) {
+      return active;
+    }
+
+    if (mode !== 'inline') {
+      return childrenActive || isSubPathKey([activeKey], eventKey);
+    }
+
+    return false;
+  }, [mode, active, activeKey, childrenActive, eventKey, isSubPathKey]); // ========================== DirectionStyle ==========================
+
+  var directionStyle = (0, _useDirectionStyle.default)(connectedPath.length); // =============================== Events ===============================
+  // >>>> Title click
+
+  var onInternalTitleClick = function onInternalTitleClick(e) {
+    // Skip if disabled
+    if (mergedDisabled) {
+      return;
+    }
+
+    onTitleClick === null || onTitleClick === void 0 ? void 0 : onTitleClick({
+      key: eventKey,
+      domEvent: e
+    }); // Trigger open by click when mode is `inline`
+
+    if (mode === 'inline') {
+      onOpenChange(eventKey, !originOpen);
+    }
+  }; // >>>> Context for children click
+
+
+  var onMergedItemClick = (0, _useMemoCallback.default)(function (info) {
+    onClick === null || onClick === void 0 ? void 0 : onClick((0, _warnUtil.warnItemProp)(info));
+    onItemClick(info);
+  }); // >>>>> Visible change
+
+  var onPopupVisibleChange = function onPopupVisibleChange(newVisible) {
+    if (mode !== 'inline') {
+      onOpenChange(eventKey, newVisible);
+    }
+  };
+  /**
+   * Used for accessibility. Helper will focus element without key board.
+   * We should manually trigger an active
+   */
+
+
+  var onInternalFocus = function onInternalFocus() {
+    onActive(eventKey);
+  }; // =============================== Render ===============================
+
+
+  var popupId = domDataId && "".concat(domDataId, "-popup"); // >>>>> Title
+
+  var titleNode = /*#__PURE__*/React.createElement("div", (0, _extends2.default)({
+    role: "menuitem",
+    style: directionStyle,
+    className: "".concat(subMenuPrefixCls, "-title"),
+    tabIndex: mergedDisabled ? null : -1,
+    ref: elementRef,
+    title: typeof title === 'string' ? title : null,
+    "data-menu-id": overflowDisabled && domDataId ? null : domDataId,
+    "aria-expanded": open,
+    "aria-haspopup": true,
+    "aria-controls": popupId,
+    "aria-disabled": mergedDisabled,
+    onClick: onInternalTitleClick,
+    onFocus: onInternalFocus
+  }, activeProps), title, /*#__PURE__*/React.createElement(_Icon.default, {
+    icon: mode !== 'horizontal' ? mergedExpandIcon : null,
+    props: (0, _objectSpread2.default)((0, _objectSpread2.default)({}, props), {}, {
+      isOpen: open,
+      // [Legacy] Not sure why need this mark
+      isSubMenu: true
+    })
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "".concat(subMenuPrefixCls, "-arrow")
+  }))); // Cache mode if it change to `inline` which do not have popup motion
+
+  var triggerModeRef = React.useRef(mode);
+
+  if (mode !== 'inline' && connectedPath.length > 1) {
+    triggerModeRef.current = 'vertical';
+  } else {
+    triggerModeRef.current = mode;
+  }
+
+  if (!overflowDisabled) {
+    var triggerMode = triggerModeRef.current; // Still wrap with Trigger here since we need avoid react re-mount dom node
+    // Which makes motion failed
+
+    titleNode = /*#__PURE__*/React.createElement(_PopupTrigger.default, {
+      mode: triggerMode,
+      prefixCls: subMenuPrefixCls,
+      visible: !internalPopupClose && open && mode !== 'inline',
+      popupClassName: popupClassName,
+      popupOffset: popupOffset,
+      popup: /*#__PURE__*/React.createElement(_MenuContext.default // Special handle of horizontal mode
+      , {
+        mode: triggerMode === 'horizontal' ? 'vertical' : triggerMode
+      }, /*#__PURE__*/React.createElement(_SubMenuList.default, {
+        id: popupId,
+        ref: popupRef
+      }, children)),
+      disabled: mergedDisabled,
+      onVisibleChange: onPopupVisibleChange
+    }, titleNode);
+  } // >>>>> List node
+
+
+  var listNode = /*#__PURE__*/React.createElement(_rcOverflow.default.Item, (0, _extends2.default)({
+    role: "none"
+  }, restProps, {
+    component: "li",
+    style: style,
+    className: (0, _classnames.default)(subMenuPrefixCls, "".concat(subMenuPrefixCls, "-").concat(mode), className, (_classNames = {}, (0, _defineProperty2.default)(_classNames, "".concat(subMenuPrefixCls, "-open"), open), (0, _defineProperty2.default)(_classNames, "".concat(subMenuPrefixCls, "-active"), mergedActive), (0, _defineProperty2.default)(_classNames, "".concat(subMenuPrefixCls, "-selected"), childrenSelected), (0, _defineProperty2.default)(_classNames, "".concat(subMenuPrefixCls, "-disabled"), mergedDisabled), _classNames)),
+    onMouseEnter: onInternalMouseEnter,
+    onMouseLeave: onInternalMouseLeave
+  }), titleNode, !overflowDisabled && /*#__PURE__*/React.createElement(_InlineSubMenuList.default, {
+    id: popupId,
+    open: open,
+    keyPath: connectedPath
+  }, children));
+
+  if (_internalRenderSubMenuItem) {
+    listNode = _internalRenderSubMenuItem(listNode, props, {
+      selected: childrenSelected,
+      active: mergedActive,
+      open: open,
+      disabled: mergedDisabled
+    });
+  } // >>>>> Render
+
+
+  return /*#__PURE__*/React.createElement(_MenuContext.default, {
+    onItemClick: onMergedItemClick,
+    mode: mode === 'horizontal' ? 'vertical' : mode,
+    itemIcon: mergedItemIcon,
+    expandIcon: mergedExpandIcon
+  }, listNode);
+};
+
+function SubMenu(props) {
+  var eventKey = props.eventKey,
+      children = props.children;
+  var connectedKeyPath = (0, _PathContext.useFullPath)(eventKey);
+  var childList = (0, _nodeUtil.parseChildren)(children, connectedKeyPath); // ==================== Record KeyPath ====================
+
+  var measure = (0, _PathContext.useMeasure)(); // eslint-disable-next-line consistent-return
+
+  React.useEffect(function () {
+    if (measure) {
+      measure.registerPath(eventKey, connectedKeyPath);
+      return function () {
+        measure.unregisterPath(eventKey, connectedKeyPath);
+      };
+    }
+  }, [connectedKeyPath]);
+  var renderNode; // ======================== Render ========================
+
+  if (measure) {
+    renderNode = childList;
+  } else {
+    renderNode = /*#__PURE__*/React.createElement(InternalSubMenu, props, childList);
+  }
+
+  return /*#__PURE__*/React.createElement(_PathContext.PathTrackerContext.Provider, {
+    value: connectedKeyPath
+  }, renderNode);
+}
+},{"@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","react":"n8MK","classnames":"yl9j","rc-overflow":"H6C2","rc-util/es/warning":"SNA5","./SubMenuList":"imhB","../utils/nodeUtil":"T1Gl","../context/MenuContext":"WRUc","../hooks/useMemoCallback":"nuyy","./PopupTrigger":"hvs0","../Icon":"D26q","../hooks/useActive":"LQKT","../utils/warnUtil":"cvmo","../hooks/useDirectionStyle":"Pnmu","./InlineSubMenuList":"l2u9","../context/PathContext":"thAF","../context/IdContext":"WSOX","../context/PrivateContext":"cUpN"}],"JLqT":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -17471,13 +20447,777 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _Dropdown = _interopRequireDefault(require("./Dropdown"));
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/defineProperty"));
+
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectSpread2"));
+
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/toConsumableArray"));
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _rcOverflow = _interopRequireDefault(require("rc-overflow"));
+
+var _useMergedState7 = _interopRequireDefault(require("rc-util/es/hooks/useMergedState"));
+
+var _warning = _interopRequireDefault(require("rc-util/es/warning"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _reactDom = require("react-dom");
+
+var _isEqual = _interopRequireDefault(require("rc-util/es/isEqual"));
+
+var _IdContext = require("./context/IdContext");
+
+var _MenuContext = _interopRequireDefault(require("./context/MenuContext"));
+
+var _PathContext = require("./context/PathContext");
+
+var _PrivateContext = _interopRequireDefault(require("./context/PrivateContext"));
+
+var _useAccessibility = _interopRequireDefault(require("./hooks/useAccessibility"));
+
+var _useKeyRecords2 = _interopRequireWildcard(require("./hooks/useKeyRecords"));
+
+var _useMemoCallback = _interopRequireDefault(require("./hooks/useMemoCallback"));
+
+var _useUUID = _interopRequireDefault(require("./hooks/useUUID"));
+
+var _MenuItem = _interopRequireDefault(require("./MenuItem"));
+
+var _SubMenu = _interopRequireDefault(require("./SubMenu"));
+
+var _nodeUtil = require("./utils/nodeUtil");
+
+var _warnUtil = require("./utils/warnUtil");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = _Dropdown.default;
+var _excluded = ["prefixCls", "rootClassName", "style", "className", "tabIndex", "items", "children", "direction", "id", "mode", "inlineCollapsed", "disabled", "disabledOverflow", "subMenuOpenDelay", "subMenuCloseDelay", "forceSubMenuRender", "defaultOpenKeys", "openKeys", "activeKey", "defaultActiveFirst", "selectable", "multiple", "defaultSelectedKeys", "selectedKeys", "onSelect", "onDeselect", "inlineIndent", "motion", "defaultMotions", "triggerSubMenuAction", "builtinPlacements", "itemIcon", "expandIcon", "overflowedIndicator", "overflowedIndicatorPopupClassName", "getPopupContainer", "onClick", "onOpenChange", "onKeyDown", "openAnimation", "openTransitionName", "_internalRenderMenuItem", "_internalRenderSubMenuItem"];
+
+/**
+ * Menu modify after refactor:
+ * ## Add
+ * - disabled
+ *
+ * ## Remove
+ * - openTransitionName
+ * - openAnimation
+ * - onDestroy
+ * - siderCollapsed: Seems antd do not use this prop (Need test in antd)
+ * - collapsedWidth: Seems this logic should be handle by antd Layout.Sider
+ */
+// optimize for render
+var EMPTY_LIST = [];
+var Menu = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  var _childList$, _classNames;
+
+  var _ref = props,
+      _ref$prefixCls = _ref.prefixCls,
+      prefixCls = _ref$prefixCls === void 0 ? 'rc-menu' : _ref$prefixCls,
+      rootClassName = _ref.rootClassName,
+      style = _ref.style,
+      className = _ref.className,
+      _ref$tabIndex = _ref.tabIndex,
+      tabIndex = _ref$tabIndex === void 0 ? 0 : _ref$tabIndex,
+      items = _ref.items,
+      children = _ref.children,
+      direction = _ref.direction,
+      id = _ref.id,
+      _ref$mode = _ref.mode,
+      mode = _ref$mode === void 0 ? 'vertical' : _ref$mode,
+      inlineCollapsed = _ref.inlineCollapsed,
+      disabled = _ref.disabled,
+      disabledOverflow = _ref.disabledOverflow,
+      _ref$subMenuOpenDelay = _ref.subMenuOpenDelay,
+      subMenuOpenDelay = _ref$subMenuOpenDelay === void 0 ? 0.1 : _ref$subMenuOpenDelay,
+      _ref$subMenuCloseDela = _ref.subMenuCloseDelay,
+      subMenuCloseDelay = _ref$subMenuCloseDela === void 0 ? 0.1 : _ref$subMenuCloseDela,
+      forceSubMenuRender = _ref.forceSubMenuRender,
+      defaultOpenKeys = _ref.defaultOpenKeys,
+      openKeys = _ref.openKeys,
+      activeKey = _ref.activeKey,
+      defaultActiveFirst = _ref.defaultActiveFirst,
+      _ref$selectable = _ref.selectable,
+      selectable = _ref$selectable === void 0 ? true : _ref$selectable,
+      _ref$multiple = _ref.multiple,
+      multiple = _ref$multiple === void 0 ? false : _ref$multiple,
+      defaultSelectedKeys = _ref.defaultSelectedKeys,
+      selectedKeys = _ref.selectedKeys,
+      onSelect = _ref.onSelect,
+      onDeselect = _ref.onDeselect,
+      _ref$inlineIndent = _ref.inlineIndent,
+      inlineIndent = _ref$inlineIndent === void 0 ? 24 : _ref$inlineIndent,
+      motion = _ref.motion,
+      defaultMotions = _ref.defaultMotions,
+      _ref$triggerSubMenuAc = _ref.triggerSubMenuAction,
+      triggerSubMenuAction = _ref$triggerSubMenuAc === void 0 ? 'hover' : _ref$triggerSubMenuAc,
+      builtinPlacements = _ref.builtinPlacements,
+      itemIcon = _ref.itemIcon,
+      expandIcon = _ref.expandIcon,
+      _ref$overflowedIndica = _ref.overflowedIndicator,
+      overflowedIndicator = _ref$overflowedIndica === void 0 ? '...' : _ref$overflowedIndica,
+      overflowedIndicatorPopupClassName = _ref.overflowedIndicatorPopupClassName,
+      getPopupContainer = _ref.getPopupContainer,
+      onClick = _ref.onClick,
+      onOpenChange = _ref.onOpenChange,
+      onKeyDown = _ref.onKeyDown,
+      openAnimation = _ref.openAnimation,
+      openTransitionName = _ref.openTransitionName,
+      _internalRenderMenuItem = _ref._internalRenderMenuItem,
+      _internalRenderSubMenuItem = _ref._internalRenderSubMenuItem,
+      restProps = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  var childList = React.useMemo(function () {
+    return (0, _nodeUtil.parseItems)(children, items, EMPTY_LIST);
+  }, [children, items]);
+
+  var _React$useState = React.useState(false),
+      _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
+      mounted = _React$useState2[0],
+      setMounted = _React$useState2[1];
+
+  var containerRef = React.useRef();
+  var uuid = (0, _useUUID.default)(id);
+  var isRtl = direction === 'rtl'; // ========================= Warn =========================
+
+  if ("production" !== 'production') {
+    (0, _warning.default)(!openAnimation && !openTransitionName, '`openAnimation` and `openTransitionName` is removed. Please use `motion` or `defaultMotion` instead.');
+  } // ========================= Open =========================
+
+
+  var _useMergedState = (0, _useMergedState7.default)(defaultOpenKeys, {
+    value: openKeys,
+    postState: function postState(keys) {
+      return keys || EMPTY_LIST;
+    }
+  }),
+      _useMergedState2 = (0, _slicedToArray2.default)(_useMergedState, 2),
+      mergedOpenKeys = _useMergedState2[0],
+      setMergedOpenKeys = _useMergedState2[1]; // React 18 will merge mouse event which means we open key will not sync
+  // ref: https://github.com/ant-design/ant-design/issues/38818
+
+
+  var triggerOpenKeys = function triggerOpenKeys(keys) {
+    var forceFlush = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+    function doUpdate() {
+      setMergedOpenKeys(keys);
+      onOpenChange === null || onOpenChange === void 0 ? void 0 : onOpenChange(keys);
+    }
+
+    if (forceFlush) {
+      (0, _reactDom.flushSync)(doUpdate);
+    } else {
+      doUpdate();
+    }
+  }; // >>>>> Cache & Reset open keys when inlineCollapsed changed
+
+
+  var _React$useState3 = React.useState(mergedOpenKeys),
+      _React$useState4 = (0, _slicedToArray2.default)(_React$useState3, 2),
+      inlineCacheOpenKeys = _React$useState4[0],
+      setInlineCacheOpenKeys = _React$useState4[1];
+
+  var mountRef = React.useRef(false); // ========================= Mode =========================
+
+  var _React$useMemo = React.useMemo(function () {
+    if ((mode === 'inline' || mode === 'vertical') && inlineCollapsed) {
+      return ['vertical', inlineCollapsed];
+    }
+
+    return [mode, false];
+  }, [mode, inlineCollapsed]),
+      _React$useMemo2 = (0, _slicedToArray2.default)(_React$useMemo, 2),
+      mergedMode = _React$useMemo2[0],
+      mergedInlineCollapsed = _React$useMemo2[1];
+
+  var isInlineMode = mergedMode === 'inline';
+
+  var _React$useState5 = React.useState(mergedMode),
+      _React$useState6 = (0, _slicedToArray2.default)(_React$useState5, 2),
+      internalMode = _React$useState6[0],
+      setInternalMode = _React$useState6[1];
+
+  var _React$useState7 = React.useState(mergedInlineCollapsed),
+      _React$useState8 = (0, _slicedToArray2.default)(_React$useState7, 2),
+      internalInlineCollapsed = _React$useState8[0],
+      setInternalInlineCollapsed = _React$useState8[1];
+
+  React.useEffect(function () {
+    setInternalMode(mergedMode);
+    setInternalInlineCollapsed(mergedInlineCollapsed);
+
+    if (!mountRef.current) {
+      return;
+    } // Synchronously update MergedOpenKeys
+
+
+    if (isInlineMode) {
+      setMergedOpenKeys(inlineCacheOpenKeys);
+    } else {
+      // Trigger open event in case its in control
+      triggerOpenKeys(EMPTY_LIST);
+    }
+  }, [mergedMode, mergedInlineCollapsed]); // ====================== Responsive ======================
+
+  var _React$useState9 = React.useState(0),
+      _React$useState10 = (0, _slicedToArray2.default)(_React$useState9, 2),
+      lastVisibleIndex = _React$useState10[0],
+      setLastVisibleIndex = _React$useState10[1];
+
+  var allVisible = lastVisibleIndex >= childList.length - 1 || internalMode !== 'horizontal' || disabledOverflow; // Cache
+
+  React.useEffect(function () {
+    if (isInlineMode) {
+      setInlineCacheOpenKeys(mergedOpenKeys);
+    }
+  }, [mergedOpenKeys]);
+  React.useEffect(function () {
+    mountRef.current = true;
+    return function () {
+      mountRef.current = false;
+    };
+  }, []); // ========================= Path =========================
+
+  var _useKeyRecords = (0, _useKeyRecords2.default)(),
+      registerPath = _useKeyRecords.registerPath,
+      unregisterPath = _useKeyRecords.unregisterPath,
+      refreshOverflowKeys = _useKeyRecords.refreshOverflowKeys,
+      isSubPathKey = _useKeyRecords.isSubPathKey,
+      getKeyPath = _useKeyRecords.getKeyPath,
+      getKeys = _useKeyRecords.getKeys,
+      getSubPathKeys = _useKeyRecords.getSubPathKeys;
+
+  var registerPathContext = React.useMemo(function () {
+    return {
+      registerPath: registerPath,
+      unregisterPath: unregisterPath
+    };
+  }, [registerPath, unregisterPath]);
+  var pathUserContext = React.useMemo(function () {
+    return {
+      isSubPathKey: isSubPathKey
+    };
+  }, [isSubPathKey]);
+  React.useEffect(function () {
+    refreshOverflowKeys(allVisible ? EMPTY_LIST : childList.slice(lastVisibleIndex + 1).map(function (child) {
+      return child.key;
+    }));
+  }, [lastVisibleIndex, allVisible]); // ======================== Active ========================
+
+  var _useMergedState3 = (0, _useMergedState7.default)(activeKey || defaultActiveFirst && ((_childList$ = childList[0]) === null || _childList$ === void 0 ? void 0 : _childList$.key), {
+    value: activeKey
+  }),
+      _useMergedState4 = (0, _slicedToArray2.default)(_useMergedState3, 2),
+      mergedActiveKey = _useMergedState4[0],
+      setMergedActiveKey = _useMergedState4[1];
+
+  var onActive = (0, _useMemoCallback.default)(function (key) {
+    setMergedActiveKey(key);
+  });
+  var onInactive = (0, _useMemoCallback.default)(function () {
+    setMergedActiveKey(undefined);
+  });
+  (0, React.useImperativeHandle)(ref, function () {
+    return {
+      list: containerRef.current,
+      focus: function focus(options) {
+        var _childList$find;
+
+        var shouldFocusKey = mergedActiveKey !== null && mergedActiveKey !== void 0 ? mergedActiveKey : (_childList$find = childList.find(function (node) {
+          return !node.props.disabled;
+        })) === null || _childList$find === void 0 ? void 0 : _childList$find.key;
+
+        if (shouldFocusKey) {
+          var _containerRef$current, _containerRef$current2, _containerRef$current3;
+
+          (_containerRef$current = containerRef.current) === null || _containerRef$current === void 0 ? void 0 : (_containerRef$current2 = _containerRef$current.querySelector("li[data-menu-id='".concat((0, _IdContext.getMenuId)(uuid, shouldFocusKey), "']"))) === null || _containerRef$current2 === void 0 ? void 0 : (_containerRef$current3 = _containerRef$current2.focus) === null || _containerRef$current3 === void 0 ? void 0 : _containerRef$current3.call(_containerRef$current2, options);
+        }
+      }
+    };
+  }); // ======================== Select ========================
+  // >>>>> Select keys
+
+  var _useMergedState5 = (0, _useMergedState7.default)(defaultSelectedKeys || [], {
+    value: selectedKeys,
+    // Legacy convert key to array
+    postState: function postState(keys) {
+      if (Array.isArray(keys)) {
+        return keys;
+      }
+
+      if (keys === null || keys === undefined) {
+        return EMPTY_LIST;
+      }
+
+      return [keys];
+    }
+  }),
+      _useMergedState6 = (0, _slicedToArray2.default)(_useMergedState5, 2),
+      mergedSelectKeys = _useMergedState6[0],
+      setMergedSelectKeys = _useMergedState6[1]; // >>>>> Trigger select
+
+
+  var triggerSelection = function triggerSelection(info) {
+    if (selectable) {
+      // Insert or Remove
+      var targetKey = info.key;
+      var exist = mergedSelectKeys.includes(targetKey);
+      var newSelectKeys;
+
+      if (multiple) {
+        if (exist) {
+          newSelectKeys = mergedSelectKeys.filter(function (key) {
+            return key !== targetKey;
+          });
+        } else {
+          newSelectKeys = [].concat((0, _toConsumableArray2.default)(mergedSelectKeys), [targetKey]);
+        }
+      } else {
+        newSelectKeys = [targetKey];
+      }
+
+      setMergedSelectKeys(newSelectKeys); // Trigger event
+
+      var selectInfo = (0, _objectSpread2.default)((0, _objectSpread2.default)({}, info), {}, {
+        selectedKeys: newSelectKeys
+      });
+
+      if (exist) {
+        onDeselect === null || onDeselect === void 0 ? void 0 : onDeselect(selectInfo);
+      } else {
+        onSelect === null || onSelect === void 0 ? void 0 : onSelect(selectInfo);
+      }
+    } // Whatever selectable, always close it
+
+
+    if (!multiple && mergedOpenKeys.length && internalMode !== 'inline') {
+      triggerOpenKeys(EMPTY_LIST);
+    }
+  }; // ========================= Open =========================
+
+  /**
+   * Click for item. SubMenu do not have selection status
+   */
+
+
+  var onInternalClick = (0, _useMemoCallback.default)(function (info) {
+    onClick === null || onClick === void 0 ? void 0 : onClick((0, _warnUtil.warnItemProp)(info));
+    triggerSelection(info);
+  });
+  var onInternalOpenChange = (0, _useMemoCallback.default)(function (key, open) {
+    var newOpenKeys = mergedOpenKeys.filter(function (k) {
+      return k !== key;
+    });
+
+    if (open) {
+      newOpenKeys.push(key);
+    } else if (internalMode !== 'inline') {
+      // We need find all related popup to close
+      var subPathKeys = getSubPathKeys(key);
+      newOpenKeys = newOpenKeys.filter(function (k) {
+        return !subPathKeys.has(k);
+      });
+    }
+
+    if (!(0, _isEqual.default)(mergedOpenKeys, newOpenKeys, true)) {
+      triggerOpenKeys(newOpenKeys, true);
+    }
+  });
+  var getInternalPopupContainer = (0, _useMemoCallback.default)(getPopupContainer); // ==================== Accessibility =====================
+
+  var triggerAccessibilityOpen = function triggerAccessibilityOpen(key, open) {
+    var nextOpen = open !== null && open !== void 0 ? open : !mergedOpenKeys.includes(key);
+    onInternalOpenChange(key, nextOpen);
+  };
+
+  var onInternalKeyDown = (0, _useAccessibility.default)(internalMode, mergedActiveKey, isRtl, uuid, containerRef, getKeys, getKeyPath, setMergedActiveKey, triggerAccessibilityOpen, onKeyDown); // ======================== Effect ========================
+
+  React.useEffect(function () {
+    setMounted(true);
+  }, []); // ======================= Context ========================
+
+  var privateContext = React.useMemo(function () {
+    return {
+      _internalRenderMenuItem: _internalRenderMenuItem,
+      _internalRenderSubMenuItem: _internalRenderSubMenuItem
+    };
+  }, [_internalRenderMenuItem, _internalRenderSubMenuItem]); // ======================== Render ========================
+  // >>>>> Children
+
+  var wrappedChildList = internalMode !== 'horizontal' || disabledOverflow ? childList : // Need wrap for overflow dropdown that do not response for open
+  childList.map(function (child, index) {
+    return (
+      /*#__PURE__*/
+      // Always wrap provider to avoid sub node re-mount
+      React.createElement(_MenuContext.default, {
+        key: child.key,
+        overflowDisabled: index > lastVisibleIndex
+      }, child)
+    );
+  }); // >>>>> Container
+
+  var container = /*#__PURE__*/React.createElement(_rcOverflow.default, (0, _extends2.default)({
+    id: id,
+    ref: containerRef,
+    prefixCls: "".concat(prefixCls, "-overflow"),
+    component: "ul",
+    itemComponent: _MenuItem.default,
+    className: (0, _classnames.default)(prefixCls, "".concat(prefixCls, "-root"), "".concat(prefixCls, "-").concat(internalMode), className, (_classNames = {}, (0, _defineProperty2.default)(_classNames, "".concat(prefixCls, "-inline-collapsed"), internalInlineCollapsed), (0, _defineProperty2.default)(_classNames, "".concat(prefixCls, "-rtl"), isRtl), _classNames), rootClassName),
+    dir: direction,
+    style: style,
+    role: "menu",
+    tabIndex: tabIndex,
+    data: wrappedChildList,
+    renderRawItem: function renderRawItem(node) {
+      return node;
+    },
+    renderRawRest: function renderRawRest(omitItems) {
+      // We use origin list since wrapped list use context to prevent open
+      var len = omitItems.length;
+      var originOmitItems = len ? childList.slice(-len) : null;
+      return /*#__PURE__*/React.createElement(_SubMenu.default, {
+        eventKey: _useKeyRecords2.OVERFLOW_KEY,
+        title: overflowedIndicator,
+        disabled: allVisible,
+        internalPopupClose: len === 0,
+        popupClassName: overflowedIndicatorPopupClassName
+      }, originOmitItems);
+    },
+    maxCount: internalMode !== 'horizontal' || disabledOverflow ? _rcOverflow.default.INVALIDATE : _rcOverflow.default.RESPONSIVE,
+    ssr: "full",
+    "data-menu-list": true,
+    onVisibleChange: function onVisibleChange(newLastIndex) {
+      setLastVisibleIndex(newLastIndex);
+    },
+    onKeyDown: onInternalKeyDown
+  }, restProps)); // >>>>> Render
+
+  return /*#__PURE__*/React.createElement(_PrivateContext.default.Provider, {
+    value: privateContext
+  }, /*#__PURE__*/React.createElement(_IdContext.IdContext.Provider, {
+    value: uuid
+  }, /*#__PURE__*/React.createElement(_MenuContext.default, {
+    prefixCls: prefixCls,
+    rootClassName: rootClassName,
+    mode: internalMode,
+    openKeys: mergedOpenKeys,
+    rtl: isRtl // Disabled
+    ,
+    disabled: disabled // Motion
+    ,
+    motion: mounted ? motion : null,
+    defaultMotions: mounted ? defaultMotions : null // Active
+    ,
+    activeKey: mergedActiveKey,
+    onActive: onActive,
+    onInactive: onInactive // Selection
+    ,
+    selectedKeys: mergedSelectKeys // Level
+    ,
+    inlineIndent: inlineIndent // Popup
+    ,
+    subMenuOpenDelay: subMenuOpenDelay,
+    subMenuCloseDelay: subMenuCloseDelay,
+    forceSubMenuRender: forceSubMenuRender,
+    builtinPlacements: builtinPlacements,
+    triggerSubMenuAction: triggerSubMenuAction,
+    getPopupContainer: getInternalPopupContainer // Icon
+    ,
+    itemIcon: itemIcon,
+    expandIcon: expandIcon // Events
+    ,
+    onItemClick: onInternalClick,
+    onOpenChange: onInternalOpenChange
+  }, /*#__PURE__*/React.createElement(_PathContext.PathUserContext.Provider, {
+    value: pathUserContext
+  }, container), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'none'
+    },
+    "aria-hidden": true
+  }, /*#__PURE__*/React.createElement(_PathContext.PathRegisterContext.Provider, {
+    value: registerPathContext
+  }, childList)))));
+});
+var _default = Menu;
 exports.default = _default;
-},{"./Dropdown":"rgdw"}],"CZvM":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/defineProperty":"gpd2","@babel/runtime/helpers/esm/objectSpread2":"UKeT","@babel/runtime/helpers/esm/toConsumableArray":"Qv3s","@babel/runtime/helpers/esm/slicedToArray":"T12H","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","classnames":"yl9j","rc-overflow":"H6C2","rc-util/es/hooks/useMergedState":"UovL","rc-util/es/warning":"SNA5","react":"n8MK","react-dom":"NKHc","rc-util/es/isEqual":"n49D","./context/IdContext":"WSOX","./context/MenuContext":"WRUc","./context/PathContext":"thAF","./context/PrivateContext":"cUpN","./hooks/useAccessibility":"g0Ae","./hooks/useKeyRecords":"FDUp","./hooks/useMemoCallback":"nuyy","./hooks/useUUID":"nOjm","./MenuItem":"NeBp","./SubMenu":"lVAn","./utils/nodeUtil":"T1Gl","./utils/warnUtil":"cvmo"}],"vrf4":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = MenuItemGroup;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _omit = _interopRequireDefault(require("rc-util/es/omit"));
+
+var React = _interopRequireWildcard(require("react"));
+
+var _MenuContext = require("./context/MenuContext");
+
+var _PathContext = require("./context/PathContext");
+
+var _nodeUtil = require("./utils/nodeUtil");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _excluded = ["className", "title", "eventKey", "children"],
+    _excluded2 = ["children"];
+
+var InternalMenuItemGroup = function InternalMenuItemGroup(_ref) {
+  var className = _ref.className,
+      title = _ref.title,
+      eventKey = _ref.eventKey,
+      children = _ref.children,
+      restProps = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+
+  var _React$useContext = React.useContext(_MenuContext.MenuContext),
+      prefixCls = _React$useContext.prefixCls;
+
+  var groupPrefixCls = "".concat(prefixCls, "-item-group");
+  return /*#__PURE__*/React.createElement("li", (0, _extends2.default)({
+    role: "presentation"
+  }, restProps, {
+    onClick: function onClick(e) {
+      return e.stopPropagation();
+    },
+    className: (0, _classnames.default)(groupPrefixCls, className)
+  }), /*#__PURE__*/React.createElement("div", {
+    role: "presentation",
+    className: "".concat(groupPrefixCls, "-title"),
+    title: typeof title === 'string' ? title : undefined
+  }, title), /*#__PURE__*/React.createElement("ul", {
+    role: "group",
+    className: "".concat(groupPrefixCls, "-list")
+  }, children));
+};
+
+function MenuItemGroup(_ref2) {
+  var children = _ref2.children,
+      props = (0, _objectWithoutProperties2.default)(_ref2, _excluded2);
+  var connectedKeyPath = (0, _PathContext.useFullPath)(props.eventKey);
+  var childList = (0, _nodeUtil.parseChildren)(children, connectedKeyPath);
+  var measure = (0, _PathContext.useMeasure)();
+
+  if (measure) {
+    return childList;
+  }
+
+  return /*#__PURE__*/React.createElement(InternalMenuItemGroup, (0, _omit.default)(props, ['warnKey']), childList);
+}
+},{"@babel/runtime/helpers/esm/extends":"SpjQ","@babel/runtime/helpers/esm/objectWithoutProperties":"tuNH","classnames":"yl9j","rc-util/es/omit":"SloJ","react":"n8MK","./context/MenuContext":"WRUc","./context/PathContext":"thAF","./utils/nodeUtil":"T1Gl"}],"hlbq":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Divider;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _MenuContext = require("./context/MenuContext");
+
+var _PathContext = require("./context/PathContext");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function Divider(_ref) {
+  var className = _ref.className,
+      style = _ref.style;
+
+  var _React$useContext = React.useContext(_MenuContext.MenuContext),
+      prefixCls = _React$useContext.prefixCls;
+
+  var measure = (0, _PathContext.useMeasure)();
+
+  if (measure) {
+    return null;
+  }
+
+  return /*#__PURE__*/React.createElement("li", {
+    className: (0, _classnames.default)("".concat(prefixCls, "-item-divider"), className),
+    style: style
+  });
+}
+},{"react":"n8MK","classnames":"yl9j","./context/MenuContext":"WRUc","./context/PathContext":"thAF"}],"VH7R":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Divider", {
+  enumerable: true,
+  get: function () {
+    return _Divider.default;
+  }
+});
+Object.defineProperty(exports, "Item", {
+  enumerable: true,
+  get: function () {
+    return _MenuItem.default;
+  }
+});
+Object.defineProperty(exports, "ItemGroup", {
+  enumerable: true,
+  get: function () {
+    return _MenuItemGroup.default;
+  }
+});
+Object.defineProperty(exports, "MenuItem", {
+  enumerable: true,
+  get: function () {
+    return _MenuItem.default;
+  }
+});
+Object.defineProperty(exports, "MenuItemGroup", {
+  enumerable: true,
+  get: function () {
+    return _MenuItemGroup.default;
+  }
+});
+Object.defineProperty(exports, "SubMenu", {
+  enumerable: true,
+  get: function () {
+    return _SubMenu.default;
+  }
+});
+exports.default = void 0;
+Object.defineProperty(exports, "useFullPath", {
+  enumerable: true,
+  get: function () {
+    return _PathContext.useFullPath;
+  }
+});
+
+var _Menu = _interopRequireDefault(require("./Menu"));
+
+var _MenuItem = _interopRequireDefault(require("./MenuItem"));
+
+var _SubMenu = _interopRequireDefault(require("./SubMenu"));
+
+var _MenuItemGroup = _interopRequireDefault(require("./MenuItemGroup"));
+
+var _PathContext = require("./context/PathContext");
+
+var _Divider = _interopRequireDefault(require("./Divider"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ExportMenu = _Menu.default;
+ExportMenu.Item = _MenuItem.default;
+ExportMenu.SubMenu = _SubMenu.default;
+ExportMenu.ItemGroup = _MenuItemGroup.default;
+ExportMenu.Divider = _Divider.default;
+var _default = ExportMenu;
+exports.default = _default;
+},{"./Menu":"JLqT","./MenuItem":"NeBp","./SubMenu":"lVAn","./MenuItemGroup":"vrf4","./context/PathContext":"thAF","./Divider":"hlbq"}],"qb7c":[function(require,module,exports) {
+var define;
+/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = '';
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (arg) {
+				classes = appendClass(classes, parseValue(arg));
+			}
+		}
+
+		return classes;
+	}
+
+	function parseValue (arg) {
+		if (typeof arg === 'string' || typeof arg === 'number') {
+			return arg;
+		}
+
+		if (typeof arg !== 'object') {
+			return '';
+		}
+
+		if (Array.isArray(arg)) {
+			return classNames.apply(null, arg);
+		}
+
+		if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+			return arg.toString();
+		}
+
+		var classes = '';
+
+		for (var key in arg) {
+			if (hasOwn.call(arg, key) && arg[key]) {
+				classes = appendClass(classes, key);
+			}
+		}
+
+		return classes;
+	}
+
+	function appendClass (value, newClass) {
+		if (!newClass) {
+			return value;
+		}
+	
+		if (value) {
+			return value + ' ' + newClass;
+		}
+	
+		return value + newClass;
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+},{}],"CZvM":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -18764,14 +22504,18 @@ function findInPanel(panel, id, filter) {
     }
   }
 
-  return null;
+  return undefined;
 }
 
 function findInBox(box, id, filter) {
   let result;
 
-  if (filter | Filter.Box && box.id === id) {
+  if (filter | Filter.Box && (box === null || box === void 0 ? void 0 : box.id) === id) {
     return box;
+  }
+
+  if (!(box === null || box === void 0 ? void 0 : box.children)) {
+    return undefined;
   }
 
   for (let child of box.children) {
@@ -21347,11 +25091,9 @@ class DockPanel extends React.PureComponent {
   }
 
   onDragOverOtherPanel() {
-    if (this.state.dropFromPanel) {
-      this.setState({
-        dropFromPanel: null
-      });
-    }
+    this.setState({
+      dropFromPanel: null
+    });
   }
 
   onPanelCornerDrag(e, corner) {
@@ -22254,6 +25996,16 @@ class DockTabs extends React.PureComponent {
       this.context.dockMove(panelData, null, 'new-window');
     };
 
+    this.onCloseAll = () => {
+      let {
+        panelData
+      } = this.props;
+
+      for (let tab of panelData.tabs) {
+        this.context.dockMove(tab, null, 'remove');
+      }
+    };
+
     this.renderTabBar = (props, TabNavList) => {
       let {
         panelData,
@@ -22288,13 +26040,22 @@ class DockTabs extends React.PureComponent {
       if (panelExtra) {
         panelExtraContent = panelExtra(panelData, this.context);
       } else if (maximizable || showNewWindowButton) {
-        panelExtraContent = React.createElement("div", {
+        let maxBtn = React.createElement("div", {
           className: panelData.parent.mode === 'maximize' ? "dock-panel-min-btn" : "dock-panel-max-btn",
           onClick: maximizable ? this.onMaximizeClick : null
         });
 
         if (showNewWindowButton) {
-          panelExtraContent = this.addNewWindowMenu(panelExtraContent, !maximizable);
+          maxBtn = this.addNewWindowMenu(maxBtn, !maximizable);
+        }
+
+        if (panelData.parent.mode === 'float' && !panelData.tabs.find(tab => !tab.closable)) {
+          panelExtraContent = React.createElement(React.Fragment, null, maxBtn, React.createElement("div", {
+            className: "dock-tab-close-btn",
+            onClick: this.onCloseAll
+          }));
+        } else {
+          panelExtraContent = maxBtn;
         }
       }
 
@@ -22526,9 +26287,9 @@ class Divider extends React.PureComponent {
 
     this.dragMove = e => {
       if (e.event.shiftKey || e.event.ctrlKey || e.event.altKey) {
-        this.dragMoveAll(e, e.dx, e.dy);
+        this.dragMoveAll(e.dx, e.dy);
       } else {
-        this.dragMove2(e, e.dx, e.dy);
+        this.dragMove2(e.dx, e.dy);
       }
     };
 
@@ -22544,7 +26305,7 @@ class Divider extends React.PureComponent {
     };
   }
 
-  dragMove2(e, dx, dy) {
+  dragMove2(dx, dy) {
     let {
       isVertical,
       changeSizes
@@ -22581,7 +26342,7 @@ class Divider extends React.PureComponent {
     changeSizes(sizes);
   }
 
-  dragMoveAll(e, dx, dy) {
+  dragMoveAll(dx, dy) {
     let {
       isVertical,
       changeSizes
@@ -23570,7 +27331,7 @@ class DockLayout extends DockPortalManager {
       layout = Algorithm.panelToWindow(layout, newPanel);
     } else if (target) {
       if ('tabs' in target) {
-        // pandel target
+        // panel target
         if (direction === 'middle') {
           layout = Algorithm.addTabToPanel(layout, source, target);
         } else {

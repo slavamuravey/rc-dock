@@ -74,7 +74,8 @@
   },
   "peerDependencies": {
     "react": ">=15.0.0",
-    "react-dom": ">=15.0.0"
+    "react-dom": ">=15.0.0",
+    "rc-tabs": "11.14.2"
   },
   "resolutions": {
     "@babel/preset-env": "7.13.8"

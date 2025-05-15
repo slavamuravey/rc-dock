@@ -3,6 +3,7 @@ import { TabPosition } from "rc-tabs/lib/interface";
 import { Filter } from "./Algorithm";
 import { ConnectableElement, DragPreviewOptions, XYCoord } from "react-dnd";
 import { DragSourceMonitor, DropTargetMonitor } from "react-dnd/dist/types/types";
+export declare type DivLike = React.ComponentType<React.HTMLAttributes<HTMLDivElement>> | "div";
 export interface TabGroup {
     /**
      * Whether tab can be dragged into float layer.
@@ -161,6 +162,12 @@ export interface PanelBase {
      * Defines if toggle floating available for a panel
      */
     toggleFloatingDisabled?: boolean;
+    CollapseBtn?: DivLike;
+    ExpandBtn?: DivLike;
+    ToggleFloatingBtn?: DivLike;
+    MaximizeBtn?: DivLike;
+    MinimizeBtn?: DivLike;
+    PanelCloseBtn?: DivLike;
 }
 export interface BoxBase {
     /**
@@ -229,6 +236,7 @@ export interface TabData extends TabBase, DockDataBase {
     cacheContext?: React.Context<any>;
     tabPosition?: TabPosition;
     handleTabActiveChange?: (active: boolean) => void;
+    TabCloseBtn?: DivLike;
 }
 interface PanelLock {
     /** override the default style */
@@ -377,6 +385,13 @@ export interface DockContext {
     getClassName(): string | undefined;
     getLayout(): LayoutData;
     isFloatingTopCheckDisabled(): boolean;
+    TabCloseBtn: DivLike;
+    CollapseBtn: DivLike;
+    ExpandBtn: DivLike;
+    ToggleFloatingBtn: DivLike;
+    MaximizeBtn: DivLike;
+    MinimizeBtn: DivLike;
+    PanelCloseBtn: DivLike;
 }
 /** @ignore */
 export declare const DockContextType: React.Context<DockContext>;

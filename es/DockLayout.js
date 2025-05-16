@@ -612,25 +612,31 @@ export class DockLayout extends DockPortalManager {
     getClassName() {
         return this.props.className;
     }
-    get TabCloseBtn() {
-        return this.props.TabCloseBtn || "div";
+    get TabCloseButton() {
+        return this.props.TabCloseButton || "div";
     }
-    get CollapseBtn() {
-        return this.props.CollapseBtn || "div";
+    get CollapseButton() {
+        return this.props.CollapseButton || "div";
     }
-    get ExpandBtn() {
-        return this.props.ExpandBtn || "div";
+    get ExpandButton() {
+        return this.props.ExpandButton || "div";
     }
-    get ToggleFloatingBtn() {
-        return this.props.ToggleFloatingBtn || "div";
+    get RestoreFloatingButton() {
+        return this.props.RestoreFloatingButton || "div";
     }
-    get MaximizeBtn() {
-        return this.props.MaximizeBtn || "div";
+    get MakeFloatingButton() {
+        return this.props.MakeFloatingButton || "div";
     }
-    get MinimizeBtn() {
-        return this.props.MinimizeBtn || "div";
+    get MaximizeButton() {
+        return this.props.MaximizeButton || "div";
     }
-    get PanelCloseBtn() {
-        return this.props.PanelCloseBtn || "div";
+    get MinimizeButton() {
+        return this.props.MinimizeButton || "div";
+    }
+    get PanelCloseButton() {
+        return this.props.PanelCloseButton || "div";
+    }
+    get MoreTabsButton() {
+        return this.props.MoreTabsButton || "...";
     }
 }

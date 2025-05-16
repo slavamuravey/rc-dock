@@ -19,6 +19,10 @@
   bottom: 0;
   left: 0;
 }
+.dock-bottom .dock-tab-close-btn:before {
+  position: absolute;
+  left: 3px;
+}
 .dock-top > .dock-content-holder {
   /* work around for the height issue in content holder*/
   height: 0;
@@ -59,6 +63,10 @@
 .dock-bottom .dock-tab {
   border-bottom: 0;
   border-top: 1px solid #ddd;
+}
+.dock-top .dock-tab-close-btn:before {
+  position: absolute;
+  left: 3px;
 }
 .dock-bottom .dock-bar {
   border-bottom: 0;
@@ -106,25 +114,13 @@
   width: 30px;
   height: 16px;
 }
+.dock-left .dock-tab-close-btn:before {
+  position: absolute;
+  left: 10px;
+}
 .dock-left .dock-nav {
   flex-direction: column;
   height: 100%;
-}
-.dock-left .dock-nav .dock-panel-max-btn,
-.dock-left .dock-nav .dock-panel-expand-btn,
-.dock-left .dock-nav .dock-panel-collapse-btn,
-.dock-left .dock-nav .dock-panel-close-btn {
-  padding-left: 9px;
-}
-.dock-left .dock-nav .dock-panel-make-floating-btn {
-  padding-left: 8px;
-}
-.dock-left .dock-nav .dock-panel-restore-floating-btn {
-  padding-left: 6px;
-}
-.dock-left .dock-nav .dock-panel-min-btn {
-  padding-left: 11px;
-  padding-right: 0;
 }
 .dock-left .dock-nav-more {
   align-self: unset;
@@ -189,6 +185,10 @@
   left: 0;
   width: 30px;
   height: 16px;
+}
+.dock-right .dock-tab-close-btn:before {
+  position: absolute;
+  left: 10px;
 }
 .dock-right .dock-nav {
   flex-direction: column;
@@ -897,11 +897,11 @@ body.dock-dragging iframe {
 .dock-panel-close-btn,
 .dock-panel-restore-floating-btn,
 .dock-panel-make-floating-btn {
+  position: relative;
   height: 15px;
   width: 15px;
   font-family: "Fredoka One", sans-serif;
-  margin: 2px 2px 2px 0;
-  padding: 6px 4px 4px 2px;
+  margin: 7px;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
   outline: none;
@@ -975,7 +975,7 @@ body.dock-dragging iframe {
 .dock-panel-close-btn:before {
   content: "X";
   color: #ddd;
-  position: relative;
+  position: absolute;
   top: -3px;
 }
 .dock-panel-close-btn:hover:before, .dock-panel-close-btn:focus:before {

@@ -3,7 +3,6 @@ import { TabPosition } from "rc-tabs/lib/interface";
 import { Filter } from "./Algorithm";
 import { ConnectableElement, DragPreviewOptions, XYCoord } from "react-dnd";
 import { DragSourceMonitor, DropTargetMonitor } from "react-dnd/dist/types/types";
-export declare type DivLike = React.ComponentType<React.HTMLAttributes<HTMLDivElement>> | "div";
 export interface TabGroup {
     /**
      * Whether tab can be dragged into float layer.
@@ -90,15 +89,15 @@ export interface TabGroup {
     /**
      * Override the default `moreIcon`
      */
-    moreIcon?: React.ReactNode;
-    TabCloseButton?: DivLike;
-    CollapseButton?: DivLike;
-    ExpandButton?: DivLike;
-    RestoreFloatingButton?: DivLike;
-    MakeFloatingButton?: DivLike;
-    MaximizeButton?: DivLike;
-    MinimizeButton?: DivLike;
-    PanelCloseButton?: DivLike;
+    moreTabsButton?: React.ReactNode;
+    tabCloseButton?: React.ReactNode;
+    collapseButton?: React.ReactNode;
+    expandButton?: React.ReactNode;
+    restoreFloatingButton?: React.ReactNode;
+    makeFloatingButton?: React.ReactNode;
+    maximizeButton?: React.ReactNode;
+    minimizeButton?: React.ReactNode;
+    panelCloseButton?: React.ReactNode;
 }
 /** @ignore */
 export declare const defaultGroup: TabGroup;
@@ -386,15 +385,15 @@ export interface DockContext {
     getClassName(): string | undefined;
     getLayout(): LayoutData;
     isFloatingTopCheckDisabled(): boolean;
-    TabCloseButton: DivLike;
-    CollapseButton: DivLike;
-    ExpandButton: DivLike;
-    RestoreFloatingButton: DivLike;
-    MakeFloatingButton: DivLike;
-    MaximizeButton: DivLike;
-    MinimizeButton: DivLike;
-    PanelCloseButton: DivLike;
-    MoreTabsButton: React.ReactNode;
+    moreTabsButton: React.ReactNode;
+    tabCloseButton: React.ReactNode;
+    collapseButton: React.ReactNode;
+    expandButton: React.ReactNode;
+    restoreFloatingButton: React.ReactNode;
+    makeFloatingButton: React.ReactNode;
+    maximizeButton: React.ReactNode;
+    minimizeButton: React.ReactNode;
+    panelCloseButton: React.ReactNode;
 }
 /** @ignore */
 export declare const DockContextType: React.Context<DockContext>;

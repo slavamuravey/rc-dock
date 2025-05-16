@@ -186,7 +186,7 @@ export class TabCache {
     render() {
         let { id, title, content, cached, parent, handleTabActiveChange, localGroup, group } = this.data;
         const tabGroup = mergeTabGroups(this.context.getGroup(group), localGroup);
-        const { TabCloseButton = this.context.TabCloseButton } = tabGroup;
+        const { tabCloseButton = this.context.tabCloseButton } = tabGroup;
         let { onDragStart, onDragOver, onDrop, onDragLeave } = this;
         if (parent.parent.mode === 'window') {
             onDragStart = null;
@@ -201,7 +201,7 @@ export class TabCache {
         let tab = (React.createElement(DragDropDiv, { getRef: this.getRef, onDragStartT: onDragStart, role: "tab", "aria-selected": parent.activeId === id, onDragOverT: onDragOver, onDropT: onDrop, onDragLeaveT: onDragLeave, tabData: this.data },
             React.createElement(DockTabTitle, { title: title, onMouseWheelClick: this.handleMouseWheelClick }),
             tabClosable ?
-                React.createElement(TabCloseButton, { className: "dock-tab-close-btn", onClick: this.onCloseClick })
+                React.createElement("div", { className: "dock-tab-close-btn", onClick: this.onCloseClick }, tabCloseButton)
                 : null,
             React.createElement("div", { className: "dock-tab-hit-area", ref: this.getHitAreaRef })));
         return (React.createElement(DockTabPane, { key: id, cacheId: id, cached: cached, tab: tab, onTabActiveChange: handleTabActiveChange },
@@ -346,32 +346,34 @@ export class DockTabs extends React.PureComponent {
             if (panelExtra) {
                 panelExtraContent = panelExtra(panelData, this.context);
             }
-            const { CollapseButton = this.context.CollapseButton, ExpandButton = this.context.ExpandButton, RestoreFloatingButton = this.context.RestoreFloatingButton, MakeFloatingButton = this.context.MakeFloatingButton, MaximizeButton = this.context.MaximizeButton, MinimizeButton = this.context.MinimizeButton, PanelCloseButton = this.context.PanelCloseButton } = group;
+            const { collapseButton = this.context.collapseButton, expandButton = this.context.expandButton, restoreFloatingButton = this.context.restoreFloatingButton, makeFloatingButton = this.context.makeFloatingButton, maximizeButton = this.context.maximizeButton, minimizeButton = this.context.minimizeButton, panelCloseButton = this.context.panelCloseButton } = group;
             if (maximizable || showNewWindowButton) {
                 const handleClick = maximizable ? this.handleMaximizeClick : undefined;
-                panelDefaultContent = panelData.parent.mode === 'maximize' ? React.createElement(MinimizeButton, { className: "dock-panel-min-btn", onClick: handleClick }) : React.createElement(MaximizeButton, { className: "dock-panel-max-btn", onClick: handleClick });
+                panelDefaultContent = panelData.parent.mode === 'maximize' ? (React.createElement("div", { className: "dock-panel-min-btn", onClick: handleClick }, minimizeButton)) : (React.createElement("div", { className: "dock-panel-max-btn", onClick: handleClick }, maximizeButton));
                 if (showNewWindowButton) {
                     panelDefaultContent = this.addNewWindowMenu(panelDefaultContent, !maximizable);
                 }
             }
             const renderCollapseExpandBtn = () => {
                 if (panelData.collapsed) {
-                    return (React.createElement(ExpandButton, { className: 'dock-panel-expand-btn', onClick: this.handleCollapseExpandClick }));
+                    return (React.createElement("div", { className: 'dock-panel-expand-btn', onClick: this.handleCollapseExpandClick }, expandButton));
                 }
                 if (isCollapseDisabled) {
-                    return (React.createElement(CollapseButton, { className: 'dock-panel-collapse-btn dock-panel-collapse-btn-disabled' }));
+                    return (React.createElement("div", { className: 'dock-panel-collapse-btn dock-panel-collapse-btn-disabled' }, collapseButton));
                 }
-                return (React.createElement(CollapseButton, { className: 'dock-panel-collapse-btn', onClick: this.handleCollapseExpandClick }));
+                return (React.createElement("div", { className: 'dock-panel-collapse-btn', onClick: this.handleCollapseExpandClick }, collapseButton));
             };
             const renderToggleFloatingBtn = () => {
-                return panelData.parent.mode === 'float' ? (React.createElement(RestoreFloatingButton, { className: 'dock-panel-restore-floating-btn', onClick: this.handleToggleFloatingClick })) : (React.createElement(MakeFloatingButton, { className: 'dock-panel-make-floating-btn', onClick: this.handleToggleFloatingClick }));
+                return panelData.parent.mode === 'float' ? (React.createElement("div", { className: 'dock-panel-restore-floating-btn', onClick: this.handleToggleFloatingClick }, restoreFloatingButton)) : (React.createElement("div", { className: 'dock-panel-make-floating-btn', onClick: this.handleToggleFloatingClick }, makeFloatingButton));
             };
             panelExtraContent = React.createElement(React.Fragment, null,
                 panelExtraContent,
                 collapsible ? renderCollapseExpandBtn() : null,
                 (!toggleFloatingDisabled && floatable && !panelLock) ? renderToggleFloatingBtn() : null,
                 panelDefaultContent,
-                panelData.tabs.length === 1 && panelData.tabs[0].closable && React.createElement(PanelCloseButton, { className: "dock-panel-close-btn", onClick: this.handlePanelCloseClick }));
+                panelData.tabs.length === 1 &&
+                    panelData.tabs[0].closable &&
+                    React.createElement("div", { className: "dock-panel-close-btn", onClick: this.handlePanelCloseClick }, panelCloseButton));
             return (React.createElement(DockTabBar, Object.assign({ onDragStart: onPanelDragStart, onDragMove: onPanelDragMove, onDragEnd: onPanelDragEnd, TabNavList: TabNavList, isMaximized: panelData.parent.mode === 'maximize' }, props, { extra: panelExtraContent, panelData: panelData })));
         };
         this.onTabChange = (activeId) => {
@@ -456,7 +458,7 @@ export class DockTabs extends React.PureComponent {
         const panelData = this.props.panelData;
         let { group, tabs, activeId, localGroup } = panelData;
         let tabGroup = mergeTabGroups(this.context.getGroup(group), localGroup);
-        let { animated, moreIcon = this.context.MoreTabsButton } = tabGroup;
+        let { animated, moreTabsButton = this.context.moreTabsButton } = tabGroup;
         if (animated == null) {
             animated = true;
         }
@@ -469,7 +471,7 @@ export class DockTabs extends React.PureComponent {
             children.push(tab.content);
         }
         const tabPosition = getPanelTabPosition(panelData);
-        return (React.createElement(Tabs, { prefixCls: classNames(this.context.getClassName(), "dock"), moreIcon: moreIcon, animated: animated, renderTabBar: this.renderTabBar, activeKey: activeId, tabPosition: tabPosition, onChange: this.onTabChange }, children));
+        return (React.createElement(Tabs, { prefixCls: classNames(this.context.getClassName(), "dock"), moreIcon: moreTabsButton, animated: animated, renderTabBar: this.renderTabBar, activeKey: activeId, tabPosition: tabPosition, onChange: this.onTabChange }, children));
     }
 }
 DockTabs.contextType = DockContextType;

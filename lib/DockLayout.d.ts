@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BoxData, DivLike, DndSpec, DockContext, DockMoveAdditionalData, DropDirection, LayoutBase, LayoutData, LayoutSize, PanelBase, PanelData, Size, TabBase, TabData, TabGroup, TabPaneCache } from "./DockData";
+import { BoxData, DndSpec, DockContext, DockMoveAdditionalData, DropDirection, LayoutBase, LayoutData, LayoutSize, PanelBase, PanelData, Size, TabBase, TabData, TabGroup, TabPaneCache } from "./DockData";
 import * as Algorithm from "./Algorithm";
 export interface LayoutProps {
     /**
@@ -68,15 +68,15 @@ export interface LayoutProps {
      */
     externalData?: any;
     defaultDndSpec?: DndSpec;
-    TabCloseButton?: DivLike;
-    CollapseButton?: DivLike;
-    ExpandButton?: DivLike;
-    RestoreFloatingButton?: DivLike;
-    MakeFloatingButton?: DivLike;
-    MaximizeButton?: DivLike;
-    MinimizeButton?: DivLike;
-    PanelCloseButton?: DivLike;
-    MoreTabsButton?: React.ReactNode;
+    tabCloseButton?: React.ReactNode;
+    collapseButton?: React.ReactNode;
+    expandButton?: React.ReactNode;
+    restoreFloatingButton?: React.ReactNode;
+    makeFloatingButton?: React.ReactNode;
+    maximizeButton?: React.ReactNode;
+    minimizeButton?: React.ReactNode;
+    panelCloseButton?: React.ReactNode;
+    moreTabsButton?: React.ReactNode;
     getMaxFloatPanelSize?(): Size;
     floatingTopCheckDisabled?: boolean;
     className?: string;
@@ -192,14 +192,14 @@ export declare class DockLayout extends DockPortalManager implements DockContext
     getExternalData(): any;
     getDefaultDndSpec(): DndSpec | undefined;
     getClassName(): string | undefined;
-    get TabCloseButton(): DivLike;
-    get CollapseButton(): DivLike;
-    get ExpandButton(): DivLike;
-    get RestoreFloatingButton(): DivLike;
-    get MakeFloatingButton(): DivLike;
-    get MaximizeButton(): DivLike;
-    get MinimizeButton(): DivLike;
-    get PanelCloseButton(): DivLike;
-    get MoreTabsButton(): React.ReactNode;
+    get tabCloseButton(): React.ReactNode;
+    get collapseButton(): React.ReactNode;
+    get expandButton(): React.ReactNode;
+    get restoreFloatingButton(): React.ReactNode;
+    get makeFloatingButton(): React.ReactNode;
+    get maximizeButton(): React.ReactNode;
+    get minimizeButton(): React.ReactNode;
+    get panelCloseButton(): React.ReactNode;
+    get moreTabsButton(): React.ReactNode;
 }
 export {};

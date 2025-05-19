@@ -1,6 +1,6 @@
 import { TabGroup } from "./DockData";
 
-export function mergeTabGroups(group?: TabGroup, localGroup?: TabGroup): TabGroup | undefined {
+export function mergeTabGroups(group: TabGroup, localGroup?: TabGroup): TabGroup {
   return (group || localGroup) && {...group, ...localGroup};
 }
 

@@ -68,13 +68,15 @@ export interface LayoutProps {
      */
     externalData?: any;
     defaultDndSpec?: DndSpec;
-    TabCloseBtn?: DivLike;
-    CollapseBtn?: DivLike;
-    ExpandBtn?: DivLike;
-    ToggleFloatingBtn?: DivLike;
-    MaximizeBtn?: DivLike;
-    MinimizeBtn?: DivLike;
-    PanelCloseBtn?: DivLike;
+    TabCloseButton?: DivLike;
+    CollapseButton?: DivLike;
+    ExpandButton?: DivLike;
+    RestoreFloatingButton?: DivLike;
+    MakeFloatingButton?: DivLike;
+    MaximizeButton?: DivLike;
+    MinimizeButton?: DivLike;
+    PanelCloseButton?: DivLike;
+    MoreTabsButton?: React.ReactNode;
     className?: string;
 }
 interface LayoutState {
@@ -186,12 +188,14 @@ export declare class DockLayout extends DockPortalManager implements DockContext
     getExternalData(): any;
     getDefaultDndSpec(): DndSpec | undefined;
     getClassName(): string | undefined;
-    get TabCloseBtn(): DivLike;
-    get CollapseBtn(): DivLike;
-    get ExpandBtn(): DivLike;
-    get ToggleFloatingBtn(): DivLike;
-    get MaximizeBtn(): DivLike;
-    get MinimizeBtn(): DivLike;
-    get PanelCloseBtn(): DivLike;
+    get TabCloseButton(): DivLike;
+    get CollapseButton(): DivLike;
+    get ExpandButton(): DivLike;
+    get RestoreFloatingButton(): DivLike;
+    get MakeFloatingButton(): DivLike;
+    get MaximizeButton(): DivLike;
+    get MinimizeButton(): DivLike;
+    get PanelCloseButton(): DivLike;
+    get MoreTabsButton(): React.ReactNode;
 }
 export {};

@@ -91,6 +91,14 @@ export interface TabGroup {
      * Override the default `moreIcon`
      */
     moreIcon?: React.ReactNode;
+    TabCloseButton?: DivLike;
+    CollapseButton?: DivLike;
+    ExpandButton?: DivLike;
+    RestoreFloatingButton?: DivLike;
+    MakeFloatingButton?: DivLike;
+    MaximizeButton?: DivLike;
+    MinimizeButton?: DivLike;
+    PanelCloseButton?: DivLike;
 }
 /** @ignore */
 export declare const defaultGroup: TabGroup;
@@ -162,12 +170,6 @@ export interface PanelBase {
      * Defines if toggle floating available for a panel
      */
     toggleFloatingDisabled?: boolean;
-    CollapseBtn?: DivLike;
-    ExpandBtn?: DivLike;
-    ToggleFloatingBtn?: DivLike;
-    MaximizeBtn?: DivLike;
-    MinimizeBtn?: DivLike;
-    PanelCloseBtn?: DivLike;
 }
 export interface BoxBase {
     /**
@@ -236,7 +238,6 @@ export interface TabData extends TabBase, DockDataBase {
     cacheContext?: React.Context<any>;
     tabPosition?: TabPosition;
     handleTabActiveChange?: (active: boolean) => void;
-    TabCloseBtn?: DivLike;
 }
 interface PanelLock {
     /** override the default style */
@@ -380,13 +381,15 @@ export interface DockContext {
     getDefaultDndSpec(): DndSpec | undefined;
     getClassName(): string | undefined;
     getLayout(): LayoutData;
-    TabCloseBtn: DivLike;
-    CollapseBtn: DivLike;
-    ExpandBtn: DivLike;
-    ToggleFloatingBtn: DivLike;
-    MaximizeBtn: DivLike;
-    MinimizeBtn: DivLike;
-    PanelCloseBtn: DivLike;
+    TabCloseButton: DivLike;
+    CollapseButton: DivLike;
+    ExpandButton: DivLike;
+    RestoreFloatingButton: DivLike;
+    MakeFloatingButton: DivLike;
+    MaximizeButton: DivLike;
+    MinimizeButton: DivLike;
+    PanelCloseButton: DivLike;
+    MoreTabsButton: React.ReactNode;
 }
 /** @ignore */
 export declare const DockContextType: React.Context<DockContext>;

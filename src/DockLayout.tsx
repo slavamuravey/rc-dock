@@ -114,13 +114,15 @@ export interface LayoutProps {
 
   defaultDndSpec?: DndSpec;
 
-  TabCloseBtn?: DivLike;
-  CollapseBtn?: DivLike;
-  ExpandBtn?: DivLike;
-  ToggleFloatingBtn?: DivLike;
-  MaximizeBtn?: DivLike;
-  MinimizeBtn?: DivLike;
-  PanelCloseBtn?: DivLike;
+  TabCloseButton?: DivLike;
+  CollapseButton?: DivLike;
+  ExpandButton?: DivLike;
+  RestoreFloatingButton?: DivLike;
+  MakeFloatingButton?: DivLike;
+  MaximizeButton?: DivLike;
+  MinimizeButton?: DivLike;
+  PanelCloseButton?: DivLike;
+  MoreTabsButton?: React.ReactNode;
 
   className?: string;
 }
@@ -743,31 +745,39 @@ export class DockLayout extends DockPortalManager implements DockContext {
     return this.props.className;
   }
 
-  get TabCloseBtn(): DivLike {
-    return this.props.TabCloseBtn || "div";
+  get TabCloseButton(): DivLike {
+    return this.props.TabCloseButton || "div";
   }
 
-  get CollapseBtn(): DivLike {
-    return this.props.CollapseBtn || "div";
+  get CollapseButton(): DivLike {
+    return this.props.CollapseButton || "div";
   }
 
-  get ExpandBtn(): DivLike {
-    return this.props.ExpandBtn || "div";
+  get ExpandButton(): DivLike {
+    return this.props.ExpandButton || "div";
   }
 
-  get ToggleFloatingBtn(): DivLike {
-    return this.props.ToggleFloatingBtn || "div";
+  get RestoreFloatingButton(): DivLike {
+    return this.props.RestoreFloatingButton || "div";
   }
 
-  get MaximizeBtn(): DivLike {
-    return this.props.MaximizeBtn || "div";
+  get MakeFloatingButton(): DivLike {
+    return this.props.MakeFloatingButton || "div";
   }
 
-  get MinimizeBtn(): DivLike {
-    return this.props.MinimizeBtn || "div";
+  get MaximizeButton(): DivLike {
+    return this.props.MaximizeButton || "div";
   }
 
-  get PanelCloseBtn(): DivLike {
-    return this.props.PanelCloseBtn || "div";
+  get MinimizeButton(): DivLike {
+    return this.props.MinimizeButton || "div";
+  }
+
+  get PanelCloseButton(): DivLike {
+    return this.props.PanelCloseButton || "div";
+  }
+
+  get MoreTabsButton(): React.ReactNode {
+    return this.props.MoreTabsButton || "...";
   }
 }

@@ -4,7 +4,6 @@ import debounce from 'lodash/debounce';
 import {
   BoxData,
   defaultGroup,
-  DivLike,
   DndSpec,
   DockContext,
   DockContextProvider,
@@ -114,15 +113,15 @@ export interface LayoutProps {
 
   defaultDndSpec?: DndSpec;
 
-  TabCloseButton?: DivLike;
-  CollapseButton?: DivLike;
-  ExpandButton?: DivLike;
-  RestoreFloatingButton?: DivLike;
-  MakeFloatingButton?: DivLike;
-  MaximizeButton?: DivLike;
-  MinimizeButton?: DivLike;
-  PanelCloseButton?: DivLike;
-  MoreTabsButton?: React.ReactNode;
+  tabCloseButton?: React.ReactNode;
+  collapseButton?: React.ReactNode;
+  expandButton?: React.ReactNode;
+  restoreFloatingButton?: React.ReactNode;
+  makeFloatingButton?: React.ReactNode;
+  maximizeButton?: React.ReactNode;
+  minimizeButton?: React.ReactNode;
+  panelCloseButton?: React.ReactNode;
+  moreTabsButton?: React.ReactNode;
 
   className?: string;
 }
@@ -745,39 +744,39 @@ export class DockLayout extends DockPortalManager implements DockContext {
     return this.props.className;
   }
 
-  get TabCloseButton(): DivLike {
-    return this.props.TabCloseButton || "div";
+  get tabCloseButton(): React.ReactNode {
+    return this.props.tabCloseButton;
   }
 
-  get CollapseButton(): DivLike {
-    return this.props.CollapseButton || "div";
+  get collapseButton(): React.ReactNode {
+    return this.props.collapseButton;
   }
 
-  get ExpandButton(): DivLike {
-    return this.props.ExpandButton || "div";
+  get expandButton(): React.ReactNode {
+    return this.props.expandButton;
   }
 
-  get RestoreFloatingButton(): DivLike {
-    return this.props.RestoreFloatingButton || "div";
+  get restoreFloatingButton(): React.ReactNode {
+    return this.props.restoreFloatingButton;
   }
 
-  get MakeFloatingButton(): DivLike {
-    return this.props.MakeFloatingButton || "div";
+  get makeFloatingButton(): React.ReactNode {
+    return this.props.makeFloatingButton;
   }
 
-  get MaximizeButton(): DivLike {
-    return this.props.MaximizeButton || "div";
+  get maximizeButton(): React.ReactNode {
+    return this.props.maximizeButton;
   }
 
-  get MinimizeButton(): DivLike {
-    return this.props.MinimizeButton || "div";
+  get minimizeButton(): React.ReactNode {
+    return this.props.minimizeButton;
   }
 
-  get PanelCloseButton(): DivLike {
-    return this.props.PanelCloseButton || "div";
+  get panelCloseButton(): React.ReactNode {
+    return this.props.panelCloseButton;
   }
 
-  get MoreTabsButton(): React.ReactNode {
-    return this.props.MoreTabsButton || "...";
+  get moreTabsButton(): React.ReactNode {
+    return this.props.moreTabsButton || "...";
   }
 }

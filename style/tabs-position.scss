@@ -27,6 +27,17 @@ $tabs-prefix-cls: dock;
     left: 0;
   }
 
+  &-bottom {
+    .#{$tabs-prefix-cls}-tab {
+      &-close-btn {
+        &:before {
+          position: absolute;
+          left: 3px;
+        }
+      }
+    }
+  }
+
   &-top > &-content-holder {
     /* work around for the height issue in content holder*/
     height: 0;
@@ -77,6 +88,17 @@ $tabs-prefix-cls: dock;
   &-bottom &-tab {
     border-bottom: 0;
     border-top: 1px solid $panel-border-color;
+  }
+
+  &-top {
+    .#{$tabs-prefix-cls}-tab {
+      &-close-btn {
+        &:before {
+          position: absolute;
+          left: 3px;
+        }
+      }
+    }
   }
 
   &-bottom &-bar {
@@ -136,35 +158,16 @@ $tabs-prefix-cls: dock;
         left: 0;
         width: 30px;
         height: 16px;
+        &:before {
+          position: absolute;
+          left: 10px;
+        }
       }
     }
 
     .#{$tabs-prefix-cls}-nav {
       flex-direction: column;
       height: 100%;
-
-      .dock-panel-max-btn,
-      .dock-panel-expand-btn,
-      .dock-panel-collapse-btn,
-      .dock-panel-close-btn
-      {
-        padding-left: 9px;
-      }
-
-      .dock-panel-make-floating-btn
-      {
-        padding-left: 8px;
-      }
-
-      .dock-panel-restore-floating-btn
-      {
-        padding-left: 6px;
-      }
-
-      .dock-panel-min-btn {
-        padding-left: 11px;
-        padding-right: 0;
-      }
 
       &-more {
         align-self: unset;
@@ -247,6 +250,10 @@ $tabs-prefix-cls: dock;
         left: 0;
         width: 30px;
         height: 16px;
+        &:before {
+          position: absolute;
+          left: 10px;
+        }
       }
     }
 

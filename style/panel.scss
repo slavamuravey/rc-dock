@@ -383,11 +383,11 @@ body.dock-dragging {
 .dock-panel-restore-floating-btn,
 .dock-panel-make-floating-btn
 {
+  position: relative;
   height: 15px;
   width: 15px;
   font-family: 'Fredoka One', sans-serif;
-  margin: 2px 2px 2px 0;
-  padding: 6px 4px 4px 2px;
+  margin: 7px;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
   outline: none;
@@ -460,7 +460,7 @@ body.dock-dragging {
   &:before {
     content: "X";
     color: $button-text-color;
-    position: relative;
+    position: absolute;
     top: -3px;
   }
 

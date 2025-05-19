@@ -4,6 +4,7 @@ import debounce from 'lodash/debounce';
 import {
   BoxData,
   defaultGroup,
+  DivLike,
   DndSpec,
   DockContext,
   DockContextProvider,
@@ -112,6 +113,14 @@ export interface LayoutProps {
   externalData?: any;
 
   defaultDndSpec?: DndSpec;
+
+  TabCloseBtn?: DivLike;
+  CollapseBtn?: DivLike;
+  ExpandBtn?: DivLike;
+  ToggleFloatingBtn?: DivLike;
+  MaximizeBtn?: DivLike;
+  MinimizeBtn?: DivLike;
+  PanelCloseBtn?: DivLike;
 
   className?: string;
 }
@@ -732,5 +741,33 @@ export class DockLayout extends DockPortalManager implements DockContext {
 
   getClassName(): string | undefined {
     return this.props.className;
+  }
+
+  get TabCloseBtn(): DivLike {
+    return this.props.TabCloseBtn || "div";
+  }
+
+  get CollapseBtn(): DivLike {
+    return this.props.CollapseBtn || "div";
+  }
+
+  get ExpandBtn(): DivLike {
+    return this.props.ExpandBtn || "div";
+  }
+
+  get ToggleFloatingBtn(): DivLike {
+    return this.props.ToggleFloatingBtn || "div";
+  }
+
+  get MaximizeBtn(): DivLike {
+    return this.props.MaximizeBtn || "div";
+  }
+
+  get MinimizeBtn(): DivLike {
+    return this.props.MinimizeBtn || "div";
+  }
+
+  get PanelCloseBtn(): DivLike {
+    return this.props.PanelCloseBtn || "div";
   }
 }

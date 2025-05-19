@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BoxData, DndSpec, DockContext, DockMoveAdditionalData, DropDirection, LayoutBase, LayoutData, LayoutSize, PanelBase, PanelData, TabBase, TabData, TabGroup, TabPaneCache } from "./DockData";
+import { BoxData, DivLike, DndSpec, DockContext, DockMoveAdditionalData, DropDirection, LayoutBase, LayoutData, LayoutSize, PanelBase, PanelData, TabBase, TabData, TabGroup, TabPaneCache } from "./DockData";
 import * as Algorithm from "./Algorithm";
 export interface LayoutProps {
     /**
@@ -68,6 +68,13 @@ export interface LayoutProps {
      */
     externalData?: any;
     defaultDndSpec?: DndSpec;
+    TabCloseBtn?: DivLike;
+    CollapseBtn?: DivLike;
+    ExpandBtn?: DivLike;
+    ToggleFloatingBtn?: DivLike;
+    MaximizeBtn?: DivLike;
+    MinimizeBtn?: DivLike;
+    PanelCloseBtn?: DivLike;
     className?: string;
 }
 interface LayoutState {
@@ -179,5 +186,12 @@ export declare class DockLayout extends DockPortalManager implements DockContext
     getExternalData(): any;
     getDefaultDndSpec(): DndSpec | undefined;
     getClassName(): string | undefined;
+    get TabCloseBtn(): DivLike;
+    get CollapseBtn(): DivLike;
+    get ExpandBtn(): DivLike;
+    get ToggleFloatingBtn(): DivLike;
+    get MaximizeBtn(): DivLike;
+    get MinimizeBtn(): DivLike;
+    get PanelCloseBtn(): DivLike;
 }
 export {};

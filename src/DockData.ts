@@ -8,6 +8,8 @@ import {
 } from "react-dnd";
 import { DragSourceMonitor, DropTargetMonitor } from "react-dnd/dist/types/types";
 
+export type DivLike = React.ComponentType<React.HTMLAttributes<HTMLDivElement>> | "div";
+
 export interface TabGroup {
   /**
    * Whether tab can be dragged into float layer.
@@ -198,6 +200,13 @@ export interface PanelBase {
    * Defines if toggle floating available for a panel
    */
   toggleFloatingDisabled?: boolean;
+
+  CollapseBtn?: DivLike;
+  ExpandBtn?: DivLike;
+  ToggleFloatingBtn?: DivLike;
+  MaximizeBtn?: DivLike;
+  MinimizeBtn?: DivLike;
+  PanelCloseBtn?: DivLike;
 }
 
 export interface BoxBase {
@@ -280,6 +289,8 @@ export interface TabData extends TabBase, DockDataBase {
   tabPosition?: TabPosition;
 
   handleTabActiveChange?: (active: boolean) => void;
+
+  TabCloseBtn?: DivLike;
 }
 
 interface PanelLock {
@@ -480,6 +491,14 @@ export interface DockContext {
   getClassName(): string | undefined;
 
   getLayout(): LayoutData;
+
+  TabCloseBtn: DivLike;
+  CollapseBtn: DivLike;
+  ExpandBtn: DivLike;
+  ToggleFloatingBtn: DivLike;
+  MaximizeBtn: DivLike;
+  MinimizeBtn: DivLike;
+  PanelCloseBtn: DivLike;
 }
 
 /** @ignore */

@@ -113,6 +113,8 @@ export interface TabGroup {
   maximizeButton?: React.ReactNode;
   minimizeButton?: React.ReactNode;
   panelCloseButton?: React.ReactNode;
+
+  extraBar?: React.ReactNode;
 }
 
 /** @ignore */

@@ -19,7 +19,7 @@
   bottom: 0;
   left: 0;
 }
-.dock-bottom .dock-tab-close-btn:before {
+.dock-top .dock-tab-close-btn:before {
   position: absolute;
   left: 3px;
 }
@@ -64,7 +64,7 @@
   border-bottom: 0;
   border-top: 1px solid #434343;
 }
-.dock-top .dock-tab-close-btn:before {
+.dock-bottom .dock-tab-close-btn:before {
   position: absolute;
   left: 3px;
 }
@@ -144,6 +144,7 @@
 .dock-left .dock-extra-content {
   height: unset;
   flex-direction: column;
+  width: 30px;
 }
 .dock-right .dock-nav-wrap {
   flex-direction: column;
@@ -194,12 +195,6 @@
   flex-direction: column;
   height: 100%;
 }
-.dock-right .dock-nav .dock-panel-max-btn,
-.dock-right .dock-nav .dock-panel-expand-btn,
-.dock-right .dock-nav .dock-panel-collapse-btn,
-.dock-right .dock-nav .dock-panel-close-btn {
-  padding-left: 9px;
-}
 .dock-right .dock-nav .dock-panel-make-floating-btn {
   padding-left: 8px;
 }
@@ -232,6 +227,7 @@
 .dock-right .dock-extra-content {
   height: unset;
   flex-direction: column;
+  width: 30px;
 }
 .dock-right .dock-bar {
   order: 1;

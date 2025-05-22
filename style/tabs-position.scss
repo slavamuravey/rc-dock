@@ -27,7 +27,7 @@ $tabs-prefix-cls: dock;
     left: 0;
   }
 
-  &-bottom {
+  &-top {
     .#{$tabs-prefix-cls}-tab {
       &-close-btn {
         &:before {
@@ -90,7 +90,7 @@ $tabs-prefix-cls: dock;
     border-top: 1px solid $panel-border-color;
   }
 
-  &-top {
+  &-bottom {
     .#{$tabs-prefix-cls}-tab {
       &-close-btn {
         &:before {
@@ -197,6 +197,7 @@ $tabs-prefix-cls: dock;
     .#{$tabs-prefix-cls}-extra-content {
       height: unset;
       flex-direction: column;
+      width: 30px;
     }
   }
 
@@ -261,14 +262,6 @@ $tabs-prefix-cls: dock;
       flex-direction: column;
       height: 100%;
 
-      .dock-panel-max-btn,
-      .dock-panel-expand-btn,
-      .dock-panel-collapse-btn,
-      .dock-panel-close-btn
-      {
-        padding-left: 9px;
-      }
-
       .dock-panel-make-floating-btn
       {
         padding-left: 8px;
@@ -312,6 +305,7 @@ $tabs-prefix-cls: dock;
     .#{$tabs-prefix-cls}-extra-content {
       height: unset;
       flex-direction: column;
+      width: 30px;
     }
   }
 

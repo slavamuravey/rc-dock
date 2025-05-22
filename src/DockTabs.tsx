@@ -454,7 +454,7 @@ export class DockTabs extends React.PureComponent<Props> {
     let group = mergeTabGroups(this.context.getGroup(groupName), localGroup);
     let {panelExtra} = group;
 
-    let { maximizable, collapsible, floatable } = group;
+    let { maximizable, collapsible, floatable, extraBar } = group;
     if (panelData.parent.mode === 'window') {
       onPanelDragStart = null;
       maximizable = false;
@@ -554,10 +554,15 @@ export class DockTabs extends React.PureComponent<Props> {
       }
     </>;
 
+    console.log(panelData);
+
     return (
-      <DockTabBar onDragStart={onPanelDragStart} onDragMove={onPanelDragMove} onDragEnd={onPanelDragEnd}
-                  TabNavList={TabNavList} isMaximized={panelData.parent.mode === 'maximize'} {...props}
-                  extra={panelExtraContent} panelData={panelData} />
+      <>
+        {extraBar}
+        <DockTabBar onDragStart={onPanelDragStart} onDragMove={onPanelDragMove} onDragEnd={onPanelDragEnd}
+                    TabNavList={TabNavList} isMaximized={panelData.parent.mode === 'maximize'} {...props}
+                    extra={panelExtraContent} panelData={panelData} />
+      </>
     );
   };
 

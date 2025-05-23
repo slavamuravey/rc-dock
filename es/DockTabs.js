@@ -374,7 +374,6 @@ export class DockTabs extends React.PureComponent {
                 panelData.tabs.length === 1 &&
                     panelData.tabs[0].closable &&
                     React.createElement("div", { className: "dock-panel-close-btn", onClick: this.handlePanelCloseClick }, panelCloseButton));
-            console.log(panelData);
             return (React.createElement(React.Fragment, null,
                 extraBar,
                 React.createElement(DockTabBar, Object.assign({ onDragStart: onPanelDragStart, onDragMove: onPanelDragMove, onDragEnd: onPanelDragEnd, TabNavList: TabNavList, isMaximized: panelData.parent.mode === 'maximize' }, props, { extra: panelExtraContent, panelData: panelData }))));

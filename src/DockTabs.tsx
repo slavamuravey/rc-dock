@@ -554,8 +554,6 @@ export class DockTabs extends React.PureComponent<Props> {
       }
     </>;
 
-    console.log(panelData);
-
     return (
       <>
         {extraBar}

@@ -1,5 +1,5 @@
 import React from "react";
-import { DockContextType, DockTabIdContext } from "./DockData";
+import { DockContextType, DockTabIdContext, maximePlaceHolderId } from "./DockData";
 import Tabs from 'rc-tabs';
 import Menu, { MenuItem } from 'rc-menu';
 import Dropdown from 'rc-dropdown';
@@ -375,7 +375,7 @@ export class DockTabs extends React.PureComponent {
                     panelData.tabs[0].closable &&
                     React.createElement("div", { className: "dock-panel-close-btn", onClick: this.handlePanelCloseClick }, panelCloseButton));
             return (React.createElement(React.Fragment, null,
-                extraBar,
+                panelData.id !== maximePlaceHolderId ? extraBar : null,
                 React.createElement(DockTabBar, Object.assign({ onDragStart: onPanelDragStart, onDragMove: onPanelDragMove, onDragEnd: onPanelDragEnd, TabNavList: TabNavList, isMaximized: panelData.parent.mode === 'maximize' }, props, { extra: panelExtraContent, panelData: panelData }))));
         };
         this.onTabChange = (activeId) => {

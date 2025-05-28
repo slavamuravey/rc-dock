@@ -8,7 +8,7 @@ import {
   TabData,
   TabGroup,
   DockTabIdContext,
-  Size
+  Size, maximePlaceHolderId
 } from "./DockData";
 import Tabs from 'rc-tabs';
 import Menu, {MenuItem} from 'rc-menu';
@@ -556,7 +556,7 @@ export class DockTabs extends React.PureComponent<Props> {
 
     return (
       <>
-        {extraBar}
+        {panelData.id !== maximePlaceHolderId ? extraBar : null}
         <DockTabBar onDragStart={onPanelDragStart} onDragMove={onPanelDragMove} onDragEnd={onPanelDragEnd}
                     TabNavList={TabNavList} isMaximized={panelData.parent.mode === 'maximize'} {...props}
                     extra={panelExtraContent} panelData={panelData} />

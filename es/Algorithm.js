@@ -309,12 +309,13 @@ export function dockPanelToBox(layout, newPanel, box, direction) {
     return layout;
 }
 export function floatPanel(layout, newPanel, rect) {
+    var _a, _b, _c, _d;
     let newBox = clone(layout.floatbox);
     if (rect) {
-        newPanel.x = rect.left;
-        newPanel.y = rect.top;
-        newPanel.w = rect.width;
-        newPanel.h = rect.height;
+        newPanel.x = (_a = rect.left) !== null && _a !== void 0 ? _a : 0;
+        newPanel.y = (_b = rect.top) !== null && _b !== void 0 ? _b : 0;
+        newPanel.w = (_c = rect.width) !== null && _c !== void 0 ? _c : 0;
+        newPanel.h = (_d = rect.height) !== null && _d !== void 0 ? _d : 0;
     }
     newBox.children.push(newPanel);
     return replaceBox(layout, layout.floatbox, newBox);

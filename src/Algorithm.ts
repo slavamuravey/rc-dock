@@ -345,10 +345,10 @@ export function floatPanel(
 ): LayoutData {
   let newBox = clone(layout.floatbox);
   if (rect) {
-    newPanel.x = rect.left;
-    newPanel.y = rect.top;
-    newPanel.w = rect.width;
-    newPanel.h = rect.height;
+    newPanel.x = rect.left ?? 0;
+    newPanel.y = rect.top ?? 0;
+    newPanel.w = rect.width ?? 0;
+    newPanel.h = rect.height ?? 0;
   }
 
   newBox.children.push(newPanel);

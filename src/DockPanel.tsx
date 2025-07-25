@@ -95,7 +95,7 @@ export class DockPanel extends React.PureComponent<Props, State> {
   // drop to move in float mode
   onPanelHeaderDragStart = (event: DragState) => {
     let {panelData} = this.props;
-    let {parent, x, y, z} = panelData;
+    let {parent, x = 0, y = 0, z} = panelData;
     let dockId = this.context.getDockId();
     if (parent?.mode === 'float') {
       this._movingX = x;

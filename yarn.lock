@@ -2512,10 +2512,10 @@ data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-deasync@0.1.29:
-  version "0.1.29"
-  resolved "https://registry.yarnpkg.com/deasync/-/deasync-0.1.29.tgz#8bbbf9d0b235c561b36edd440b6272f1de6c572c"
-  integrity sha512-EBtfUhVX23CE9GR6m+F8WPeImEE4hR/FW9RkK0PMl9V1t283s0elqsTD8EZjaKX28SY1BW2rYfCgNsAYdpamUw==
+deasync@0.1.31:
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/deasync/-/deasync-0.1.31.tgz#39f0a2bcdc821d7658945d65322c77ce57cabc1f"
+  integrity sha512-/6/cXqkw4LPqBVK6H0Y3L4zT7yI3pxykxPXErQ2tDCw0LJyThWL5VpBCpUOWX0vPq2OnF1pzcXvlNnvCiOQJuA==
   dependencies:
     bindings "^1.5.0"
     node-addon-api "^1.7.1"

@@ -388,7 +388,7 @@ export class DockPanel extends React.PureComponent {
         const { panelData } = this.props;
         const ref = this._ref;
         this.context.updatePanelData(panelData.id, Object.assign(Object.assign({}, panelData), { get headerSize() {
-                const tabPosition = getPanelTabPosition(this);
+                const tabPosition = getPanelTabPosition(panelData);
                 if (!tabPosition) {
                     return 0;
                 }

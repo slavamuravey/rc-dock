@@ -504,7 +504,7 @@ export class DockPanel extends React.PureComponent<Props, State> {
     this.context.updatePanelData(panelData.id!, {
       ...panelData,
       get headerSize() {
-        const tabPosition = getPanelTabPosition(this);
+        const tabPosition = getPanelTabPosition(panelData);
         if (!tabPosition) {
           return 0;
         }

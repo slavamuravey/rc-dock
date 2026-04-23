@@ -1,7 +1,6 @@
 import * as React from "react";
 import { DockContext, PanelData } from "./DockData";
 import { DragState } from "./dragdrop/DragManager";
-import { TabPosition } from "rc-tabs/lib/interface";
 interface Props {
     panelData: PanelData;
     size: number;
@@ -49,7 +48,6 @@ export declare class DockPanel extends React.PureComponent<Props, State> {
     componentDidMount(): void;
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void;
     updatePanelData(): void;
-    getHeaderSize(tabPosition?: TabPosition): number;
     componentWillUnmount(): void;
 }
 export {};

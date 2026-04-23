@@ -386,20 +386,20 @@ export class DockPanel extends React.PureComponent {
     updatePanelData() {
         var _a;
         const { panelData } = this.props;
-        const tabPosition = getPanelTabPosition(panelData);
-        this.context.updatePanelData(panelData.id, Object.assign(Object.assign({}, panelData), { headerSize: this.getHeaderSize(tabPosition) }), 'configure-panel');
+        const ref = this._ref;
+        this.context.updatePanelData(panelData.id, Object.assign(Object.assign({}, panelData), { get headerSize() {
+                const tabPosition = getPanelTabPosition(this);
+                if (!tabPosition) {
+                    return 0;
+                }
+                const dockBarRect = ref.querySelector('.dock-bar').getBoundingClientRect();
+                return (tabPosition === "top" || tabPosition === "bottom") ? dockBarRect.height : dockBarRect.width;
+            } }), 'configure-panel');
         if (((_a = panelData.parent) === null || _a === void 0 ? void 0 : _a.mode) === "float") {
             const firstTab = panelData.tabs[0];
             firstTab.collapsed = false;
             this.context.updateTab(firstTab.id, firstTab, false, 'configure-tab');
         }
-    }
-    getHeaderSize(tabPosition) {
-        if (!tabPosition) {
-            return 0;
-        }
-        const dockBarRect = this._ref.querySelector('.dock-bar').getBoundingClientRect();
-        return (tabPosition === "top" || tabPosition === "bottom") ? dockBarRect.height : dockBarRect.width;
     }
     componentWillUnmount() {
         if (DockPanel._droppingPanel === this) {

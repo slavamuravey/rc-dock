@@ -501,10 +501,12 @@ export class DockPanel extends React.PureComponent<Props, State> {
   updatePanelData() {
     const {panelData} = this.props;
     const ref = this._ref;
-    this.context.updatePanelData(panelData.id!, {
-      ...panelData,
-      get headerSize() {
-        const tabPosition = getPanelTabPosition(panelData);
+    const newPanelData = {
+      ...panelData
+    };
+    Object.defineProperty(newPanelData, "headerSize", {
+      get() {
+        const tabPosition = getPanelTabPosition(this);
         if (!tabPosition) {
           return 0;
         }
@@ -513,7 +515,8 @@ export class DockPanel extends React.PureComponent<Props, State> {
 
         return (tabPosition === "top" || tabPosition === "bottom") ? dockBarRect.height : dockBarRect.width;
       }
-    }, 'configure-panel');
+    });
+    this.context.updatePanelData(panelData.id!, newPanelData, 'configure-panel');
 
     if (panelData.parent?.mode === "float") {
       const firstTab = panelData.tabs[0];

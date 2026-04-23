@@ -387,14 +387,18 @@ export class DockPanel extends React.PureComponent {
         var _a;
         const { panelData } = this.props;
         const ref = this._ref;
-        this.context.updatePanelData(panelData.id, Object.assign(Object.assign({}, panelData), { get headerSize() {
-                const tabPosition = getPanelTabPosition(panelData);
+        const newPanelData = Object.assign({}, panelData);
+        Object.defineProperty(newPanelData, "headerSize", {
+            get() {
+                const tabPosition = getPanelTabPosition(this);
                 if (!tabPosition) {
                     return 0;
                 }
                 const dockBarRect = ref.querySelector('.dock-bar').getBoundingClientRect();
                 return (tabPosition === "top" || tabPosition === "bottom") ? dockBarRect.height : dockBarRect.width;
-            } }), 'configure-panel');
+            }
+        });
+        this.context.updatePanelData(panelData.id, newPanelData, 'configure-panel');
         if (((_a = panelData.parent) === null || _a === void 0 ? void 0 : _a.mode) === "float") {
             const firstTab = panelData.tabs[0];
             firstTab.collapsed = false;

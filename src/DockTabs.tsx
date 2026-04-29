@@ -122,6 +122,11 @@ export class TabCache {
     e.stopPropagation();
   };
 
+  onClosePointerDown = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   onDragStart = (e: DragManager.DragState) => {
     let panel = this.data.parent;
     if (panel.parent.mode === 'float' && panel.tabs.length === 1) {
@@ -242,7 +247,14 @@ export class TabCache {
                    onDragOverT={onDragOver} onDropT={onDrop} onDragLeaveT={onDragLeave} tabData={this.data}>
         <DockTabTitle title={title} onMouseWheelClick={this.handleMouseWheelClick} />
         {tabClosable ?
-          <div className="dock-tab-close-btn" onClick={this.onCloseClick}>{tabCloseButton}</div>
+          <div
+            className="dock-tab-close-btn"
+            onClick={this.onCloseClick}
+            onMouseDown={this.onClosePointerDown}
+            onTouchStart={this.onClosePointerDown}
+          >
+            {tabCloseButton}
+          </div>
           : null
         }
         <div className="dock-tab-hit-area" ref={this.getHitAreaRef}/>

@@ -70,6 +70,10 @@ export class TabCache {
             this.removeTab();
             e.stopPropagation();
         };
+        this.onClosePointerDown = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        };
         this.onDragStart = (e) => {
             let panel = this.data.parent;
             if (panel.parent.mode === 'float' && panel.tabs.length === 1) {
@@ -201,7 +205,7 @@ export class TabCache {
         let tab = (React.createElement(DragDropDiv, { getRef: this.getRef, onDragStartT: onDragStart, role: "tab", "aria-selected": parent.activeId === id, onDragOverT: onDragOver, onDropT: onDrop, onDragLeaveT: onDragLeave, tabData: this.data },
             React.createElement(DockTabTitle, { title: title, onMouseWheelClick: this.handleMouseWheelClick }),
             tabClosable ?
-                React.createElement("div", { className: "dock-tab-close-btn", onClick: this.onCloseClick }, tabCloseButton)
+                React.createElement("div", { className: "dock-tab-close-btn", onClick: this.onCloseClick, onMouseDown: this.onClosePointerDown, onTouchStart: this.onClosePointerDown }, tabCloseButton)
                 : null,
             React.createElement("div", { className: "dock-tab-hit-area", ref: this.getHitAreaRef })));
         return (React.createElement(DockTabPane, { key: id, cacheId: id, cached: cached, tab: tab, onTabActiveChange: handleTabActiveChange },

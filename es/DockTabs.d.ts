@@ -13,6 +13,7 @@ export declare class TabCache {
     setData(data: TabData): boolean;
     removeTab(): void;
     onCloseClick: (e: React.MouseEvent) => void;
+    onClosePointerDown: (e: React.MouseEvent | React.TouchEvent) => void;
     onDragStart: (e: DragManager.DragState) => void;
     onDragOver: (e: DragManager.DragState) => void;
     onDragLeave: (e: DragManager.DragState) => void;

@@ -426,7 +426,7 @@ class RcDragDropDiv extends React.PureComponent<DragDropDivProps, any> {
 }
 
 class DndDragDropDiv extends React.PureComponent<DndDragDropDivProps, any> {
-  element: HTMLElement;
+  _element: HTMLElement;
   ownerDocument: Document;
   dragType: DragManager.DragType = "left";
   baseX: number = 0;
@@ -440,7 +440,7 @@ class DndDragDropDiv extends React.PureComponent<DndDragDropDivProps, any> {
 
   _getRef = (r: HTMLDivElement) => {
     let {getRef} = this.props;
-    this.element = this.props.getElement ? this.props.getElement() : r;
+    this._element = r;
 
     if (r) {
       this.ownerDocument = r.ownerDocument;
@@ -450,6 +450,10 @@ class DndDragDropDiv extends React.PureComponent<DndDragDropDivProps, any> {
       getRef(r);
     }
   };
+
+  get element() {
+    return this.props.getElement ? this.props.getElement() : this._element;
+  }
 
   componentDidMount() {
     const { connectDragPreview, dockContext } = this.props;
@@ -471,7 +475,7 @@ class DndDragDropDiv extends React.PureComponent<DndDragDropDivProps, any> {
 
   render(): React.ReactNode {
     let {
-      getRef, children, className,
+      getRef, children, className, getElement,
       directDragT, onDragStartT, onDragMoveT, onDragEndT, onDragOverT, onDragLeaveT, onDropT,
       onGestureStartT, onGestureMoveT, onGestureEndT, useRightButtonDragT, tabData, panelData,
       // drag props

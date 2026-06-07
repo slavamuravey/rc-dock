@@ -333,7 +333,7 @@ class DndDragDropDiv extends React.PureComponent {
         this.scaleY = 0;
         this._getRef = (r) => {
             let { getRef } = this.props;
-            this.element = this.props.getElement ? this.props.getElement() : r;
+            this._element = r;
             if (r) {
                 this.ownerDocument = r.ownerDocument;
             }
@@ -341,6 +341,9 @@ class DndDragDropDiv extends React.PureComponent {
                 getRef(r);
             }
         };
+    }
+    get element() {
+        return this.props.getElement ? this.props.getElement() : this._element;
     }
     componentDidMount() {
         var _a, _b;
@@ -359,13 +362,13 @@ class DndDragDropDiv extends React.PureComponent {
         }
     }
     render() {
-        let _a = this.props, { getRef, children, className, directDragT, onDragStartT, onDragMoveT, onDragEndT, onDragOverT, onDragLeaveT, onDropT, onGestureStartT, onGestureMoveT, onGestureEndT, useRightButtonDragT, tabData, panelData, 
+        let _a = this.props, { getRef, children, className, getElement, directDragT, onDragStartT, onDragMoveT, onDragEndT, onDragOverT, onDragLeaveT, onDropT, onGestureStartT, onGestureMoveT, onGestureEndT, useRightButtonDragT, tabData, panelData, 
         // drag props
         isDragging, connectDragSource, connectDragPreview, 
         // drop props
         isOver, canDrop, connectDropTarget, isOverCurrent, itemType, 
         // dockContext prop
-        dockContext } = _a, others = __rest(_a, ["getRef", "children", "className", "directDragT", "onDragStartT", "onDragMoveT", "onDragEndT", "onDragOverT", "onDragLeaveT", "onDropT", "onGestureStartT", "onGestureMoveT", "onGestureEndT", "useRightButtonDragT", "tabData", "panelData", "isDragging", "connectDragSource", "connectDragPreview", "isOver", "canDrop", "connectDropTarget", "isOverCurrent", "itemType", "dockContext"]);
+        dockContext } = _a, others = __rest(_a, ["getRef", "children", "className", "getElement", "directDragT", "onDragStartT", "onDragMoveT", "onDragEndT", "onDragOverT", "onDragLeaveT", "onDropT", "onGestureStartT", "onGestureMoveT", "onGestureEndT", "useRightButtonDragT", "tabData", "panelData", "isDragging", "connectDragSource", "connectDragPreview", "isOver", "canDrop", "connectDropTarget", "isOverCurrent", "itemType", "dockContext"]);
         if (canDrag(this.props)) {
             if (className) {
                 className = `${className} drag-initiator`;

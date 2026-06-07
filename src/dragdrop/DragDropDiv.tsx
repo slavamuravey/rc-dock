@@ -61,6 +61,7 @@ interface DragDropDivProps extends React.HTMLAttributes<HTMLDivElement> {
 
   tabData?: TabData;
   panelData?: PanelData;
+  getElement?: () => HTMLElement;
 }
 
 interface WithDockContextProps {
@@ -439,7 +440,7 @@ class DndDragDropDiv extends React.PureComponent<DndDragDropDivProps, any> {
 
   _getRef = (r: HTMLDivElement) => {
     let {getRef} = this.props;
-    this.element = r;
+    this.element = this.props.getElement ? this.props.getElement() : r;
 
     if (r) {
       this.ownerDocument = r.ownerDocument;

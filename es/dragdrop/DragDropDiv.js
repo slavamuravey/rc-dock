@@ -333,7 +333,7 @@ class DndDragDropDiv extends React.PureComponent {
         this.scaleY = 0;
         this._getRef = (r) => {
             let { getRef } = this.props;
-            this.element = r;
+            this.element = this.props.getElement ? this.props.getElement() : r;
             if (r) {
                 this.ownerDocument = r.ownerDocument;
             }

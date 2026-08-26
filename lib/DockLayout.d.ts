@@ -201,5 +201,6 @@ export declare class DockLayout extends DockPortalManager implements DockContext
     get minimizeButton(): React.ReactNode;
     get panelCloseButton(): React.ReactNode;
     get moreTabsButton(): React.ReactNode;
+    dragDropDivProps: WeakMap<object, any>;
 }
 export {};

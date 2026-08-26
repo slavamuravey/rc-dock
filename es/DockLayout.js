@@ -114,6 +114,7 @@ export class DockLayout extends DockPortalManager {
                 }
             }
         }, 200);
+        this.dragDropDivProps = new WeakMap();
         let { layout, defaultLayout, loadTab } = props;
         let preparedLayout;
         if (defaultLayout) {

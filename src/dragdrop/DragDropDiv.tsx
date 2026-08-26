@@ -462,6 +462,8 @@ class DndDragDropDiv extends React.PureComponent<DndDragDropDivProps, any> {
     if (preview) {
       connectDragPreview(preview.elementOrNode, preview.options);
     }
+
+    dockContext.dragDropDivProps.set(this._element, this.props);
   }
 
   componentDidUpdate(prevProps: Readonly<DndDragDropDivProps>, prevState: Readonly<any>, snapshot?: any) {

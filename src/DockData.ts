@@ -507,6 +507,8 @@ export interface DockContext {
   maximizeButton: React.ReactNode;
   minimizeButton: React.ReactNode;
   panelCloseButton: React.ReactNode;
+
+  dragDropDivProps: WeakMap<HTMLElement, any>;
 }
 
 /** @ignore */

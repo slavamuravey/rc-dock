@@ -821,4 +821,6 @@ export class DockLayout extends DockPortalManager implements DockContext {
   get moreTabsButton(): React.ReactNode {
     return this.props.moreTabsButton || "...";
   }
+
+  dragDropDivProps = new WeakMap();
 }

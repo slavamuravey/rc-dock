@@ -467,12 +467,16 @@ class DndDragDropDiv extends React.PureComponent<DndDragDropDivProps, any> {
   }
 
   componentDidUpdate(prevProps: Readonly<DndDragDropDivProps>, prevState: Readonly<any>, snapshot?: any) {
+    const { dockContext } = this.props;
+
     if (prevProps.isOver && !this.props.isOver) {
       if (this.props.onDragLeaveT) {
         const state = new DragManager.DragState(undefined, this as any);
         this.props.onDragLeaveT(state);
       }
     }
+
+    dockContext.dragDropDivProps.set(this._element, this.props);
   }
 
   render(): React.ReactNode {

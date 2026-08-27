@@ -355,12 +355,14 @@ class DndDragDropDiv extends React.PureComponent {
         dockContext.dragDropDivProps.set(this._element, this.props);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
+        const { dockContext } = this.props;
         if (prevProps.isOver && !this.props.isOver) {
             if (this.props.onDragLeaveT) {
                 const state = new DragManager.DragState(undefined, this);
                 this.props.onDragLeaveT(state);
             }
         }
+        dockContext.dragDropDivProps.set(this._element, this.props);
     }
     render() {
         let _a = this.props, { getRef, children, className, getElement, directDragT, onDragStartT, onDragMoveT, onDragEndT, onDragOverT, onDragLeaveT, onDropT, onGestureStartT, onGestureMoveT, onGestureEndT, useRightButtonDragT, tabData, panelData, 

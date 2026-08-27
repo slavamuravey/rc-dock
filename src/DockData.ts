@@ -7,6 +7,7 @@ import {
   XYCoord
 } from "react-dnd";
 import { DragSourceMonitor, DropTargetMonitor } from "react-dnd/dist/types/types";
+import { DragDropDivProps } from "./dragdrop/DragDropDiv";
 
 export interface TabGroup {
   /**
@@ -508,7 +509,7 @@ export interface DockContext {
   minimizeButton: React.ReactNode;
   panelCloseButton: React.ReactNode;
 
-  dragDropDivProps: WeakMap<HTMLElement, any>;
+  dragDropDivProps: WeakMap<HTMLElement, DragDropDivProps>;
 }
 
 /** @ignore */

@@ -34,7 +34,7 @@ import { mergeTabGroups } from "../Utils";
 
 export type AbstractPointerEvent = MouseEvent | TouchEvent;
 
-interface DragDropDivProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DragDropDivProps extends React.HTMLAttributes<HTMLDivElement> {
   getRef?: (ref: HTMLDivElement) => void;
   onDragStartT?: DragManager.DragHandler;
   onDragMoveT?: DragManager.DragHandler;

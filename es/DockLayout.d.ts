@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BoxData, DndSpec, DockContext, DockMoveAdditionalData, DropDirection, LayoutBase, LayoutData, LayoutSize, PanelBase, PanelData, Size, TabBase, TabData, TabGroup, TabPaneCache } from "./DockData";
 import * as Algorithm from "./Algorithm";
+import { DragDropDivProps } from "./dragdrop/DragDropDiv";
 export interface LayoutProps {
     /**
      * when there are multiple DockLayout, by default, you can't drag panel between them
@@ -201,6 +202,6 @@ export declare class DockLayout extends DockPortalManager implements DockContext
     get minimizeButton(): React.ReactNode;
     get panelCloseButton(): React.ReactNode;
     get moreTabsButton(): React.ReactNode;
-    dragDropDivProps: WeakMap<object, any>;
+    dragDropDivProps: WeakMap<HTMLElement, DragDropDivProps>;
 }
 export {};

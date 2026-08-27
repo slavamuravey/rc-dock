@@ -33,6 +33,7 @@ import { WindowBox } from "./WindowBox";
 import classNames from "classnames";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
+import { DragDropDivProps } from "./dragdrop/DragDropDiv";
 
 export interface LayoutProps {
   /**
@@ -822,5 +823,5 @@ export class DockLayout extends DockPortalManager implements DockContext {
     return this.props.moreTabsButton || "...";
   }
 
-  dragDropDivProps = new WeakMap();
+  dragDropDivProps = new WeakMap<HTMLElement, DragDropDivProps>();
 }

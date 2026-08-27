@@ -3,6 +3,7 @@ import { TabPosition } from "rc-tabs/lib/interface";
 import { Filter } from "./Algorithm";
 import { ConnectableElement, DragPreviewOptions, XYCoord } from "react-dnd";
 import { DragSourceMonitor, DropTargetMonitor } from "react-dnd/dist/types/types";
+import { DragDropDivProps } from "./dragdrop/DragDropDiv";
 export interface TabGroup {
     /**
      * Whether tab can be dragged into float layer.
@@ -395,7 +396,7 @@ export interface DockContext {
     maximizeButton: React.ReactNode;
     minimizeButton: React.ReactNode;
     panelCloseButton: React.ReactNode;
-    dragDropDivProps: WeakMap<HTMLElement, any>;
+    dragDropDivProps: WeakMap<HTMLElement, DragDropDivProps>;
 }
 /** @ignore */
 export declare const DockContextType: React.Context<DockContext>;
